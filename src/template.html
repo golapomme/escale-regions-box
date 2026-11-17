@@ -1,0 +1,1959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escale Régions Box — Every month, a region on your table</title>
+<meta name="description" content="Escale Régions Box delivers a curated box of authentic French regional food every month: short-supply-chain products, a regional flyer and a recipe. Choose your size, your budget and your plan.">
+<meta name="theme-color" content="#1E4A2D">
+<meta name="robots" content="noindex">
+<!-- Production: set the canonical URL and an absolute 1200×630 share image -->
+<link rel="canonical" href="https://www.example.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Escale Régions Box">
+<meta property="og:title" content="Escale Régions Box — Every month, a region on your table">
+<meta property="og:description" content="A monthly journey through French regional food: authentic products from short supply chains, a regional flyer and a recipe in every box.">
+<meta property="og:locale" content="en_GB">
+<meta property="og:image" content="https://www.example.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Escale Régions Box — Every month, a region on your table">
+<meta name="twitter:description" content="Authentic French regional food, a new region every month.">
+<link rel="icon" href="__LOGO__">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Escale Régions Box","slogan":"Every month, a region on your table."}</script>
+<style>
+/* =====================================================================
+   1. DESIGN TOKENS
+   Provisional brand values taken from the "Escale Régions Box" sheet
+   (palette: deep green, cream, ochre, terracotta, sand · Playfair Display + Lato).
+   The upcoming art direction PDF remains the authoritative reference:
+   update the values below, not the components.
+   ===================================================================== */
+:root{
+  /* Brand palette */
+  --brand-green:#1E4A2D;
+  --brand-green-dark:#143521;
+  --brand-cream:#FBF6EA;
+  --brand-ochre:#D4972B;
+  --brand-terracotta:#B9542A;
+  --brand-sand:#EAD8B5;
+  /* Semantic colours */
+  --color-bg:var(--brand-cream);
+  --color-surface:#FFFDF8;
+  --color-surface-alt:#F4EBD8;
+  --color-text:#26261F;
+  --color-text-muted:#5D584A;
+  --color-border:#E2D5BB;
+  --color-primary:var(--brand-green);
+  --color-primary-hover:var(--brand-green-dark);
+  --color-on-primary:#FFFFFF;
+  --color-accent:var(--brand-ochre);
+  --color-accent-strong:var(--brand-terracotta);
+  --color-highlight:#F1E6CC;
+  --color-success:#25643A;
+  --color-success-bg:#E5F1E7;
+  --color-danger:#A1251B;
+  --color-danger-bg:#FBE9E6;
+  --color-warning:#7A4E00;
+  --color-warning-bg:#FBEFD2;
+  --color-focus:#1B5FC9;
+  /* Map */
+  --map-current:var(--brand-terracotta);
+  --map-upcoming:var(--brand-ochre);
+  --map-past:#C9B78F;
+  --map-future:#EDE3CC;
+  --map-stroke:#FFFDF8;
+  --map-selected:var(--brand-green);
+  /* Image placeholders */
+  --placeholder-a:#EFE4CC;
+  --placeholder-b:#E7DABD;
+  --placeholder-text:#6A6250;
+  /* Typography */
+  --font-heading:"Playfair Display",Georgia,"Times New Roman",serif;
+  --font-body:"Lato",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --fs-xs:.78rem; --fs-sm:.9rem; --fs-base:1rem; --fs-lg:1.15rem; --fs-xl:1.45rem;
+  --fs-2xl:clamp(1.6rem,3.2vw,2.3rem); --fs-3xl:clamp(2.1rem,5vw,3.6rem);
+  --fw-regular:400; --fw-medium:700; --fw-bold:700; --fw-black:900;
+  --lh-tight:1.15; --lh-base:1.6;
+  /* Spacing */
+  --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem; --space-5:1.5rem;
+  --space-6:2rem; --space-7:3rem; --space-8:4.5rem;
+  /* Shape & depth */
+  --radius-sm:4px; --radius:10px; --radius-lg:16px; --radius-pill:999px;
+  --shadow-sm:0 1px 2px rgba(38,38,31,.06);
+  --shadow:0 8px 24px rgba(38,38,31,.10);
+  /* Layout & motion */
+  --container:1200px; --header-h:72px;
+  --transition:180ms ease;
+}
+
+/* =====================================================================
+   2. BASE
+   ===================================================================== */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--font-body);font-size:var(--fs-base);line-height:var(--lh-base);color:var(--color-text);background:var(--color-bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--font-heading);line-height:var(--lh-tight);margin:0 0 var(--space-3);font-weight:var(--fw-bold);color:var(--color-primary)}
+h1{font-size:var(--fs-3xl)} h2{font-size:var(--fs-2xl)} h3{font-size:var(--fs-lg)}
+p{margin:0 0 var(--space-4)}
+a{color:inherit}
+img,svg{max-width:100%;height:auto;display:block}
+ul{padding-left:1.2rem}
+:focus-visible{outline:3px solid var(--color-focus);outline-offset:2px;border-radius:var(--radius-sm)}
+h1[tabindex="-1"]:focus,#app:focus{outline:none}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip-link{position:absolute;left:var(--space-4);top:-100px;background:var(--color-primary);color:var(--color-on-primary);padding:var(--space-2) var(--space-4);border-radius:var(--radius);z-index:200}
+.skip-link:focus{top:var(--space-2)}
+.container{width:min(100% - 2rem,var(--container));margin-inline:auto}
+.section{padding-block:var(--space-8)}
+.section--alt{background:var(--color-surface-alt)}
+.section--green{background:var(--color-primary);color:var(--color-on-primary)}
+.section--green h2,.section--green h3{color:var(--color-on-primary)}
+.section-head{max-width:740px;margin-bottom:var(--space-6)}
+.section-head--center{text-align:center;margin-inline:auto}
+.eyebrow{display:inline-block;font-size:var(--fs-xs);font-weight:var(--fw-black);letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-strong);margin-bottom:var(--space-2)}
+.section--green .eyebrow{color:var(--brand-ochre)}
+.lead{font-size:var(--fs-lg);color:var(--color-text-muted)}
+.section--green .lead{color:rgba(255,255,255,.85)}
+.muted{color:var(--color-text-muted)}
+.small{font-size:var(--fs-sm)}
+.center{text-align:center}
+.grid{display:grid;gap:var(--space-5)}
+.grid>*{min-width:0}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.stack>*+*{margin-top:var(--space-4)}
+.row{display:flex;gap:var(--space-3);flex-wrap:wrap;align-items:center}
+.row--between{justify-content:space-between}
+.row--center{justify-content:center}
+@media (max-width:980px){.grid-3,.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.grid-2,.grid-3,.grid-4{grid-template-columns:minmax(0,1fr)}.section{padding-block:var(--space-7)}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* =====================================================================
+   3. COMPONENTS
+   ===================================================================== */
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:.8rem 1.35rem;border-radius:var(--radius-pill);border:2px solid var(--color-primary);font:inherit;font-weight:var(--fw-bold);text-decoration:none;cursor:pointer;transition:background var(--transition),color var(--transition),transform var(--transition),border-color var(--transition);line-height:1.2;text-align:center;min-height:44px}
+.btn:active{transform:translateY(1px)}
+.btn--primary{background:var(--color-primary);color:var(--color-on-primary)}
+.btn--primary:hover{background:var(--color-primary-hover);border-color:var(--color-primary-hover)}
+.btn--accent{background:var(--color-accent-strong);border-color:var(--color-accent-strong);color:#fff}
+.btn--accent:hover{background:#9c4421;border-color:#9c4421}
+.btn--secondary{background:transparent;color:var(--color-primary)}
+.btn--secondary:hover{background:var(--color-highlight)}
+.section--green .btn--secondary{color:#fff;border-color:#fff}
+.section--green .btn--secondary:hover{background:rgba(255,255,255,.12)}
+.btn--ghost{background:transparent;border-color:transparent;color:var(--color-primary);text-decoration:underline;text-underline-offset:3px;padding-inline:.5rem}
+.btn--ghost:hover{background:var(--color-highlight)}
+.btn--sm{padding:.45rem .95rem;font-size:var(--fs-sm);min-height:38px}
+.btn--block{width:100%}
+.btn[disabled],.btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+.btn.is-loading::before{content:"";width:16px;height:16px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.icon-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:var(--radius-pill);border:1px solid transparent;background:transparent;color:var(--color-primary);cursor:pointer;text-decoration:none;position:relative}
+.icon-btn:hover{background:var(--color-highlight)}
+.icon{width:22px;height:22px;flex:none;display:inline-block;vertical-align:middle}
+
+/* Cards, badges, notices */
+.card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:var(--space-5);box-shadow:var(--shadow-sm);min-width:0}
+.card--hover{transition:box-shadow var(--transition),transform var(--transition)}
+.card--hover:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.badge{display:inline-flex;align-items:center;gap:.3rem;font-size:var(--fs-xs);font-weight:var(--fw-black);letter-spacing:.05em;padding:.22rem .65rem;border-radius:var(--radius-pill);background:var(--color-highlight);color:var(--color-text);text-transform:uppercase;white-space:nowrap}
+.badge--green{background:var(--color-primary);color:#fff}
+.badge--terracotta{background:var(--color-accent-strong);color:#fff}
+.badge--ochre{background:var(--brand-ochre);color:#26261F}
+.badge--success{background:var(--color-success-bg);color:var(--color-success)}
+.badge--warning{background:var(--color-warning-bg);color:var(--color-warning)}
+.badge--outline{background:transparent;border:1px solid var(--color-border)}
+.status{display:inline-block;font-size:var(--fs-xs);font-weight:var(--fw-bold);padding:.1rem .45rem;border-radius:var(--radius-sm);vertical-align:middle;white-space:nowrap}
+.status--prov{color:var(--color-warning);background:var(--color-warning-bg)}
+.status--tbd{color:var(--color-text-muted);background:var(--color-highlight)}
+.status--example{color:#5a3d8a;background:#efe8f8}
+.status--sim{color:var(--color-danger);background:var(--color-danger-bg)}
+.notice{padding:var(--space-3) var(--space-4);border-radius:var(--radius);background:var(--color-warning-bg);color:var(--color-warning);font-size:var(--fs-sm)}
+.notice--info{background:var(--color-highlight);color:var(--color-text)}
+.notice--success{background:var(--color-success-bg);color:var(--color-success)}
+.slot{border:2px dashed var(--color-border);border-radius:var(--radius-lg);padding:var(--space-5);background:transparent}
+.slot__label{font-size:var(--fs-xs);font-weight:var(--fw-black);letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted)}
+
+/* Images */
+.photo{border-radius:var(--radius-lg);overflow:hidden;background:var(--color-surface-alt);position:relative}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photo figcaption,.ph span{position:absolute;left:var(--space-3);bottom:var(--space-3);font-size:var(--fs-xs);background:rgba(255,253,248,.9);padding:.25rem .55rem;border-radius:var(--radius-sm);color:var(--color-text-muted);max-width:calc(100% - 1.5rem)}
+.ph{position:relative;aspect-ratio:4/3;border-radius:var(--radius-lg);overflow:hidden;background:repeating-linear-gradient(135deg,var(--placeholder-a) 0 14px,var(--placeholder-b) 14px 28px);color:var(--placeholder-text)}
+.ph--wide,.photo--wide{aspect-ratio:16/9}.ph--square,.photo--square{aspect-ratio:1/1}.ph--tall,.photo--tall{aspect-ratio:4/5}.photo--43{aspect-ratio:4/3}
+
+/* Demo banner */
+.demo-banner{background:var(--brand-green-dark);color:#fff;font-size:var(--fs-sm)}
+.demo-banner .container{display:flex;gap:var(--space-3);align-items:center;justify-content:space-between;padding-block:var(--space-2)}
+.demo-banner a{color:inherit}
+.demo-banner button{background:transparent;border:1px solid rgba(255,255,255,.55);color:inherit;border-radius:var(--radius-pill);padding:.2rem .7rem;cursor:pointer;font:inherit;font-size:var(--fs-xs);flex:none;min-height:32px}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(251,246,234,.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--color-border)}
+.site-header .container{display:flex;align-items:center;gap:var(--space-4);height:var(--header-h)}
+.brand{display:inline-flex;align-items:center;gap:var(--space-2);text-decoration:none;color:var(--color-primary);flex:none}
+.brand img{width:52px;height:52px}
+.brand__name{font-family:var(--font-heading);font-weight:700;line-height:1;font-size:1.05rem}
+.brand__name small{display:block;font-size:.78rem;letter-spacing:.02em;margin-top:2px}
+.main-nav{flex:1;min-width:0}
+.main-nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:0;justify-content:center}
+.main-nav a{display:block;padding:.5rem .7rem;border-radius:var(--radius-pill);text-decoration:none;font-size:var(--fs-sm);font-weight:var(--fw-bold);color:var(--color-text-muted);transition:background var(--transition),color var(--transition);white-space:nowrap}
+.main-nav a:hover{background:var(--color-highlight);color:var(--color-primary)}
+.main-nav a[aria-current="page"]{color:var(--color-primary);background:var(--color-highlight)}
+.header-actions{display:flex;align-items:center;gap:var(--space-1);margin-left:auto}
+.header-cta{margin-right:var(--space-2)}
+.cart-count{position:absolute;top:3px;right:1px;min-width:19px;height:19px;padding:0 4px;border-radius:var(--radius-pill);background:var(--color-accent-strong);color:#fff;font-size:.68rem;font-weight:var(--fw-black);display:grid;place-items:center}
+.cart-count[data-count="0"]{display:none}
+.menu-toggle{display:none}
+@media (max-width:1180px){
+  .menu-toggle{display:inline-flex}
+  .main-nav{position:fixed;inset:var(--header-h) 0 auto 0;background:var(--color-surface);border-bottom:1px solid var(--color-border);box-shadow:var(--shadow);display:none;max-height:calc(100vh - var(--header-h));overflow:auto}
+  .main-nav.is-open{display:block}
+  .main-nav ul{flex-direction:column;padding:var(--space-3)}
+  .main-nav a{font-size:var(--fs-base);padding:.85rem 1rem;border-radius:var(--radius)}
+}
+@media (max-width:640px){.header-cta{display:none}.brand img{width:44px;height:44px}}
+
+/* Page head */
+.page-head{padding-block:var(--space-7) var(--space-5)}
+.page-head h1{font-size:var(--fs-2xl)}
+.breadcrumb{font-size:var(--fs-sm);color:var(--color-text-muted);margin-bottom:var(--space-3)}
+.breadcrumb ol{list-style:none;display:flex;gap:var(--space-2);padding:0;margin:0;flex-wrap:wrap}
+.breadcrumb li+li::before{content:"/";margin-right:var(--space-2)}
+
+/* Hero */
+.hero{padding-block:var(--space-7) var(--space-6)}
+.hero .container{display:grid;grid-template-columns:1fr 1.1fr;gap:var(--space-7);align-items:center}
+.hero .container>*{min-width:0}
+.hero h1{margin-bottom:var(--space-4)}
+.hero__price{font-size:var(--fs-lg);margin-bottom:var(--space-5)}
+.hero__price strong{color:var(--color-accent-strong);font-size:1.4em;font-family:var(--font-heading)}
+.hero .photo{aspect-ratio:2/1;box-shadow:var(--shadow)}
+.pillars{display:flex;gap:var(--space-3);margin-top:var(--space-5);font-size:var(--fs-xs);font-weight:var(--fw-black);letter-spacing:.2em;color:var(--color-primary)}
+@media (max-width:980px){.hero .container{grid-template-columns:minmax(0,1fr);gap:var(--space-5)}.hero .photo{order:-1}}
+.trust{border-block:1px solid var(--color-border);background:var(--color-surface)}
+.trust ul{list-style:none;margin:0;padding:var(--space-4) 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-4)}
+.trust li{display:flex;gap:var(--space-3);align-items:center;font-size:var(--fs-sm);font-weight:var(--fw-bold);color:var(--color-primary)}
+.trust .icon{color:var(--color-accent-strong)}
+@media (max-width:980px){.trust ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Steps */
+.step-card{text-align:center;padding:var(--space-6) var(--space-5)}
+.icon-wrap{width:64px;height:64px;margin:0 auto var(--space-4);border-radius:50%;display:grid;place-items:center;background:var(--color-highlight);color:var(--color-primary)}
+.icon-wrap .icon{width:30px;height:30px}
+.step-num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--color-primary);color:#fff;font-family:var(--font-body);font-size:var(--fs-sm);font-weight:var(--fw-black);margin-right:var(--space-2);flex:none}
+
+/* Box cards */
+.box-card{display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-4)}
+.box-card .photo,.box-card .ph{aspect-ratio:4/3;margin-bottom:var(--space-1)}
+.box-card__size{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--color-primary);color:#fff;font-weight:var(--fw-black)}
+.box-card__price{font-family:var(--font-heading);font-size:var(--fs-xl);font-weight:var(--fw-bold);color:var(--color-primary)}
+.box-card__actions{margin-top:auto;display:flex;flex-direction:column;gap:var(--space-2)}
+.facts{list-style:none;padding:0;margin:0;display:grid;gap:var(--space-2);font-size:var(--fs-sm)}
+.facts li{display:flex;gap:var(--space-2);align-items:flex-start}
+.facts .icon{width:18px;height:18px;color:var(--color-accent-strong);margin-top:2px}
+
+/* Split */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-7);align-items:center}
+@media (max-width:980px){.split{grid-template-columns:minmax(0,1fr);gap:var(--space-5)}}
+.chips{display:flex;flex-wrap:wrap;gap:var(--space-2);list-style:none;padding:0;margin:0 0 var(--space-5)}
+.chips li{padding:.35rem .85rem;border:1px solid var(--color-border);border-radius:var(--radius-pill);font-size:var(--fs-sm);background:var(--color-surface)}
+
+/* Segmented control */
+.seg{display:inline-flex;border:1.5px solid var(--color-primary);border-radius:var(--radius-pill);padding:3px;gap:2px;flex-wrap:wrap;background:var(--color-surface)}
+.seg button{border:0;background:transparent;padding:.45rem 1rem;border-radius:var(--radius-pill);font:inherit;font-weight:var(--fw-bold);cursor:pointer;color:var(--color-primary);min-height:38px}
+.seg button[aria-pressed="true"]{background:var(--color-primary);color:#fff}
+
+/* Map */
+.map-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:var(--space-6);align-items:start}
+@media (max-width:980px){.map-layout{grid-template-columns:minmax(0,1fr)}}
+.map-wrap{position:relative}
+.fr-map{width:100%;height:auto;display:block;touch-action:manipulation}
+.fr-map .region path{stroke:var(--map-stroke);stroke-width:1.6;stroke-linejoin:round;transition:fill var(--transition),opacity var(--transition);cursor:pointer}
+.fr-map .region text{font-family:var(--font-body);font-size:11px;font-weight:900;pointer-events:none;fill:var(--color-text);text-anchor:middle;paint-order:stroke;stroke:rgba(255,253,248,.75);stroke-width:3px}
+.fr-map .status-current path{fill:var(--map-current)} .fr-map .status-current text{fill:#fff;stroke:rgba(0,0,0,.25)}
+.fr-map .status-upcoming path{fill:var(--map-upcoming)}
+.fr-map .status-past path{fill:var(--map-past)}
+.fr-map .status-future path{fill:var(--map-future)}
+.fr-map .region:hover path{opacity:.82}
+.fr-map .region:focus{outline:none}
+.fr-map .region:focus-visible path,.fr-map .region.is-selected path{stroke:var(--map-selected);stroke-width:3.5}
+.map-tip{position:absolute;pointer-events:none;background:var(--color-primary);color:#fff;font-size:var(--fs-xs);padding:.35rem .6rem;border-radius:var(--radius-sm);white-space:nowrap;transform:translate(-50%,-130%);opacity:0;transition:opacity 120ms}
+.map-tip.is-on{opacity:1}
+.legend{display:flex;flex-wrap:wrap;gap:var(--space-2) var(--space-4);list-style:none;padding:0;margin:var(--space-4) 0 0;font-size:var(--fs-sm)}
+.legend li{display:flex;align-items:center;gap:var(--space-2)}
+.legend i{width:14px;height:14px;border-radius:3px;display:inline-block;border:1px solid var(--color-border)}
+.region-panel{position:sticky;top:calc(var(--header-h) + var(--space-4))}
+@media (max-width:980px){.region-panel{position:static}}
+.region-panel h3{font-size:var(--fs-base);margin-top:var(--space-5)}
+.region-chips{display:flex;gap:var(--space-2);overflow-x:auto;padding:var(--space-2) 0 var(--space-3);margin:var(--space-4) 0 0;list-style:none;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.region-chips li{flex:none;scroll-snap-align:start}
+.region-chips button{padding:.5rem .9rem;border:1.5px solid var(--color-border);border-radius:var(--radius-pill);background:var(--color-surface);cursor:pointer;font:inherit;font-size:var(--fs-sm);white-space:nowrap;min-height:40px}
+.region-chips button:hover,.region-chips button[aria-pressed="true"]{border-color:var(--color-primary);background:var(--color-highlight);color:var(--color-primary);font-weight:var(--fw-bold)}
+.timeline{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:var(--space-3)}
+.timeline button{width:100%;text-align:left;padding:var(--space-3);border:1.5px solid var(--color-border);border-radius:var(--radius);background:var(--color-surface);font:inherit;cursor:pointer;min-height:76px}
+.timeline button:hover,.timeline button[aria-pressed="true"]{border-color:var(--color-primary)}
+.timeline button[disabled]{cursor:default;background:transparent;border-style:dashed}
+.timeline .t-month{display:block;font-size:var(--fs-xs);font-weight:var(--fw-black);letter-spacing:.06em;text-transform:uppercase;color:var(--color-text-muted)}
+.timeline .t-name{display:block;font-family:var(--font-heading);font-weight:700;color:var(--color-primary);font-size:1.05rem}
+.timeline .is-current{border-color:var(--map-current);background:#fbeee6}
+
+/* Short circuit */
+.circuit{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:var(--space-4);align-items:center;text-align:center}
+.circuit .node{display:grid;justify-items:center;gap:var(--space-2);font-weight:var(--fw-bold);color:var(--color-primary)}
+.circuit .node .icon{width:44px;height:44px}
+.circuit .arrow{font-size:1.6rem;color:var(--color-accent-strong)}
+@media (max-width:640px){.circuit{grid-template-columns:minmax(0,1fr)}.circuit .arrow{transform:rotate(90deg)}}
+
+/* Editions & producers */
+.edition-card{display:flex;flex-direction:column;gap:var(--space-3);padding:var(--space-4)}
+.edition-card .btn{margin-top:auto}
+.edition-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:var(--space-5)}
+@media (max-width:1100px){.edition-row{grid-template-columns:minmax(0,1fr)}}
+
+/* Forms */
+.field{display:flex;flex-direction:column;gap:var(--space-1);margin-bottom:var(--space-4);min-width:0}
+.field label,.field legend,.label{font-weight:var(--fw-bold);font-size:var(--fs-sm)}
+.req{color:var(--color-danger)}
+.input{font:inherit;padding:.75rem .9rem;border:1.5px solid var(--color-border);border-radius:var(--radius);background:var(--color-surface);color:var(--color-text);width:100%;min-height:46px;transition:border-color var(--transition)}
+.input:hover{border-color:var(--color-text-muted)}
+.input:focus{border-color:var(--color-focus);outline:none;box-shadow:0 0 0 3px rgba(27,95,201,.2)}
+.input[aria-invalid="true"]{border-color:var(--color-danger);background:var(--color-danger-bg)}
+.input.is-valid{border-color:var(--color-success)}
+.field-error{color:var(--color-danger);font-size:var(--fs-sm);font-weight:var(--fw-bold)}
+.field-error:empty{display:none}
+.hint{font-size:var(--fs-xs);color:var(--color-text-muted)}
+.check{display:flex;gap:var(--space-2);align-items:flex-start;font-size:var(--fs-sm);cursor:pointer}
+.check input{margin-top:.2rem;width:18px;height:18px;flex:none;accent-color:var(--color-primary)}
+.check-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:var(--space-2) var(--space-4)}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--space-4)}
+.form-grid .full{grid-column:1/-1}
+@media (max-width:640px){.form-grid{grid-template-columns:minmax(0,1fr)}}
+fieldset{border:0;padding:0;margin:0;min-width:0}
+.form-error-summary{margin-bottom:var(--space-4)}
+[data-gift-amount]:focus-visible+span{outline:3px solid var(--color-focus);outline-offset:2px}
+.seg label{cursor:pointer}
+
+/* Configurator */
+.builder{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:var(--space-6);align-items:start}
+@media (max-width:1060px){.builder{grid-template-columns:minmax(0,1fr)}}
+.builder-step{margin-bottom:var(--space-6)}
+.builder-step>legend,.builder-step>h2{display:flex;align-items:center;font-size:var(--fs-xl);font-weight:var(--fw-bold);margin-bottom:var(--space-4);font-family:var(--font-heading);color:var(--color-primary)}
+.option-grid{display:grid;gap:var(--space-3)}
+.option-grid--4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.option-grid--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:1300px){.option-grid--4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.option-grid--4,.option-grid--2{grid-template-columns:minmax(0,1fr)}}
+.option{position:relative;display:block;cursor:pointer;min-width:0}
+.option>input{position:absolute;opacity:0;inset:0;cursor:pointer;margin:0}
+.option__body{display:block;height:100%;padding:var(--space-4);border:1.5px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);transition:border-color var(--transition),box-shadow var(--transition)}
+.option:hover .option__body{border-color:var(--color-text-muted)}
+.option>input:checked+.option__body{border-color:var(--color-primary);box-shadow:0 0 0 1.5px var(--color-primary)}
+.option>input:focus-visible+.option__body{outline:3px solid var(--color-focus);outline-offset:2px}
+.option__check{position:absolute;z-index:1;top:var(--space-3);right:var(--space-3);width:24px;height:24px;border-radius:50%;border:1.5px solid var(--color-border);display:grid;place-items:center;background:var(--color-surface)}
+.option>input:checked+.option__body .option__check{background:var(--color-primary);border-color:var(--color-primary);color:#fff}
+.option__check svg{width:14px;height:14px;opacity:0}
+.option>input:checked+.option__body .option__check svg{opacity:1}
+.option .photo,.option .ph{aspect-ratio:3/2;margin-bottom:var(--space-3)}
+.option--suggested .option__body{border-color:var(--brand-ochre);background:linear-gradient(0deg,var(--color-surface),#fdf5e3)}
+.plan-option .option__body{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-1) var(--space-4);align-items:center;padding-right:3.2rem}
+.plan-price{text-align:right;font-weight:var(--fw-black);font-size:var(--fs-lg);color:var(--color-primary)}
+.plan-price small{display:block;font-weight:var(--fw-regular);color:var(--color-text-muted);font-size:var(--fs-xs)}
+.budget-input{display:flex;align-items:center;gap:var(--space-2);margin-top:var(--space-2)}
+.budget-input .input{max-width:120px;position:relative;z-index:2}
+.summary{position:sticky;top:calc(var(--header-h) + var(--space-4))}
+@media (max-width:1060px){.summary{position:static}}
+.sum-group{border-top:1px solid var(--color-border);padding-top:var(--space-3);margin-top:var(--space-3)}
+.sum-group h3{font-family:var(--font-body);font-size:var(--fs-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-2)}
+.dl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--space-2) var(--space-4);margin:0}
+.dl dt{color:var(--color-text-muted);font-size:var(--fs-sm)}
+.dl dd{margin:0;text-align:right;font-weight:var(--fw-bold);font-size:var(--fs-sm);overflow-wrap:anywhere}
+.big-total{display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-3);border-top:2px solid var(--color-primary);padding-top:var(--space-3);margin-top:var(--space-3)}
+.big-total strong{font-family:var(--font-heading);font-size:1.7rem;color:var(--color-primary)}
+.savings{color:var(--color-success);font-weight:var(--fw-black)}
+.benefits{list-style:none;padding:0;margin:0;display:grid;gap:var(--space-3)}
+.benefits li{display:flex;gap:var(--space-3);align-items:flex-start}
+.benefits .icon{color:var(--color-success);margin-top:2px}
+.mobile-bar{position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--color-surface);border-top:1px solid var(--color-border);box-shadow:0 -6px 18px rgba(0,0,0,.08);padding:var(--space-3) var(--space-4);display:none;align-items:center;justify-content:space-between;gap:var(--space-3)}
+.mobile-bar strong{font-family:var(--font-heading);font-size:var(--fs-lg);color:var(--color-primary)}
+@media (max-width:1060px){.mobile-bar{display:flex}body.has-mobile-bar{padding-bottom:84px}body.has-mobile-bar .toast-region{bottom:96px}}
+
+/* Tables */
+.table-wrap{position:relative;overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface);max-width:100%;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:var(--fs-sm)}
+th,td{padding:.8rem 1rem;text-align:left;border-bottom:1px solid var(--color-border);vertical-align:top}
+thead th{background:var(--color-surface-alt);font-weight:var(--fw-black);color:var(--color-primary)}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+tr.is-current{background:var(--color-highlight)}
+td.num,th.num{text-align:right;white-space:nowrap}
+.compare{min-width:620px}
+.compare th[scope="row"]{color:var(--color-text-muted);font-weight:var(--fw-bold)}
+.compare .is-focus{background:var(--color-highlight)}
+.scroll-hint{display:none;font-size:var(--fs-xs);color:var(--color-text-muted);margin-top:var(--space-2)}
+@media (max-width:700px){.scroll-hint{display:block}}
+/* Stacked table on small screens */
+@media (max-width:640px){
+  .table-stack thead{display:none}
+  .table-stack,.table-stack tbody,.table-stack tr,.table-stack td,.table-stack th{display:block;width:100%}
+  .table-stack tr{border-bottom:1px solid var(--color-border);padding:var(--space-3) var(--space-4)}
+  .table-stack tr:last-child{border-bottom:0}
+  .table-stack td,.table-stack th{border:0;padding:.2rem 0;text-align:left}
+  .table-stack td[data-label]::before{content:attr(data-label) ": ";font-weight:var(--fw-bold);color:var(--color-text-muted)}
+  .table-stack td.num{text-align:left;white-space:normal}
+}
+
+/* Cart */
+.cart-layout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:var(--space-6);align-items:start}
+@media (max-width:1060px){.cart-layout{grid-template-columns:minmax(0,1fr)}}
+.cart-line{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:var(--space-4);align-items:center;padding:var(--space-4) 0;border-bottom:1px solid var(--color-border)}
+.cart-line .photo,.cart-line .ph{aspect-ratio:1/1;border-radius:var(--radius)}
+.cart-line .ph span,.cart-line figcaption{display:none}
+.cart-line__price{text-align:right;font-weight:var(--fw-black)}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--color-border);border-radius:var(--radius-pill)}
+.qty button{width:38px;height:38px;border:0;background:transparent;cursor:pointer;font-size:1.1rem;border-radius:var(--radius-pill);color:var(--color-primary)}
+.qty button:hover{background:var(--color-highlight)}
+.qty output{min-width:28px;text-align:center;font-weight:var(--fw-bold)}
+@media (max-width:540px){.cart-line{grid-template-columns:64px minmax(0,1fr)}.cart-line__price{grid-column:2;text-align:left}}
+.empty{text-align:center;padding:var(--space-8) var(--space-4)}
+.checkout-steps{display:flex;gap:var(--space-4);list-style:none;padding:0;margin:0 0 var(--space-4);font-size:var(--fs-sm);color:var(--color-text-muted);flex-wrap:wrap}
+.checkout-steps li[aria-current="step"]{color:var(--color-primary);font-weight:var(--fw-black)}
+.form-section{margin-top:var(--space-5)}
+.form-section>h2{font-size:var(--fs-xl)}
+
+/* Accordion */
+.accordion{border-top:1px solid var(--color-border)}
+.acc-item{border-bottom:1px solid var(--color-border)}
+.acc-item h3{margin:0;font-size:var(--fs-base);font-family:var(--font-body)}
+.acc-btn{width:100%;display:flex;justify-content:space-between;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-2);background:none;border:0;font:inherit;font-weight:var(--fw-bold);text-align:left;cursor:pointer;color:var(--color-text);min-height:48px}
+.acc-btn:hover{background:var(--color-highlight)}
+.acc-btn .icon{transition:transform var(--transition);color:var(--color-primary)}
+.acc-btn[aria-expanded="true"] .icon{transform:rotate(45deg)}
+.acc-panel{padding:0 var(--space-2) var(--space-4);color:var(--color-text-muted)}
+
+/* Account */
+.account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-5)}
+@media (max-width:900px){.account-grid{grid-template-columns:minmax(0,1fr)}}
+.account-grid .span-2{grid-column:1/-1}
+.kv{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:var(--space-2) var(--space-4);margin:0;font-size:var(--fs-sm)}
+.kv dt{color:var(--color-text-muted)} .kv dd{margin:0;overflow-wrap:anywhere}
+.list-plain{list-style:none;padding:0;margin:0}
+.list-plain>li{padding:var(--space-3) 0;border-bottom:1px solid var(--color-border)}
+.list-plain>li:last-child{border-bottom:0}
+
+/* Footer */
+.site-footer{background:var(--brand-green-dark);color:#fff;padding-block:var(--space-7) var(--space-5);margin-top:var(--space-8)}
+.site-footer a{color:inherit;opacity:.88;text-decoration:none}
+.site-footer a:hover{opacity:1;text-decoration:underline}
+.site-footer .brand{color:#fff}
+.footer-grid{display:grid;grid-template-columns:1.5fr repeat(4,minmax(0,1fr));gap:var(--space-6)}
+.footer-grid h2{font-family:var(--font-body);font-size:var(--fs-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--brand-ochre)}
+.footer-grid ul{list-style:none;padding:0;margin:0;display:grid;gap:var(--space-2);font-size:var(--fs-sm)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.2);margin-top:var(--space-6);padding-top:var(--space-4);font-size:var(--fs-xs);opacity:.8;display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap}
+@media (max-width:980px){.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-grid>div:first-child{grid-column:1/-1}}
+
+/* Toast */
+.toast-region{position:fixed;bottom:var(--space-5);left:50%;transform:translateX(-50%);z-index:300;display:grid;gap:var(--space-2);width:min(92vw,460px)}
+.toast{background:var(--brand-green-dark);color:#fff;padding:var(--space-3) var(--space-4);border-radius:var(--radius);box-shadow:var(--shadow);display:flex;justify-content:space-between;gap:var(--space-4);align-items:center;animation:toast-in 220ms ease}
+.toast a{color:var(--brand-ochre);font-weight:var(--fw-black);white-space:nowrap}
+@keyframes toast-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+#app{animation:fade 200ms ease;min-height:60vh}
+/* Presenter mode */
+.demo-bar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:250;background:var(--brand-green-dark);color:#fff;border-radius:var(--radius-pill);padding:6px 8px;display:flex;align-items:center;gap:6px;box-shadow:0 10px 30px rgba(0,0,0,.25);max-width:calc(100vw - 24px)}
+.demo-bar button{background:transparent;border:0;color:#fff;font:inherit;cursor:pointer;border-radius:var(--radius-pill);min-width:36px;height:36px;padding:0 .6rem;display:inline-flex;align-items:center;justify-content:center;gap:.3rem;font-weight:var(--fw-bold)}
+.demo-bar button:hover{background:rgba(255,255,255,.14)}
+.demo-bar .demo-step[aria-current="step"]{background:var(--brand-ochre);color:#26261F}
+.demo-bar .icon{width:18px;height:18px}
+.demo-steps{display:flex;gap:2px}
+.demo-caption{font-size:var(--fs-sm);padding:0 .5rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:380px}
+.demo-sep{width:1px;height:24px;background:rgba(255,255,255,.25)}
+@media (max-width:900px){.demo-caption,.demo-steps .demo-step:not([aria-current="step"]){display:none}}
+body.demo-on .toast-region{bottom:84px}
+body.demo-on.has-mobile-bar .demo-bar{bottom:96px}
+.demo-spot{animation:spot 1.4s ease-out 2;border-radius:var(--radius-lg)}
+@keyframes spot{0%{box-shadow:0 0 0 0 rgba(212,151,43,.75)}100%{box-shadow:0 0 0 22px rgba(212,151,43,0)}}
+@keyframes fade{from{opacity:.4}to{opacity:1}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#app">Skip to main content</a>
+<noscript><p class="notice" style="margin:1rem">This prototype needs JavaScript to run.</p></noscript>
+<div id="demo-banner"></div>
+<header class="site-header">
+  <div class="container">
+    <a href="#home" class="brand" aria-label="Escale Régions Box, home"><img src="__LOGO__" alt="" width="52" height="52"><span class="brand__name">ESCALE<small>Régions Box</small></span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <ul>
+        <li><a href="#boxes">Our Boxes</a></li>
+        <li><a href="#build">Build Your Box</a></li>
+        <li><a href="#regions">Explore Regions</a></li>
+        <li><a href="#editions">Special Editions</a></li>
+        <li><a href="#gift-cards">Gift Cards</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="#build" class="btn btn--accent btn--sm header-cta">Build my box</a>
+      <a href="#account" class="icon-btn" aria-label="My account"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></a>
+      <a href="#cart" class="icon-btn" id="cart-link" aria-label="Shopping cart, 0 items"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6.2"/><circle cx="10" cy="20.5" r="1.3"/><circle cx="17" cy="20.5" r="1.3"/></svg><span class="cart-count" id="cart-count" data-count="0">0</span></a>
+      <button class="icon-btn menu-toggle" type="button" data-action="menu" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="#home" class="brand"><img src="__LOGO__" alt="" width="52" height="52"><span class="brand__name">ESCALE<small>Régions Box</small></span></a>
+        <p class="small" style="opacity:.85;margin-top:var(--space-3)">Every month, a region on your table. Authentic French regional products from short supply chains, delivered to your door.</p>
+        <p class="small" style="opacity:.85">Social media: Instagram · Facebook · TikTok · Pinterest <span class="status status--tbd">Handles to be confirmed</span></p>
+      </div>
+      <div><h2>Shop</h2><ul>
+        <li><a href="#boxes">Our Boxes</a></li><li><a href="#build">Build Your Box</a></li><li><a href="#editions">Special Editions</a></li><li><a href="#gift-cards">Gift Cards</a></li></ul></div>
+      <div><h2>Discover</h2><ul>
+        <li><a href="#regions">Explore Regions</a></li><li><a href="#how-it-works">How It Works</a></li><li><a href="#story">Our Story</a></li><li><a href="#producers">Local Producers</a></li></ul></div>
+      <div><h2>Help</h2><ul>
+        <li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact us</a></li><li><a href="#delivery">Delivery &amp; guarantees</a></li><li><a href="#account">My Account</a></li></ul>
+        <p class="small" style="opacity:.85;margin-top:var(--space-3)">contact@escale-regions.example<br><span class="status status--tbd">Placeholder address</span></p></div>
+      <div><h2>Legal</h2><ul>
+        <li><a href="#legal">Terms of sale</a></li><li><a href="#legal">Privacy policy</a></li><li><a href="#legal">Legal notice</a></li><li><a href="#legal">Cookies</a></li><li><a href="#prototype">About this prototype</a></li><li><a href="#demo">Presenter mode</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© <span id="year"></span> Escale Régions Box. Academic business project prototype.</span><span>Prices, product selections and conditions shown are provisional.</span></div>
+  </div>
+</footer>
+
+<div class="toast-region" id="toasts" role="status" aria-live="polite"></div>
+<div id="demo-root"></div>
+
+<script>
+"use strict";
+/* =====================================================================
+   A. CONFIGURATION — provisional business settings (edit freely)
+   ===================================================================== */
+const CONFIG = {
+  brandName: "Escale Régions Box",
+  tagline: "Every month, a region on your table.",
+  locale: "en-GB",
+  currency: "EUR",
+  demoMonth: "2026-11",                       // month treated as "this month"
+  shipping: { standard: 4.90, subscriptionsIncluded: true },   // PROVISIONAL
+  budget: { min: 20, max: 150, perProduct: 8, defaultAmount: 45 }, // free-budget rule — PROVISIONAL
+  minDeliveryLeadDays: 3,                     // earliest selectable delivery date — PROVISIONAL
+  rules: {                                    // commercial rules: status is "proposed" or "tbd" until confirmed
+    payment:      { text: "Pay in full today, or by monthly direct debit.", status: "proposed" },
+    renewal:      { text: "Ends automatically after the last delivery. No automatic renewal.", status: "proposed" },
+    cancellation: { text: "To be defined.", status: "tbd" },
+    oneTime:      { text: "No commitment and no direct debit.", status: "proposed" }
+  },
+  storageKey: "escale-prototype-v2"
+};
+
+/* =====================================================================
+   B. DATA — boxes, plans, editions, regions (provisional)
+   ===================================================================== */
+const IMG = { logo: "__LOGO__", hero: "__HERO__", box: "__BOX__" };
+
+const BOXES = [
+  { id:"s", code:"S", size:"Small", name:"Discovery Box", price:25, count:3, products:"3 products",
+    tagline:"A first taste of the region, perfect for one or two.",
+    audience:"Individuals, couples, curious first-timers",
+    experience:"Three carefully chosen specialties that capture the essence of the month's region. Small enough to enjoy at your own pace, generous enough to travel.",
+    benefits:["The most accessible way to discover the concept","Easy to finish within the month","The same regional flyer and recipe as every box"] },
+  { id:"m", code:"M", size:"Medium", name:"Explorer Box", price:39, count:5, products:"5 products",
+    tagline:"A balanced tour of the region's pantry.",
+    audience:"Food lovers, couples, small households",
+    experience:"Five specialties mixing sweet and savoury, so you can build a full tasting moment, from aperitif to dessert, around the region of the month.",
+    benefits:["Sweet and savoury specialties","Enough for a full regional meal or aperitif","A good balance between variety and price"] },
+  { id:"l", code:"L", size:"Large", name:"Experience Box", price:55, count:7, products:"More than 5 products",
+    tagline:"The full regional experience, made for sharing.",
+    audience:"Families, gatherings, gifts",
+    experience:"Our most generous selection, with more specialties and more producers. Ideal for sharing with friends and family, or as a memorable gift.",
+    benefits:["The widest selection of specialties","Made for sharing at the table","An impressive gift"] }
+];
+
+const PLANS = [
+  { id:"one-time", label:"One-time box", short:"One-time", months:1, discount:0, subscription:false, enabled:true },
+  { id:"3m",  label:"3-month subscription",  short:"3 months",  months:3,  discount:0.05, subscription:true, enabled:true },
+  { id:"6m",  label:"6-month subscription",  short:"6 months",  months:6,  discount:0.10, subscription:true, enabled:true, suggested:true },
+  { id:"9m",  label:"9-month subscription",  short:"9 months",  months:9,  discount:0.12, subscription:true, enabled:false }, // kept in code; not listed in the current offer sheet
+  { id:"12m", label:"12-month subscription", short:"12 months", months:12, discount:0.15, subscription:true, enabled:true }
+];
+const PAYMENT_MODES = [
+  { id:"upfront", label:"Pay in full", desc:"One payment today for the whole plan." },
+  { id:"monthly", label:"Monthly direct debit", desc:"One payment per box, each month." }
+];
+const DIETS = ["Vegetarian","Vegan","No alcohol","No pork","Gluten-free","Lactose-free","Nut allergy"];
+
+const IN_EVERY_BOX = [
+  ["box","A selection of regional products from short supply chains"],
+  ["book","A flyer introducing the region and describing every product"],
+  ["recipe","A recipe from the region to cook with your box"],
+  ["users","Stories about the local producers"],
+  ["qr","A QR code leading to extra digital content"],
+  ["leaf","Tips to enjoy and store each product"]
+];
+
+const EDITIONS = [
+  { id:"christmas", name:"Christmas Edition", price:59, status:"available", availability:"Pre-order, ships early December",
+    description:"A festive collection of traditional regional specialties for the holiday table, from spiced biscuits to seasonal preserves.",
+    contents:["Festive biscuits","Seasonal preserves","Gingerbread-style specialties","Gift-ready packaging"] },
+  { id:"valentines", name:"Valentine's Edition", price:49, status:"soon", availability:"Coming soon (January)",
+    description:"A selection of gourmet treats designed to share, pairing sweet specialties from several regions.",
+    contents:["Treats to share","Confectionery","Pairing suggestions"] },
+  { id:"easter", name:"Easter Edition", price:45, status:"soon", availability:"Coming soon (spring)",
+    description:"A special collection of chocolates and seasonal products from French artisans.",
+    contents:["Artisan chocolates","Seasonal sweets","Spring specialties"] },
+  { id:"summer", name:"Summer Edition", price:45, status:"soon", availability:"Coming soon (summer)",
+    description:"A selection inspired by summer flavours and regional traditions, perfect for picnics and long evenings outdoors.",
+    contents:["Aperitif specialties","Summer spreads","Herbs and condiments"] }
+];
+
+const GIFT_AMOUNTS = [25, 39, 55, 100];
+
+/* Regions — `month` places a destination in the box calendar (PROVISIONAL).
+   `products` are illustrative examples, not confirmed selections. */
+const MAP = __MAPDATA__;
+const REGIONS = [
+  { id:"ges", name:"Grand Est", destination:"Alsace", month:"2026-11", short:"Grand Est",
+    intro:"Between the Vosges mountains and the Rhine, Alsace is famous for its Christmas markets, half-timbered villages and a festive baking culture shaped by French and Germanic traditions.",
+    specialties:["Bredele Christmas biscuits","Gingerbread","Mirabelle plums","Kougelhopf","Pretzels"],
+    products:["Bredele Christmas biscuits","Honey gingerbread","Mirabelle plum preserve","Pretzel crackers","Alsace mustard","Gingerbread spice blend","Vosges herbal tea"],
+    recipe:"Kougelhopf-style breakfast brioche" },
+  { id:"ara", name:"Auvergne-Rhône-Alpes", destination:"Savoy", month:"2026-12", short:"Auvergne-Rhône-Alpes",
+    intro:"Savoy's Alpine valleys bring mountain honey, light sponge biscuits and warming specialties made for winter evenings.",
+    specialties:["Mountain honey","Savoy sponge biscuit","Walnuts","Alpine herbs"],
+    products:["Mountain honey","Savoy sponge biscuits","Walnut spread","Alpine herbal tea","Bilberry jam","Walnut biscuits","Mountain herb salt"],
+    recipe:"Alpine potato gratin" },
+  { id:"naq", name:"Nouvelle-Aquitaine", destination:"Basque Country", month:"2027-01", short:"Nouvelle-Aquitaine",
+    intro:"In the south-west corner of France, the Basque Country combines mountain and ocean, with a bold, colourful cuisine and its own language and traditions.",
+    specialties:["Espelette pepper","Gâteau basque","Black cherry jam","Sheep's cheese"],
+    products:["Espelette pepper","Black cherry jam","Pepper-infused spread","Basque biscuits","Piperade sauce","Chocolate from Bayonne","Espelette salt"],
+    recipe:"Basque piperade" },
+  { id:"pac", name:"Provence-Alpes-Côte d'Azur", destination:"Provence", month:"2027-02", short:"Provence",
+    intro:"Provence brings the sun into the kitchen: olive groves, aromatic herbs and Mediterranean flavours.",
+    specialties:["Olive oil","Tapenade","Herbes de Provence","Calissons"],
+    products:["Extra virgin olive oil","Black olive tapenade","Herbes de Provence","Calissons","Lavender honey","Navette biscuits","Sun-dried tomato spread"],
+    recipe:"Provençal vegetable tian" },
+  { id:"bfc", name:"Bourgogne-Franche-Comté", destination:"Burgundy", month:"2027-03", short:"Burgundy",
+    intro:"Burgundy is a region of gastronomy, where mustard-making and gingerbread are centuries-old crafts.",
+    specialties:["Mustards","Gingerbread","Blackcurrant","Aniseed sweets"],
+    products:["Traditional mustard","Blackcurrant preserve","Spiced gingerbread","Aniseed sweets","Mustard with herbs","Blackcurrant syrup","Gougère mix"],
+    recipe:"Mustard chicken, Burgundy style" },
+  { id:"bre", name:"Brittany", destination:"Brittany", month:"2026-09", short:"Brittany",
+    intro:"Brittany is a land of rugged coastline, Celtic heritage and a deep love of butter. Its food culture is built on the sea, buckwheat and generous baking.",
+    specialties:["Butter biscuits","Salted butter caramel","Buckwheat crêpes","Sea salt"],
+    products:["Pure butter biscuits","Salted butter caramel spread","Buckwheat crackers","Sardines","Sea salt","Kouign-amann biscuits","Seaweed tartare"],
+    recipe:"Buckwheat galette complète" },
+  { id:"nor", name:"Normandy", destination:"Normandy", month:"2026-10", short:"Normandy",
+    intro:"Normandy's orchards and pastures shape a cuisine of apples, cream and artisanal baking, rooted in farmhouse traditions.",
+    specialties:["Apple products","Artisanal biscuits","Dairy specialties","Apple jelly"],
+    products:["Artisanal sablés","Apple jelly","Apple caramel","Cider vinegar","Apple juice","Shortbread","Salted caramel"],
+    recipe:"Normandy apple tart" },
+  { id:"hdf", name:"Hauts-de-France", destination:"Hauts-de-France", short:"Hauts-de-France",
+    intro:"In the north, Flemish influences meet French traditions: spiced biscuits, sweets and hearty regional fare.",
+    specialties:["Spiced biscuits","Traditional sweets","Chicory"], products:[] },
+  { id:"idf", name:"Île-de-France", destination:"Île-de-France", short:"IDF",
+    intro:"Around Paris, a surprisingly rural region produces cheeses, honey and pâtisserie traditions known worldwide.",
+    specialties:["Regional cheeses","Local honey","Pâtisserie traditions"], products:[] },
+  { id:"pdl", name:"Pays de la Loire", destination:"Pays de la Loire", short:"Pays de la Loire",
+    intro:"Along the Loire and the Atlantic coast: sea salt, butter biscuits and traditional confectionery.",
+    specialties:["Sea salt","Butter biscuits","Traditional sweets"], products:[] },
+  { id:"cvl", name:"Centre-Val de Loire", destination:"Centre-Val de Loire", short:"Centre-VdL",
+    intro:"The land of the Loire châteaux also offers honey, goat's cheese and classic French desserts.",
+    specialties:["Honey","Goat's cheese","Classic desserts"], products:[] },
+  { id:"occ", name:"Occitanie", destination:"Occitanie", short:"Occitanie",
+    intro:"From the Pyrenees to the Mediterranean: hearty dishes, sheep's cheeses and violet sweets.",
+    specialties:["Hearty dishes","Sheep's cheeses","Violet sweets"], products:[] },
+  { id:"cor", name:"Corsica", destination:"Corsica", short:"Corsica", labelAt:[566,598],
+    intro:"The 'island of beauty' is known for chestnuts, citrus fruit and traditional biscuits.",
+    specialties:["Chestnut specialties","Citrus fruit","Traditional biscuits"], products:[] }
+];
+
+const FAQ = [
+  { cat:"Boxes & contents", items:[
+    ["What box sizes are available?","Three sizes: Small (3 products), Medium (5 products) and Large (more than 5 products). You can also set your own budget: each amount corresponds to an estimated number of products."],
+    ["What is inside each box?","A selection of regional products from short supply chains, a flyer introducing the region and describing each product, a regional recipe, producer stories and a QR code linking to extra content."],
+    ["Can I tell you about allergies or dietary preferences?","Yes. In the configurator you can indicate preferences and constraints (vegetarian, vegan, no alcohol, allergies…). How they will be applied to each selection is still being defined. Full ingredient and allergen information will accompany every box."],
+    ["Do the boxes contain fresh products?","The storage of fresh products is still being studied. The final product rules will be confirmed before launch."] ]},
+  { cat:"Subscriptions & payment", items:[
+    ["How do subscriptions work?","Choose a size or a budget and a duration of 3, 6 or 12 months. You receive one box per month, each dedicated to a different French region. Longer subscriptions lower the price per box."],
+    ["How can I pay?","Our proposed rule: pay for the whole subscription upfront, or pay each month by direct debit. One-time boxes are paid once, with no direct debit. These rules are still to be validated."],
+    ["Does my subscription renew automatically?","Our proposed rule: subscriptions end automatically after the last delivery, with no automatic renewal. This is still to be validated."],
+    ["Can I cancel or pause?","Cancellation and pause conditions have not been defined yet. They will be clearly stated before launch."] ]},
+  { cat:"Delivery & gifts", items:[
+    ["When will my box arrive?","You can choose your delivery date at checkout. By default, we ship as soon as possible after your order. Delivery areas and lead times are to be confirmed."],
+    ["Can I buy a single box without subscribing?","Yes. Choose 'One-time box' in the configurator, or use 'Buy once' on any box page."],
+    ["What are Special Editions?","Limited-edition boxes for celebrations such as Christmas, Valentine's Day, Easter and summer, available without a subscription."],
+    ["Can I offer a box or a gift card?","Yes. Tick 'This order is a gift' at checkout to add a message, or choose a gift card (proposed feature)."] ]},
+  { cat:"Account & support", items:[
+    ["How do I manage my account?","Your account shows your details, orders, active subscriptions, upcoming deliveries and saved addresses."],
+    ["How can I contact customer support?","Use the contact form on this page. Our response time will be confirmed before launch."] ]}
+];
+
+/* =====================================================================
+   C. BUSINESS LOGIC — pricing, calendar, cart (no styling here)
+   ===================================================================== */
+const round2 = n => Math.round(n * 100) / 100;
+const money = n => new Intl.NumberFormat(CONFIG.locale, { style:"currency", currency:CONFIG.currency }).format(n);
+const ACTIVE_PLANS = PLANS.filter(p => p.enabled);
+const getPlan = id => PLANS.find(p => p.id === id && p.enabled) || null;
+const getEdition = id => EDITIONS.find(e => e.id === id) || null;
+const getRegion = id => REGIONS.find(r => r.id === id) || null;
+const clampBudget = v => { const n = Math.round(Number(v)); return isFinite(n) ? Math.min(CONFIG.budget.max, Math.max(CONFIG.budget.min, n)) : CONFIG.budget.defaultAmount; };
+const estimateProducts = amt => Math.max(2, Math.floor(clampBudget(amt) / CONFIG.budget.perProduct));
+function getBox(id, budget){
+  if (id === "custom"){
+    const amt = clampBudget(budget ?? CONFIG.budget.defaultAmount), n = estimateProducts(amt);
+    return { id:"custom", code:"€", size:"Your budget", name:"Custom Budget Box", price:amt, count:n, products:`About ${n} products (estimate)`,
+      tagline:"Set the amount, we compose the box.", audience:"Anyone with a precise budget in mind" };
+  }
+  return BOXES.find(b => b.id === id) || null;
+}
+function quote(sizeId, planId, budget){
+  const box = getBox(sizeId, budget), plan = getPlan(planId) || getPlan("one-time");
+  const perBox = round2(box.price * (1 - plan.discount));
+  const total = round2(perBox * plan.months), full = round2(box.price * plan.months);
+  return { box, plan, perBox, total, full, savings:round2(full - total), pct:Math.round(plan.discount * 100), deliveries:plan.months };
+}
+const fromPrice = sizeId => Math.min(...ACTIVE_PLANS.map(p => quote(sizeId, p.id).perBox));
+
+function addMonths(key, n){ const [y, m] = key.split("-").map(Number); const i = y * 12 + (m - 1) + n; return `${Math.floor(i / 12)}-${String(i % 12 + 1).padStart(2, "0")}`; }
+function monthLabel(key, short){ const [y, m] = key.split("-").map(Number); return new Date(y, m - 1, 1).toLocaleDateString("en-GB", { month: short ? "short" : "long", year:"numeric" }); }
+function regionStatus(r){ if (!r.month) return "future"; if (r.month === CONFIG.demoMonth) return "current"; return r.month < CONFIG.demoMonth ? "past" : "upcoming"; }
+const STATUS_LABEL = { current:"This month's box", upcoming:"Upcoming box", past:"Past box", future:"Not yet scheduled" };
+const regionForMonth = key => REGIONS.find(r => r.month === key) || null;
+const currentRegion = () => regionForMonth(CONFIG.demoMonth) || REGIONS[0];
+function calendar(){ // from the first scheduled month to 7 months ahead; empty months are "to be announced"
+  const months = REGIONS.filter(r => r.month).map(r => r.month).sort();
+  const start = months[0] || CONFIG.demoMonth, end = addMonths(CONFIG.demoMonth, 7), out = [];
+  for (let m = start; m <= end; m = addMonths(m, 1)) out.push({ month:m, region:regionForMonth(m) });
+  return out;
+}
+function examplesFor(sizeId, budget){ const r = currentRegion(); return r.products.slice(0, Math.min(r.products.length, getBox(sizeId, budget).count)); }
+function isoDate(d){ return d.toISOString().slice(0, 10); }
+function minDeliveryDate(){ const d = new Date(); d.setDate(d.getDate() + CONFIG.minDeliveryLeadDays); return isoDate(d); }
+
+/* ---- State ---- */
+const DEFAULT_STATE = () => ({
+  version:2,
+  cart:[],
+  config:{ size:"m", plan:"6m", budget:CONFIG.budget.defaultAmount, payment:"upfront", diet:[], dietNote:"" },
+  notify:[], banner:true, demo:false, demoStep:0,
+  profile:{ first:"Alex", last:"Martin", email:"alex.martin@example.com", phone:"+33 6 00 00 00 00" },
+  addresses:[
+    { id:"a1", label:"Home", line:"12 Example Street", city:"Paris", postcode:"75001", country:"France", isDefault:true },
+    { id:"a2", label:"Office", line:"5 Sample Avenue", city:"Lyon", postcode:"69002", country:"France", isDefault:false }
+  ],
+  orders:[
+    { id:"DEMO-1001", date:"2026-08-28", demo:true, total:210.60, shipping:0, address:"12 Example Street, 75001 Paris, France", delivery:"As soon as possible", payment:"Pay in full",
+      lines:[{ title:"Medium — Explorer Box", sub:"6-month subscription · Pay in full", qty:1, total:210.60 }] },
+    { id:"DEMO-0987", date:"2025-12-02", demo:true, total:63.90, shipping:4.90, address:"12 Example Street, 75001 Paris, France", delivery:"As soon as possible", payment:"Card",
+      lines:[{ title:"Christmas Edition", sub:"Limited edition", qty:1, total:59.00 }] }
+  ],
+  subscriptions:[ { id:"SUB-DEMO-1", orderId:"DEMO-1001", sizeId:"m", planId:"6m", payment:"upfront", start:"2026-09", demo:true } ],
+  lastOrderId:null
+});
+let S = DEFAULT_STATE();
+function sanitizeCartItem(i){
+  if (!i || typeof i !== "object" || !Number.isInteger(i.qty) || i.qty < 1) return false;
+  if (i.kind === "box") return !!getBox(i.sizeId, i.budget) && !!getPlan(i.planId);
+  if (i.kind === "edition") return !!getEdition(i.editionId);
+  if (i.kind === "gift") return typeof i.amount === "number" && i.amount > 0;
+  return false;
+}
+function load(){
+  try{
+    const raw = localStorage.getItem(CONFIG.storageKey);
+    if (!raw) return;
+    const saved = JSON.parse(raw), base = DEFAULT_STATE();
+    if (!saved || saved.version !== 2) return;
+    S = { ...base, ...saved, config:{ ...base.config, ...(saved.config || {}) } };
+    S.cart = Array.isArray(S.cart) ? S.cart.filter(sanitizeCartItem) : [];
+    if (!getPlan(S.config.plan)) S.config.plan = "6m";
+    if (!getBox(S.config.size, S.config.budget)) S.config.size = "m";
+    ["orders","subscriptions","addresses","notify"].forEach(k => { if (!Array.isArray(S[k])) S[k] = base[k]; });
+    S.subscriptions = S.subscriptions.filter(s => getPlan(s.planId) && getBox(s.sizeId, s.budget));
+  }catch(e){ S = DEFAULT_STATE(); }
+}
+function persist(){ try{ localStorage.setItem(CONFIG.storageKey, JSON.stringify(S)); }catch(e){} updateCartBadge(); }
+
+/* ---- Cart ---- */
+const isSubItem = i => i.kind === "box" && !!getPlan(i.planId)?.subscription;
+function boxKey(i){ return ["box", i.sizeId, i.planId, i.sizeId === "custom" ? i.budget : "", isSubItem(i) ? i.payment : "", (i.diet || []).slice().sort().join("+"), i.dietNote || ""].join("|"); }
+function addToCart(item){
+  const key = item.kind === "box" ? boxKey(item) : item.kind === "edition" ? `ed|${item.editionId}` : `gift|${Date.now()}`;
+  const existing = S.cart.find(i => i.key === key);
+  if (existing){
+    if (isSubItem(existing)){ toast("This subscription is already in your cart.", { href:"#cart", label:"View cart" }); return false; }
+    existing.qty++;
+  } else S.cart.push({ ...item, key, qty:1 });
+  persist(); return true;
+}
+function configItem(){ const c = S.config, plan = getPlan(c.plan); return { kind:"box", sizeId:c.size, planId:c.plan, budget:c.size === "custom" ? clampBudget(c.budget) : undefined, payment:plan.subscription ? c.payment : undefined, diet:[...c.diet], dietNote:c.dietNote.trim() }; }
+const dietText = i => [...(i.diet || []), i.dietNote].filter(Boolean).join(", ");
+const paymentLabel = id => (PAYMENT_MODES.find(p => p.id === id) || PAYMENT_MODES[0]).label;
+function lineInfo(i){
+  if (i.kind === "box"){
+    const q = quote(i.sizeId, i.planId, i.budget), sub = q.plan.subscription;
+    const dueToday = sub && i.payment === "monthly" ? q.perBox : q.total;
+    return { key:i.key, kind:"box", title: i.sizeId === "custom" ? `${q.box.name} (${money(q.box.price)} per box)` : `${q.box.size} — ${q.box.name}`, img:true,
+      sub: sub ? `${q.plan.label} · ${q.deliveries} boxes, 1 per month · ${money(q.perBox)} per box · ${paymentLabel(i.payment)}` : "One-time box · current region",
+      diet: dietText(i), qty:i.qty, total:round2(q.total * i.qty), dueToday:round2(dueToday * i.qty), qtyEditable:!sub, subscription:sub, savings:round2(q.savings * i.qty) };
+  }
+  if (i.kind === "edition"){
+    const e = getEdition(i.editionId);
+    return { key:i.key, kind:"edition", title:e.name, sub:"Limited edition · one-time purchase", qty:i.qty, total:round2(e.price * i.qty), dueToday:round2(e.price * i.qty), qtyEditable:true, subscription:false, savings:0 };
+  }
+  return { key:i.key, kind:"gift", title:`Gift card — ${money(i.amount)}`, sub:`For ${i.recipient} · delivered by email ${i.sendDate ? "on " + i.sendDate : "immediately"} · simulated`, qty:1, total:i.amount, dueToday:i.amount, qtyEditable:false, subscription:false, savings:0 };
+}
+function cartTotals(){
+  const lines = S.cart.map(lineInfo);
+  const physical = S.cart.filter(i => i.kind !== "gift");
+  const needsShipping = physical.some(i => !isSubItem(i)) || (physical.length && !CONFIG.shipping.subscriptionsIncluded);
+  const shipping = needsShipping ? CONFIG.shipping.standard : 0;
+  const subtotal = round2(lines.reduce((a, l) => a + l.total, 0));
+  return { lines, subtotal, shipping, total:round2(subtotal + shipping), dueToday:round2(lines.reduce((a, l) => a + l.dueToday, 0) + shipping),
+    count:S.cart.reduce((a, i) => a + i.qty, 0), savings:round2(lines.reduce((a, l) => a + l.savings, 0)), hasMonthly:S.cart.some(i => isSubItem(i) && i.payment === "monthly") };
+}
+function activeSubscriptions(){ return S.subscriptions.filter(s => addMonths(s.start, getPlan(s.planId).months) > CONFIG.demoMonth); }
+function upcomingDeliveries(limit = 6){
+  const list = [];
+  activeSubscriptions().forEach(s => { const p = getPlan(s.planId); for (let k = 0; k < p.months; k++){ const m = addMonths(s.start, k); if (m >= CONFIG.demoMonth) list.push({ month:m, sub:s, region:regionForMonth(m), index:k + 1, of:p.months }); } });
+  return list.sort((a, b) => a.month.localeCompare(b.month)).slice(0, limit);
+}
+
+/* =====================================================================
+   D. UI HELPERS & REUSABLE COMPONENTS
+   ===================================================================== */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+const tag = (type, text) => `<span class="status status--${type}">${text}</span>`;
+const PROV = tag("prov", "Provisional"), EXAMPLE = tag("example", "Illustrative example"), SIM = tag("sim", "Simulated");
+const ruleTag = r => r.status === "proposed" ? tag("prov", "Proposed rule, to be validated") : tag("tbd", "To be defined");
+
+const ICONS = {
+  box:'<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/>',
+  calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  map:'<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+  check:'<path d="m5 12.5 4.5 4.5L19 7"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  gift:'<rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1.5S10 8 12 8zm0 0c2-4 6-4 6-1.5S14 8 12 8z"/>',
+  truck:'<path d="M3 6h11v10H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/>',
+  leaf:'<path d="M5 19c0-8 5-14 15-14 0 10-6 15-14 15"/><path d="M5 19l7-7"/>',
+  users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.5 3.5-5.5 6.5-5.5s5.5 2 6.5 5.5"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.3 0 4 1.5 4.6 4"/>',
+  qr:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM18 18h3v3h-3zM14 20h2M20 14v2"/>',
+  book:'<path d="M4 4h6a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H4zM20 4h-6a3 3 0 0 0-3 3"/><path d="M20 4v13.5h-6.5A2.5 2.5 0 0 0 11 20"/>',
+  tag:'<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8" r="1.4"/>',
+  recipe:'<path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h4"/>',
+  farmer:'<circle cx="12" cy="7" r="3"/><path d="M6 6h12M5 21c.8-4.5 3.6-7 7-7s6.2 2.5 7 7"/>',
+  heart:'<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>',
+  shield:'<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/>',
+  star:'<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
+  arrowL:'<path d="M15 6l-6 6 6 6"/>', arrowR:'<path d="M9 6l6 6-6 6"/>'
+};
+const icon = (name, cls = "icon") => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ""}</svg>`;
+const ph = (label, cls = "") => `<div class="ph ${cls}" role="img" aria-label="${esc(label)}"><span>${esc(label)}</span></div>`;
+const photo = (src, alt, cls = "", caption = "") => `<figure class="photo ${cls}" style="margin:0"><img src="${src}" alt="${esc(alt)}" loading="lazy" decoding="async">${caption ? `<figcaption>${esc(caption)}</figcaption>` : ""}</figure>`;
+const boxPhoto = (b, cls = "") => photo(IMG.box, `${CONFIG.brandName} box opened with regional products and the regional recipe card`, cls, `Provisional visual · ${b.size}`);
+
+function boxCard(b){
+  return `<article class="card card--hover box-card">
+    ${boxPhoto(b)}
+    <div class="row row--between"><span class="box-card__size" aria-hidden="true">${b.code}</span><span class="badge badge--outline">${b.products}</span></div>
+    <h3 style="margin:0"><a href="#box-${b.id}" style="text-decoration:none">${b.size} — ${b.name}</a></h3>
+    <p class="muted small" style="margin:0">${b.tagline}</p>
+    <p class="small" style="margin:0"><strong>Ideal for:</strong> ${b.audience}</p>
+    <div><span class="box-card__price">${money(b.price)}</span> <span class="small muted">one-time</span><br>
+      <span class="small">or from <strong>${money(fromPrice(b.id))}</strong> per box with a subscription</span> ${PROV}</div>
+    <div class="box-card__actions">
+      <button class="btn btn--primary" type="button" data-action="choose-box" data-size="${b.id}">Choose this box</button>
+      <a class="btn btn--ghost" href="#box-${b.id}">See details &amp; contents<span class="sr-only">: ${b.name}</span></a>
+    </div>
+  </article>`;
+}
+function budgetCard(){
+  return `<article class="card box-card" style="border-style:dashed">
+    <div class="row row--between"><span class="box-card__size" aria-hidden="true">€</span><span class="badge badge--outline">You choose</span></div>
+    <h3 style="margin:0">Your own budget</h3>
+    <p class="muted small" style="margin:0">Prefer to set a precise amount? Enter your budget (${money(CONFIG.budget.min)}–${money(CONFIG.budget.max)}) and we compose a box to match.</p>
+    <p class="small" style="margin:0">Roughly one product per ${money(CONFIG.budget.perProduct)} ${PROV}</p>
+    <div class="box-card__actions"><button class="btn btn--secondary" type="button" data-action="choose-box" data-size="custom">Set my budget</button></div>
+  </article>`;
+}
+
+function mapSvg({ selected = null, mode = "page" } = {}){
+  const items = REGIONS.map(r => {
+    const st = regionStatus(r), geo = MAP.regions[r.id]; if (!geo) return "";
+    const [lx, ly] = r.labelAt || geo.c;
+    const label = `${r.destination}${r.destination !== r.name ? " (" + r.name + ")" : ""}: ${STATUS_LABEL[st]}${r.month ? ", " + monthLabel(r.month) : ""}`;
+    return `<g class="region status-${st} ${r.id === selected ? "is-selected" : ""}" data-action="select-region" data-region="${r.id}" data-tip="${esc(label)}" tabindex="0" role="button" aria-pressed="${r.id === selected}" aria-label="${esc(label)}">
+      <path d="${geo.d}"/><text x="${lx}" y="${ly}">${esc(r.month ? r.destination === r.name ? r.short : r.destination : r.short)}</text></g>`;
+  }).join("");
+  return `<div class="map-wrap"><svg class="fr-map" data-mode="${mode}" viewBox="0 0 ${MAP.w} ${MAP.h + 20}" role="group" aria-label="Map of metropolitan France's 13 regions. Select a region to see its details.">${items}</svg><div class="map-tip" aria-hidden="true"></div></div>
+  <ul class="legend" aria-label="Map legend">
+    <li><i style="background:var(--map-current)"></i>This month</li><li><i style="background:var(--map-upcoming)"></i>Upcoming</li>
+    <li><i style="background:var(--map-past)"></i>Past boxes</li><li><i style="background:var(--map-future)"></i>Not yet scheduled</li></ul>`;
+}
+function timeline(selectedId){
+  return `<ol class="timeline" aria-label="Box calendar">${calendar().map(c => {
+    if (!c.region) return `<li><button type="button" disabled><span class="t-month">${monthLabel(c.month, true)}</span><span class="t-name" style="color:var(--color-text-muted)">To be announced</span></button></li>`;
+    const st = regionStatus(c.region);
+    return `<li><button type="button" class="${st === "current" ? "is-current" : ""}" data-action="select-region" data-region="${c.region.id}" aria-pressed="${c.region.id === selectedId}">
+      <span class="t-month">${monthLabel(c.month, true)}${st === "current" ? " · Now" : ""}</span><span class="t-name">${c.region.destination}</span><span class="small muted">${STATUS_LABEL[st]}</span></button></li>`;
+  }).join("")}</ol><p class="hint" style="margin-top:var(--space-2)">Calendar ${PROV.replace("Provisional","provisional")}. Months marked "to be announced" have no destination confirmed yet.</p>`;
+}
+
+function field({ id, label, type = "text", validate = "", autocomplete = "", hint = "", value = "", options = null, rows = 0, cls = "", attrs = "" }){
+  const req = validate.split(" ").includes("required");
+  const described = `${id}-err${hint ? " " + id + "-hint" : ""}`;
+  const common = `id="${id}" name="${id}" class="input" ${validate ? `data-validate="${validate}"` : ""} ${req ? 'aria-required="true" required' : ""} aria-describedby="${described}" ${autocomplete ? `autocomplete="${autocomplete}"` : ""} ${attrs}`;
+  let control;
+  if (options) control = `<select ${common}>${options.map(o => { const v = typeof o === "object" ? o.value : o, l = typeof o === "object" ? o.label : o; return `<option value="${esc(v)}" ${v === value ? "selected" : ""}>${esc(l)}</option>`; }).join("")}</select>`;
+  else if (rows) control = `<textarea ${common} rows="${rows}">${esc(value)}</textarea>`;
+  else control = `<input type="${type}" ${common} value="${esc(value)}">`;
+  return `<div class="field ${cls}"><label for="${id}">${label}${req ? ' <span class="req" aria-hidden="true">*</span><span class="sr-only"> (required)</span>' : ""}</label>${control}
+    ${hint ? `<span class="hint" id="${id}-hint">${hint}</span>` : ""}<span class="field-error" id="${id}-err"></span></div>`;
+}
+
+function newsletterBlock(){
+  return `<section class="section section--green" aria-labelledby="nl-title"><div class="container center" style="max-width:720px">
+    <span class="eyebrow">Newsletter</span>
+    <h2 id="nl-title">Be the first to know where we're heading next</h2>
+    <p class="lead">Upcoming regions, special editions and producer stories, once a month.</p>
+    <form id="newsletter-form" class="row row--center" novalidate style="align-items:flex-start;margin-top:var(--space-5)">
+      <div class="field" style="flex:1;min-width:220px;max-width:380px;text-align:left;margin:0"><label for="nl-email" class="sr-only">Email address</label>
+        <input id="nl-email" name="nl-email" type="email" class="input" placeholder="your@email.com" autocomplete="email" data-validate="required email" aria-required="true" aria-describedby="nl-email-err">
+        <span class="field-error" id="nl-email-err" style="color:#ffd9cf"></span></div>
+      <button class="btn btn--accent" type="submit">Subscribe</button>
+    </form>
+    <p class="small" style="margin-top:var(--space-3);opacity:.8">Prototype: your email is not stored or sent anywhere.</p>
+  </div></section>`;
+}
+function reviewsSlot(){
+  return `<section class="section" aria-labelledby="rev-title"><div class="container">
+    <div class="slot center"><span class="slot__label">Customer reviews</span>
+      <h2 id="rev-title" style="margin-top:var(--space-2)">Reviews from real customers</h2>
+      <p class="muted" style="max-width:620px;margin-inline:auto">Verified customer reviews will be displayed here after launch. No reviews, ratings or popularity figures are shown in this prototype.</p></div>
+  </div></section>`;
+}
+function toast(msg, link){
+  const box = $("#toasts"); if (!box) return;
+  while (box.children.length >= 2) box.firstElementChild.remove();
+  const el = document.createElement("div"); el.className = "toast";
+  el.innerHTML = `<span>${esc(msg)}</span>${link ? `<a href="${link.href}">${esc(link.label)}</a>` : ""}`;
+  box.appendChild(el); setTimeout(() => el.remove(), 4500);
+}
+function flash(btn, text, ms = 1400){
+  if (!btn) return; const orig = btn.innerHTML; btn.disabled = true; btn.innerHTML = text;
+  setTimeout(() => { if (btn.isConnected){ btn.innerHTML = orig; btn.disabled = false; } }, ms);
+}
+function updateCartBadge(){
+  const n = S.cart.reduce((a, i) => a + i.qty, 0), c = $("#cart-count");
+  c.textContent = n; c.dataset.count = n;
+  $("#cart-link").setAttribute("aria-label", `Shopping cart, ${n} item${n === 1 ? "" : "s"}`);
+}
+function renderBanner(){
+  $("#demo-banner").innerHTML = S.banner && !S.demo ? `<div class="demo-banner" role="note"><div class="container">
+    <span><strong>Academic prototype (V2).</strong> Prices, selections and rules are provisional. No real order, payment or notification takes place. <a href="#prototype">What's simulated?</a></span>
+    <button type="button" data-action="dismiss-banner">Hide</button></div></div>` : "";
+}
+
+/* ---- Form validation ---- */
+function checkField(f){
+  const rules = (f.dataset.validate || "").split(" ").filter(Boolean);
+  const v = f.type === "checkbox" ? f.checked : f.value.trim();
+  for (const r of rules){
+    if (r === "required" && !v) return f.type === "checkbox" ? "Please tick this box to continue." : "This field is required.";
+    if (!v) continue;
+    if (r === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return "Please enter a valid email address (e.g. name@example.com).";
+    if (r === "phone" && !/^[+0-9 ().-]{6,20}$/.test(v)) return "Please enter a valid phone number.";
+    if (r === "postcode" && !/^[A-Za-z0-9 -]{3,10}$/.test(v)) return "Please enter a valid postcode.";
+    if (r === "name" && !/^[\p{L}][\p{L} '’.-]{0,59}$/u.test(v)) return "Please use letters only.";
+    if (r.startsWith("min:") && v.length < +r.slice(4)) return `Please enter at least ${r.slice(4)} characters (${v.length} so far).`;
+    if (r === "date" && v < f.min) return `Please choose a date from ${new Date(f.min).toLocaleDateString("en-GB")}.`;
+    if (r.startsWith("range:")){ const [lo, hi] = r.slice(6).split("-").map(Number), n = Number(v); if (!(n >= lo && n <= hi)) return `Please enter an amount between ${money(lo)} and ${money(hi)}.`; }
+  }
+  return "";
+}
+function setFieldState(f, msg){
+  const err = document.getElementById(f.id + "-err");
+  f.classList.toggle("is-valid", !msg && f.type !== "checkbox" && !!f.value.trim());
+  if (msg){ f.setAttribute("aria-invalid", "true"); if (err) err.textContent = msg; }
+  else { f.removeAttribute("aria-invalid"); if (err) err.textContent = ""; }
+}
+function validateForm(form){
+  let first = null, count = 0;
+  $$("[data-validate]", form).forEach(f => { if (f.closest("[hidden]")) return; const m = checkField(f); setFieldState(f, m); if (m){ count++; if (!first) first = f; } });
+  const sum = $(".form-error-summary", form);
+  if (sum) sum.innerHTML = count ? `<p class="notice" role="alert" style="background:var(--color-danger-bg);color:var(--color-danger)">${count} field${count > 1 ? "s need" : " needs"} your attention.</p>` : "";
+  if (first) first.focus();
+  return !first;
+}
+const formData = form => Object.fromEntries(new FormData(form).entries());
+
+/* =====================================================================
+   E. PAGES
+   ===================================================================== */
+function pageHome(){
+  const r = currentRegion();
+  return `
+  <section class="hero" aria-labelledby="hero-title"><div class="container">
+    <div>
+      <span class="eyebrow">Monthly regional food box</span>
+      <h1 id="hero-title">Every month, a region on your table.</h1>
+      <p class="lead">Authentic products from a different French region, sourced through short supply chains and delivered to your door with a regional flyer and a recipe.</p>
+      <p class="hero__price">Boxes from <strong>${money(Math.min(...BOXES.map(b => fromPrice(b.id))))}</strong> per box ${PROV}<br><span class="small muted">3 sizes, or your own budget · one-time or 3, 6 and 12-month subscriptions</span></p>
+      <div class="row"><a class="btn btn--accent" href="#build">Build my box</a><a class="btn btn--secondary" href="#boxes">Compare the boxes</a></div>
+      <div class="pillars" aria-label="Our promise"><span>DISCOVER</span><span aria-hidden="true">·</span><span>TASTE</span><span aria-hidden="true">·</span><span>TRAVEL</span></div>
+    </div>
+    ${photo(IMG.hero, "An Escale Régions Box opened on a wooden table with regional products, the 'Region of the month' flyer and a regional recipe card, in front of vineyards", "", "Provisional brand visual")}
+  </div></section>
+  <section class="trust" aria-label="What makes our boxes different"><div class="container"><ul>
+    <li>${icon("farmer")}<span>Products from short supply chains</span></li>
+    <li>${icon("recipe")}<span>Regional flyer and recipe in every box</span></li>
+    <li>${icon("calendar")}<span>Choose your delivery date</span></li>
+    <li>${icon("heart")}<span>Dietary preferences taken into account</span></li>
+  </ul></div></section>
+
+  <section class="section" aria-labelledby="dest-title"><div class="container split">
+    <div>
+      <span class="eyebrow">This month's destination · ${monthLabel(r.month)}</span>
+      <h2 id="dest-title">${r.destination}</h2>
+      <p class="lead">${r.intro}</p>
+      <h3 style="font-family:var(--font-body);font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted)">Specialties to discover</h3>
+      <ul class="chips">${r.specialties.map(s => `<li>${s}</li>`).join("")}</ul>
+      ${r.recipe ? `<p class="small">${icon("recipe")} <span style="vertical-align:middle">This month's recipe: <strong>${r.recipe}</strong></span> ${EXAMPLE}</p>` : ""}
+      <div class="row"><button class="btn btn--primary" type="button" data-action="choose-box" data-size="${S.config.size}">Get the ${r.destination} box</button><a class="btn btn--ghost" href="#region-${r.id}">Explore this region</a></div>
+    </div>
+    ${ph(`Regional photography: ${r.destination}, landscape and local market`, "ph--wide")}
+  </div></section>
+
+  <section class="section section--alt" aria-labelledby="find-title"><div class="container">
+    <div class="section-head section-head--center"><span class="eyebrow">Our boxes</span><h2 id="find-title">Find your perfect box</h2><p class="lead">Three sizes, the same regional journey. Every box includes the regional flyer and recipe.</p></div>
+    <div class="grid grid-3">${BOXES.map(boxCard).join("")}</div>
+    <div style="max-width:560px;margin:var(--space-5) auto 0">${budgetCard()}</div>
+  </div></section>
+
+  <section class="section" aria-labelledby="hiw-title"><div class="container">
+    <div class="section-head section-head--center"><span class="eyebrow">How it works</span><h2 id="hiw-title">Three steps to your monthly journey</h2></div>
+    <div class="grid grid-3">
+      ${[["box","Choose your box","Small, Medium, Large, or set your own budget. Add any dietary preferences."],["calendar","Pick your plan","Order a single box or subscribe for 3, 6 or 12 months, then choose your delivery date."],["map","Discover a new region","Each month, a new region arrives with its products, its producers and a recipe."]]
+        .map((s, i) => `<div class="card step-card"><div class="icon-wrap">${icon(s[0])}</div><h3><span class="step-num">${i + 1}</span>${s[1]}</h3><p class="muted" style="margin:0">${s[2]}</p></div>`).join("")}
+    </div>
+  </div></section>
+
+  <section class="section section--alt" aria-labelledby="plans-title"><div class="container">
+    <div class="section-head"><span class="eyebrow">Subscriptions</span><h2 id="plans-title">Compare the plans</h2><p class="lead">The longer the journey, the lower the price per box.</p></div>
+    <div class="row" style="margin-bottom:var(--space-4)"><span class="label" id="hp-size-label">Prices shown for:</span>
+      <div class="seg" role="group" aria-labelledby="hp-size-label">${BOXES.map(b => `<button type="button" data-action="home-plan-size" data-size="${b.id}" aria-pressed="${b.id === (S.config.size === "custom" ? "m" : S.config.size)}">${b.size}</button>`).join("")}</div></div>
+    <div id="home-plans">${homePlansTable(S.config.size === "custom" ? "m" : S.config.size)}</div>
+    <div class="grid grid-3" style="margin-top:var(--space-5)">
+      <div class="card"><h3>${icon("tag")} Save up to ${Math.round(Math.max(...ACTIVE_PLANS.map(p => p.discount)) * 100)}%</h3><p class="muted small" style="margin:0">Discounts grow with the length of your plan ${PROV}.</p></div>
+      <div class="card"><h3>${icon("calendar")} Flexible payment</h3><p class="muted small" style="margin:0">${CONFIG.rules.payment.text} ${ruleTag(CONFIG.rules.payment)}</p></div>
+      <div class="card"><h3>${icon("shield")} No surprise renewal</h3><p class="muted small" style="margin:0">${CONFIG.rules.renewal.text} ${ruleTag(CONFIG.rules.renewal)}</p></div>
+    </div>
+  </div></section>
+
+  <section class="section" aria-labelledby="explore-title"><div class="container map-layout">
+    <div>
+      <span class="eyebrow">Explore France through food</span>
+      <h2 id="explore-title">One box. One region. Endless discoveries.</h2>
+      <p class="lead">Follow our journey across France month by month. Select a region to discover its specialties and its place in the calendar.</p>
+      ${timeline(r.id)}
+      <p style="margin-top:var(--space-4)"><a class="btn btn--primary" href="#regions">Open the interactive map</a></p>
+    </div>
+    <div class="card">${mapSvg({ selected:r.id, mode:"preview" })}</div>
+  </div></section>
+
+  <section class="section section--alt" id="producers-section" aria-labelledby="prod-title"><div class="container">
+    <div class="section-head"><span class="eyebrow">Local producers</span><h2 id="prod-title">From the producer to your table</h2>
+      <p class="lead">We work with regional producers (artisans, farmers and cooperatives) to compose authentic boxes through short supply chains.</p></div>
+    ${circuitDiagram()}
+    <div class="grid grid-3" style="margin-top:var(--space-6)">${["Artisan biscuit maker","Preserves workshop","Herb & spice grower"].map(n => `<article class="card">${ph(`Portrait: ${n.toLowerCase()} at work`, "ph--wide")}<p style="margin:var(--space-3) 0 var(--space-1)">${tag("example", "Sample profile")}</p><h3>${n}</h3><p class="small muted" style="margin:0">Real producer profiles will be published with each month's selection.</p></article>`).join("")}</div>
+  </div></section>
+
+  <section class="section" aria-labelledby="ed-title"><div class="container">
+    <div class="section-head"><span class="eyebrow">Limited editions</span><h2 id="ed-title">Special editions &amp; gifts</h2><p class="lead">Seasonal boxes for celebrations, available without a subscription.</p></div>
+    <div class="grid grid-4">${EDITIONS.map(editionCard).join("")}</div>
+    <div class="grid grid-2" style="margin-top:var(--space-5)">
+      <div class="card row" style="flex-wrap:nowrap;align-items:flex-start">${icon("gift")}<div><h3>Gift cards</h3><p class="small muted">Let them choose their region and their box. ${tag("prov", "Proposed feature")}</p><a class="btn btn--secondary btn--sm" href="#gift-cards">Offer a gift card</a></div></div>
+      <div class="slot"><span class="slot__label">Seasonal offer</span><p class="small muted" style="margin:var(--space-2) 0 0">Space reserved for confirmed seasonal promotions. No offer is active in this prototype.</p></div>
+    </div>
+  </div></section>
+
+  ${reviewsSlot()}
+
+  <section class="section section--alt" aria-labelledby="hfaq-title"><div class="container" style="max-width:860px">
+    <div class="section-head"><span class="eyebrow">Questions</span><h2 id="hfaq-title">Frequently asked questions</h2></div>
+    ${accordion([FAQ[0].items[0], FAQ[0].items[1], FAQ[1].items[0], FAQ[2].items[0]], "hfaq")}
+    <p style="margin-top:var(--space-4)"><a class="btn btn--secondary" href="#faq">See all questions</a></p>
+  </div></section>
+
+  ${newsletterBlock()}`;
+}
+function homePlansTable(sizeId){
+  const b = getBox(sizeId);
+  return `<div class="table-wrap"><table class="table-stack"><caption class="sr-only">Plans for the ${b.size} box</caption>
+    <thead><tr><th scope="col">Plan</th><th scope="col">Deliveries</th><th scope="col" class="num">Price per box</th><th scope="col" class="num">Total</th><th scope="col" class="num">You save</th><th scope="col"><span class="sr-only">Action</span></th></tr></thead>
+    <tbody>${ACTIVE_PLANS.map(p => { const q = quote(sizeId, p.id); return `<tr class="${p.suggested ? "is-current" : ""}">
+      <th scope="row">${p.label} ${p.suggested ? '<span class="badge badge--ochre">Our suggestion</span>' : ""}</th>
+      <td data-label="Deliveries">${p.subscription ? `${p.months} boxes, 1 per month` : "1 box"}</td>
+      <td class="num" data-label="Price per box"><strong>${money(q.perBox)}</strong></td><td class="num" data-label="Total">${money(q.total)}</td>
+      <td class="num" data-label="You save">${q.savings ? `<span class="savings">${money(q.savings)} (${q.pct}%)</span>` : "—"}</td>
+      <td><button class="btn btn--sm ${p.suggested ? "btn--primary" : "btn--secondary"}" type="button" data-action="choose-box" data-size="${sizeId}" data-plan="${p.id}">Choose<span class="sr-only"> ${p.label}</span></button></td></tr>`; }).join("")}</tbody></table></div>
+    <p class="hint" style="margin-top:var(--space-2)">Prices ${PROV.replace("Provisional","provisional")}. "Our suggestion": six regions, half a year of discoveries, at 10% off per box.</p>`;
+}
+function circuitDiagram(){
+  return `<div class="card"><div class="circuit" role="img" aria-label="Short supply chain: regional producer, then Escale Régions Box for composition and logistics, then you">
+    <div class="node">${icon("farmer")}<span>Regional producer</span><span class="small muted">artisans, farmers, cooperatives</span></div><span class="arrow" aria-hidden="true">→</span>
+    <div class="node">${icon("box")}<span>Escale Régions Box</span><span class="small muted">composition &amp; logistics</span></div><span class="arrow" aria-hidden="true">→</span>
+    <div class="node">${icon("users")}<span>You</span><span class="small muted">the consumer</span></div></div></div>`;
+}
+function accordion(items, prefix){
+  return `<div class="accordion">${items.map(([q, a], n) => `
+    <div class="acc-item"><h3><button class="acc-btn" type="button" id="${prefix}-${n}-btn" aria-expanded="false" aria-controls="${prefix}-${n}" data-action="acc">${q}${icon("plus")}</button></h3>
+    <div class="acc-panel" id="${prefix}-${n}" role="region" aria-labelledby="${prefix}-${n}-btn" hidden><p style="margin:0">${a}</p></div></div>`).join("")}</div>`;
+}
+
+function editionCard(e){ return `<article class="card card--hover edition-card">${ph(`Visual: ${e.name} box`, "ph--square")}${editionBody(e)}</article>`; }
+function editionBody(e){
+  const notified = S.notify.includes("ed-" + e.id);
+  return `<div class="row"><span class="badge badge--green">Limited edition</span><span class="badge ${e.status === "available" ? "badge--success" : "badge--warning"}">${e.status === "available" ? "Available" : "Coming soon"}</span></div>
+    <h3 style="margin:0">${e.name}</h3>
+    <p class="muted small" style="margin:0">${e.description}</p>
+    <p class="small" style="margin:0"><strong>${money(e.price)}</strong> ${PROV}<br><span class="muted">${e.availability}</span></p>
+    ${e.status === "available"
+      ? `<button class="btn btn--primary" type="button" data-action="add-edition" data-edition="${e.id}">Add to cart<span class="sr-only">: ${e.name}</span></button>`
+      : `<button class="btn btn--secondary" type="button" data-action="notify" data-id="ed-${e.id}" data-name="${esc(e.name)}" aria-pressed="${notified}">${notified ? "✓ Reminder saved" : "Notify me"}<span class="sr-only">: ${e.name}</span></button>`}`;
+}
+
+function pageBoxes(){
+  const focus = S.config.size === "custom" ? "m" : S.config.size;
+  return `
+  <section class="page-head"><div class="container"><span class="eyebrow">Our boxes</span><h1>Choose the size of your journey</h1>
+    <p class="lead">Every box features the region of the month with its flyer and recipe. Only the number of products changes.</p></div></section>
+  <section class="section" style="padding-top:0"><div class="container"><div class="grid grid-3">${BOXES.map(boxCard).join("")}</div>
+    <div style="max-width:560px;margin:var(--space-5) auto 0">${budgetCard()}</div></div></section>
+  <section class="section section--alt" aria-labelledby="cmp-title"><div class="container">
+    <div class="section-head"><h2 id="cmp-title">Compare the boxes</h2><p class="muted">Choose a plan to compare prices across sizes.</p></div>
+    <div class="field" style="max-width:340px"><label for="compare-plan">Compare prices for</label><select id="compare-plan" class="input">${ACTIVE_PLANS.map(p => `<option value="${p.id}" ${p.id === S.config.plan ? "selected" : ""}>${p.label}</option>`).join("")}</select></div>
+    <div class="table-wrap" id="compare-table">${compareTable(getPlan(S.config.plan) ? S.config.plan : "6m", focus)}</div>
+    <p class="scroll-hint">Swipe sideways to see all sizes →</p>
+    <div class="row" style="margin-top:var(--space-5)"><a class="btn btn--primary" href="#build">Open the configurator</a><span class="small muted">All prices and quantities are provisional.</span></div>
+  </div></section>`;
+}
+function compareTable(planId, focus){
+  const qs = BOXES.map(b => quote(b.id, planId));
+  const cell = (b, content) => `<td class="${b.id === focus ? "is-focus" : ""}">${content}</td>`;
+  const yes = icon("check") + '<span class="sr-only">Included</span>';
+  const rows = [
+    ["Products per box", b => b.products], ["Ideal for", b => b.audience],
+    ["Regional flyer & recipe", () => yes], ["Producer stories & QR content", () => yes],
+    ["Dietary preferences", () => yes],
+    ["Price per box", (b, q) => `<strong>${money(q.perBox)}</strong>`], ["Total for the plan", (b, q) => money(q.total)],
+    ["You save", (b, q) => q.savings > 0 ? `<span class="savings">${money(q.savings)} (${q.pct}%)</span>` : "—"]
+  ];
+  return `<table class="compare"><caption class="sr-only">Comparison of the Small, Medium and Large boxes for the ${getPlan(planId).label}</caption>
+    <thead><tr><th scope="col">Feature</th>${BOXES.map(b => `<th scope="col" class="${b.id === focus ? "is-focus" : ""}">${b.size} — ${b.name}</th>`).join("")}</tr></thead>
+    <tbody>${rows.map(([label, fn]) => `<tr><th scope="row">${label}</th>${BOXES.map((b, i) => cell(b, fn(b, qs[i]))).join("")}</tr>`).join("")}
+    <tr><th scope="row"><span class="sr-only">Action</span></th>${BOXES.map(b => cell(b, `<button class="btn btn--primary btn--sm" type="button" data-action="choose-box" data-size="${b.id}" data-plan="${planId}">Choose ${b.size}</button>`)).join("")}</tr></tbody></table>`;
+}
+
+function pageBox(id){
+  const b = getBox(id), r = currentRegion(), ex = examplesFor(id);
+  return `
+  <section class="page-head"><div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="#home">Home</a></li><li><a href="#boxes">Our Boxes</a></li><li aria-current="page">${b.name}</li></ol></nav>
+    <div class="split" style="align-items:start">
+      <div class="stack">${boxPhoto(b, "photo--43")}
+        <div class="grid grid-3">${ph("Gallery: products of the month", "ph--square")}${ph("Gallery: regional flyer", "ph--square")}${ph("Gallery: recipe card", "ph--square")}</div>
+        <p class="hint">Provisional visuals. Final product photography to come.</p></div>
+      <div>
+        <span class="eyebrow">Size ${b.code} · ${b.size}</span>
+        <h1>${b.size} — ${b.name}</h1>
+        <p class="lead">${b.tagline}</p>
+        <p>${b.experience}</p>
+        <ul class="facts" style="margin-bottom:var(--space-5)">
+          <li>${icon("box")}<span><strong>${b.products}</strong> per box ${PROV}</span></li>
+          <li>${icon("users")}<span><strong>Ideal for:</strong> ${b.audience}</span></li>
+          <li>${icon("map")}<span><strong>This month:</strong> ${r.destination}</span></li>
+          <li>${icon("recipe")}<span>Regional flyer and recipe included</span></li>
+        </ul>
+        <div class="card">
+          <h2 style="font-size:var(--fs-xl)">Choose how you'd like it</h2>
+          <div class="field"><label for="pdp-plan">Subscription</label>
+            <select id="pdp-plan" class="input" data-size="${b.id}">${ACTIVE_PLANS.filter(p => p.subscription).map(p => `<option value="${p.id}" ${p.id === "6m" ? "selected" : ""}>${p.label}: ${money(quote(b.id, p.id).perBox)} per box</option>`).join("")}</select></div>
+          <p id="pdp-quote" aria-live="polite">${pdpQuote(b.id, "6m")}</p>
+          <div class="stack">
+            <button class="btn btn--primary btn--block" type="button" data-action="add-sub-pdp" data-size="${b.id}">Subscribe: add to cart</button>
+            <button class="btn btn--secondary btn--block" type="button" data-action="buy-once" data-size="${b.id}">Buy once for ${money(b.price)}</button>
+            <a class="btn btn--ghost btn--block" href="#build" data-action="goto-build" data-size="${b.id}">Customise (diet, payment) in the configurator</a>
+          </div>
+          <p class="hint" style="margin-top:var(--space-3)">Payment: ${CONFIG.rules.payment.text} ${ruleTag(CONFIG.rules.payment)}</p>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section section--alt" aria-labelledby="ex-title"><div class="container split" style="align-items:start">
+    <div><h2 id="ex-title">What could be inside</h2>
+      <p class="muted">Example for the ${r.destination} box (${monthLabel(r.month)}) ${EXAMPLE}</p>
+      <ol class="list-plain">${ex.map((p, i) => `<li class="row" style="flex-wrap:nowrap"><span class="step-num">${i + 1}</span><span>${p}</span></li>`).join("")}${b.id === "l" ? `<li class="muted small">…and more, depending on the month's selection.</li>` : ""}</ol></div>
+    <div><h2>Why this size</h2><ul class="benefits">${b.benefits.map(x => `<li>${icon("check")}<span>${x}</span></li>`).join("")}</ul>
+      <h2 style="margin-top:var(--space-6)">Subscription prices</h2>
+      <div class="table-wrap"><table><thead><tr><th scope="col">Plan</th><th scope="col" class="num">Per box</th><th scope="col" class="num">Total</th></tr></thead>
+        <tbody>${ACTIVE_PLANS.map(p => { const q = quote(b.id, p.id); return `<tr class="${p.suggested ? "is-current" : ""}"><th scope="row">${p.short}</th><td class="num">${money(q.perBox)}</td><td class="num">${money(q.total)}${q.savings ? ` <span class="savings small">−${q.pct}%</span>` : ""}</td></tr>`; }).join("")}</tbody></table></div></div>
+  </div></section>
+
+  <section class="section" aria-labelledby="every-title"><div class="container">
+    <h2 id="every-title">In every box</h2>
+    <div class="grid grid-3" style="margin-top:var(--space-5)">${IN_EVERY_BOX.map(([i, t]) => `<div class="card row" style="flex-wrap:nowrap">${icon(i)}<span>${t}</span></div>`).join("")}</div>
+    <div style="margin-top:var(--space-6);max-width:860px">${accordion([
+      ["Composition & allergens", `Full ingredient lists and allergen information will be published with each month's selection and printed on the regional flyer. ${tag("tbd", "Not available in the prototype")}`],
+      ["Producers", `Each box presents the producers behind the products. Profiles will be added once selections are confirmed. ${tag("tbd", "To be confirmed")}`],
+      ["Delivery", `Choose your delivery date at checkout, or receive your box as soon as possible. Delivery is included on subscriptions; one-time orders cost ${money(CONFIG.shipping.standard)} ${PROV}. <a href="#delivery">Delivery &amp; guarantees</a>`],
+      ["Storage & best-before dates", `Storage advice will be given for each product. The inclusion of fresh products is still being studied. ${tag("tbd", "To be confirmed")}`]
+    ], "pdp")}</div>
+  </div></section>
+  ${reviewsSlot()}
+  <section class="section section--alt" aria-labelledby="also-title"><div class="container"><h2 id="also-title">You may also like</h2>
+    <div class="grid grid-3" style="margin-top:var(--space-5)">${BOXES.filter(x => x.id !== id).map(boxCard).join("")}${editionCard(EDITIONS[0])}</div></div></section>`;
+}
+function pdpQuote(sizeId, planId){
+  const q = quote(sizeId, planId);
+  return `<strong>${money(q.perBox)}</strong> per box · ${q.deliveries} deliveries · ${money(q.total)} in total · <span class="savings">you save ${money(q.savings)}</span>`;
+}
+
+function pageBuild(){
+  const c = S.config;
+  return `
+  <section class="page-head"><div class="container"><span class="eyebrow">Configurator</span><h1>Build your box</h1>
+    <p class="lead">Choose your size, your plan and your preferences. The price updates as you go.</p></div></section>
+  <section class="section" style="padding-top:0"><div class="container builder">
+    <div>
+      <fieldset class="builder-step"><legend><span class="step-num">1</span>Your box</legend>
+        <div class="option-grid option-grid--4">${BOXES.map(b => `
+          <label class="option"><input type="radio" name="cfg-size" value="${b.id}" ${b.id === c.size ? "checked" : ""}>
+            <span class="option__body"><span class="option__check">${icon("check")}</span>${boxPhoto(b)}
+              <strong>${b.size} — ${b.name}</strong><br><span class="small muted">${b.products}</span><br><span class="small">${money(b.price)} per box</span></span></label>`).join("")}
+          <label class="option"><input type="radio" name="cfg-size" value="custom" ${c.size === "custom" ? "checked" : ""}>
+            <span class="option__body"><span class="option__check">${icon("check")}</span>
+              <span class="ph" style="display:grid;place-items:center;aspect-ratio:3/2;margin-bottom:var(--space-3)"><span style="position:static;font-family:var(--font-heading);font-size:2rem;color:var(--color-primary);background:none">€</span></span>
+              <strong>Your budget</strong><br><span class="small muted" id="budget-estimate">About ${estimateProducts(c.budget)} products</span></span></label>
+        </div>
+        <div class="field" id="budget-field" ${c.size === "custom" ? "" : "hidden"} style="margin-top:var(--space-4);max-width:340px">
+          <label for="cfg-budget">Your budget per box (€)</label>
+          <input id="cfg-budget" class="input" type="number" inputmode="numeric" min="${CONFIG.budget.min}" max="${CONFIG.budget.max}" step="1" value="${clampBudget(c.budget)}" data-validate="required range:${CONFIG.budget.min}-${CONFIG.budget.max}" aria-describedby="cfg-budget-err cfg-budget-hint">
+          <span class="hint" id="cfg-budget-hint">Between ${money(CONFIG.budget.min)} and ${money(CONFIG.budget.max)}. This is the maximum price of your parcel. About one product per ${money(CONFIG.budget.perProduct)} ${PROV}</span>
+          <span class="field-error" id="cfg-budget-err"></span></div>
+      </fieldset>
+
+      <fieldset class="builder-step"><legend><span class="step-num">2</span>Your plan</legend>
+        <div class="option-grid">${ACTIVE_PLANS.map(p => `
+          <label class="option plan-option ${p.suggested ? "option--suggested" : ""}"><input type="radio" name="cfg-plan" value="${p.id}" ${p.id === c.plan ? "checked" : ""}>
+            <span class="option__body"><span class="option__check">${icon("check")}</span>
+              <span><strong>${p.label}</strong> ${p.suggested ? '<span class="badge badge--ochre">Our suggestion</span>' : ""}<br>
+              <span class="small muted">${p.subscription ? `${p.months} deliveries, 1 per month · ${Math.round(p.discount * 100)}% off per box` : "No commitment, no direct debit"}</span></span>
+              <span class="plan-price" data-plan-price="${p.id}"></span></span></label>`).join("")}</div>
+      </fieldset>
+
+      <fieldset class="builder-step" id="payment-step" ${getPlan(c.plan).subscription ? "" : "hidden"}><legend><span class="step-num">3</span>Payment</legend>
+        <div class="option-grid option-grid--2">${PAYMENT_MODES.map(m => `
+          <label class="option"><input type="radio" name="cfg-payment" value="${m.id}" ${m.id === c.payment ? "checked" : ""}>
+            <span class="option__body"><span class="option__check">${icon("check")}</span><strong>${m.label}</strong><br><span class="small muted">${m.desc}</span><br><span class="small" data-pay-amount="${m.id}"></span></span></label>`).join("")}</div>
+        <p class="hint" style="margin-top:var(--space-2)">${ruleTag(CONFIG.rules.payment)} The final payment terms will be confirmed before launch.</p>
+      </fieldset>
+
+      <fieldset class="builder-step"><legend><span class="step-num" id="diet-num">${getPlan(c.plan).subscription ? 4 : 3}</span>Dietary preferences <span class="small muted" style="font-family:var(--font-body);font-weight:400;margin-left:.5rem">(optional)</span></legend>
+        <div class="check-grid">${DIETS.map(d => `<label class="check"><input type="checkbox" name="cfg-diet" value="${d}" ${c.diet.includes(d) ? "checked" : ""}> ${d}</label>`).join("")}</div>
+        <div class="field" style="margin-top:var(--space-4)"><label for="cfg-diet-note">Other allergies or constraints</label>
+          <input id="cfg-diet-note" class="input" type="text" maxlength="120" value="${esc(c.dietNote)}" placeholder="e.g. no sesame" aria-describedby="cfg-diet-hint">
+          <span class="hint" id="cfg-diet-hint">How preferences are applied to each selection is still being defined. Allergen information accompanies every box.</span></div>
+      </fieldset>
+
+      <section class="builder-step" aria-labelledby="cfg-compare-title"><h2 id="cfg-compare-title">Compare all plans for this box</h2>
+        <div class="table-wrap" id="cfg-compare"></div></section>
+    </div>
+    <aside class="card summary" aria-labelledby="sum-title"><h2 id="sum-title" style="font-size:var(--fs-xl)">Your selection</h2><div id="cfg-summary" aria-live="polite"></div></aside>
+  </div></section>
+  <div class="mobile-bar" id="mobile-bar"></div>`;
+}
+function updateBuilder(){
+  const c = S.config, q = quote(c.size, c.plan, c.budget), sub = q.plan.subscription;
+  $$("[data-plan-price]").forEach(el => { const x = quote(c.size, el.dataset.planPrice, c.budget); el.innerHTML = `${money(x.perBox)}<small>${x.plan.subscription ? `per box · ${money(x.total)} total` : "single box"}</small>`; });
+  $$("[data-pay-amount]").forEach(el => { el.innerHTML = el.dataset.payAmount === "upfront" ? `<strong>${money(q.total)}</strong> today` : `<strong>${money(q.perBox)}</strong> × ${q.deliveries} months`; });
+  const ps = $("#payment-step"); if (ps) ps.hidden = !sub;
+  const dn = $("#diet-num"); if (dn) dn.textContent = sub ? 4 : 3;
+  const bf = $("#budget-field"); if (bf) bf.hidden = c.size !== "custom";
+  const be = $("#budget-estimate"); if (be) be.textContent = `About ${estimateProducts(c.budget)} products`;
+  const cmp = $("#cfg-compare");
+  if (cmp) cmp.innerHTML = `<table class="table-stack"><caption class="sr-only">All plans for the ${esc(q.box.name)}</caption>
+    <thead><tr><th scope="col">Plan</th><th scope="col">Deliveries</th><th scope="col" class="num">Per box</th><th scope="col" class="num">Total</th><th scope="col" class="num">You save</th></tr></thead>
+    <tbody>${ACTIVE_PLANS.map(p => { const x = quote(c.size, p.id, c.budget); return `<tr class="${p.id === c.plan ? "is-current" : ""}"><th scope="row">${p.label}${p.id === c.plan ? ' <span class="badge">Selected</span>' : ""}</th><td data-label="Deliveries">${x.deliveries}</td><td class="num" data-label="Per box">${money(x.perBox)}</td><td class="num" data-label="Total">${money(x.total)}</td><td class="num" data-label="You save">${x.savings ? `<span class="savings">${money(x.savings)}</span>` : "—"}</td></tr>`; }).join("")}</tbody></table>`;
+  const diet = [...c.diet, c.dietNote.trim()].filter(Boolean).join(", ");
+  const due = sub && c.payment === "monthly" ? q.perBox : q.total;
+  const sum = $("#cfg-summary");
+  if (sum) sum.innerHTML = `
+    <div class="sum-group" style="border:0;margin:0;padding:0"><h3>Your box</h3><dl class="dl">
+      <dt>Size</dt><dd>${q.box.size} — ${q.box.name}</dd><dt>Products</dt><dd>${q.box.products}</dd>
+      <dt>First region</dt><dd>${currentRegion().destination} (${monthLabel(CONFIG.demoMonth, true)})</dd>
+      <dt>Preferences</dt><dd>${diet ? esc(diet) : "None"}</dd></dl></div>
+    <div class="sum-group"><h3>Plan &amp; deliveries</h3><dl class="dl">
+      <dt>Plan</dt><dd>${q.plan.label}</dd><dt>Deliveries</dt><dd>${sub ? `${q.deliveries} boxes, 1 per month` : "1 box"}</dd>
+      <dt>Price per box</dt><dd>${money(q.perBox)}${sub && q.pct ? ` <s class="muted" style="font-weight:400">${money(q.box.price)}</s>` : ""}</dd>
+      ${sub ? `<dt>Your savings</dt><dd class="savings">${money(q.savings)} (${q.pct}%)</dd>` : ""}</dl></div>
+    <div class="sum-group"><h3>Payment &amp; conditions</h3><dl class="dl">
+      <dt>Payment</dt><dd>${sub ? (c.payment === "monthly" ? `${money(q.perBox)} / month × ${q.deliveries}` : "In full, today") : "Once, today"}</dd>
+      <dt>Renewal</dt><dd>${sub ? "Ends after last box" : "—"}</dd>
+      <dt>Cancellation</dt><dd>${sub ? "To be defined" : "—"}</dd></dl>
+      <p class="hint" style="margin:var(--space-2) 0 0">${sub ? `${ruleTag(CONFIG.rules.renewal)} Payment and renewal are proposed rules, not confirmed conditions.` : ruleTag(CONFIG.rules.oneTime)}</p></div>
+    <div class="big-total"><span>${sub ? "Total commitment" : "Total"}</span><strong>${money(q.total)}</strong></div>
+    ${sub && c.payment === "monthly" ? `<p class="small muted" style="margin:var(--space-1) 0 0;text-align:right">Due today (simulated): ${money(due)}</p>` : ""}
+    <p class="small muted" style="margin-top:var(--space-2)">Delivery: ${sub ? "included" : money(CONFIG.shipping.standard)} ${PROV}</p>
+    <div class="stack" style="margin-top:var(--space-4)"><button class="btn btn--primary btn--block" type="button" data-action="add-config">Add to cart</button>
+    <button class="btn btn--secondary btn--block" type="button" data-action="checkout-config">Continue to checkout</button></div>`;
+  const bar = $("#mobile-bar");
+  if (bar) bar.innerHTML = `<div><span class="small muted">${q.box.size} · ${q.plan.short}</span><br><strong>${money(q.total)}</strong> <span class="small muted">${sub ? `(${money(q.perBox)}/box)` : ""}</span></div><button class="btn btn--primary btn--sm" type="button" data-action="add-config">Add to cart</button>`;
+}
+
+function pageRegions(selectedId){
+  const sel = getRegion(selectedId) || currentRegion();
+  return `
+  <section class="page-head"><div class="container"><span class="eyebrow">Explore regions</span><h1>France, one region at a time</h1>
+    <p class="lead">Select a region on the map, in the list or in the calendar to discover its culture, its specialties and its box.</p></div></section>
+  <section class="section" style="padding-top:0"><div class="container map-layout">
+    <div>
+      <div class="card">${mapSvg({ selected:sel.id, mode:"page" })}
+        <h2 class="label" style="font-family:var(--font-body);margin-top:var(--space-4);color:var(--color-text-muted)" id="chips-label">All regions</h2>
+        <ul class="region-chips" aria-labelledby="chips-label">${REGIONS.map(r => `<li><button type="button" data-action="select-region" data-region="${r.id}" aria-pressed="${r.id === sel.id}">${r.destination}</button></li>`).join("")}</ul>
+      </div>
+      <section class="card" style="margin-top:var(--space-5)" aria-labelledby="cal-title"><h2 id="cal-title" style="font-size:var(--fs-xl)">Box calendar</h2>${timeline(sel.id)}</section>
+    </div>
+    <div class="card region-panel" id="region-panel" aria-live="polite">${regionPanel(sel)}</div>
+  </div></section>`;
+}
+function regionPanel(r){
+  const st = regionStatus(r), notified = S.notify.includes("rg-" + r.id);
+  const order = REGIONS.slice().sort((a, b) => (a.month || "9999").localeCompare(b.month || "9999") || a.destination.localeCompare(b.destination));
+  const idx = order.findIndex(x => x.id === r.id), prev = order[(idx - 1 + order.length) % order.length], next = order[(idx + 1) % order.length];
+  let cta;
+  if (st === "current") cta = `<p class="small">Available now in every size.</p><div class="row">${BOXES.map(b => `<button class="btn btn--sm ${b.id === "m" ? "btn--primary" : "btn--secondary"}" type="button" data-action="choose-box" data-size="${b.id}">${b.size} · ${money(b.price)}</button>`).join("")}</div>`;
+  else if (st === "upcoming") cta = `<p class="small">Subscribe now and this region will arrive in <strong>${monthLabel(r.month)}</strong>, as part of your journey.</p><div class="row"><a class="btn btn--primary btn--sm" href="#build">Start a subscription</a><button class="btn btn--secondary btn--sm" type="button" data-action="notify" data-id="rg-${r.id}" data-name="${esc(r.destination)}" aria-pressed="${notified}">${notified ? "✓ Reminder saved" : "Remind me"}</button></div>`;
+  else if (st === "past") cta = `<p class="notice notice--info">This box was delivered in ${monthLabel(r.month)} and is no longer available.</p><a class="btn btn--secondary btn--sm" href="#region-${currentRegion().id}">See this month's box</a>`;
+  else cta = `<p class="notice notice--info">No date has been announced for this region yet.</p><button class="btn btn--secondary btn--sm" type="button" data-action="notify" data-id="rg-${r.id}" data-name="${esc(r.destination)}" aria-pressed="${notified}">${notified ? "✓ Interest saved" : "I'd love this region"}</button>`;
+  return `
+    <div class="row row--between"><span class="badge ${st === "current" ? "badge--terracotta" : st === "upcoming" ? "badge--ochre" : ""}">${STATUS_LABEL[st]}${r.month ? " · " + monthLabel(r.month) : ""}</span>
+      <div class="row" style="gap:var(--space-1)"><button class="icon-btn" type="button" data-action="select-region" data-region="${prev.id}" aria-label="Previous region: ${esc(prev.destination)}">${icon("arrowL")}</button><button class="icon-btn" type="button" data-action="select-region" data-region="${next.id}" aria-label="Next region: ${esc(next.destination)}">${icon("arrowR")}</button></div></div>
+    <h2 style="margin-top:var(--space-3)" id="region-title">${r.destination}</h2>
+    ${r.destination !== r.name ? `<p class="muted small">Region: ${r.name}</p>` : ""}
+    ${ph(`Regional photography: ${r.destination}`, "ph--wide")}
+    <p style="margin-top:var(--space-4)">${r.intro}</p>
+    <h3>Iconic specialties</h3><ul class="chips">${r.specialties.map(s => `<li>${s}</li>`).join("")}</ul>
+    ${r.products.length ? `<h3>Products that could feature ${EXAMPLE}</h3><ul>${r.products.slice(0, 5).map(p => `<li>${p}</li>`).join("")}</ul>
+      ${r.recipe ? `<p class="small">${icon("recipe")} <span style="vertical-align:middle">Recipe idea: ${r.recipe}</span></p>` : ""}
+      <h3>Local producers</h3><p class="small muted">Producer profiles will be published with the box. ${tag("tbd", "To be confirmed")}</p>` : ""}
+    <h3>Box information</h3>${cta}`;
+}
+
+function pageEditions(){
+  return `
+  <section class="page-head"><div class="container"><span class="eyebrow">Special editions</span><h1>Limited editions for every celebration</h1>
+    <p class="lead">Seasonal boxes for celebrations, available independently of any subscription.</p></div></section>
+  <section class="section" style="padding-top:0"><div class="container"><div class="grid grid-2">${EDITIONS.map(e => `
+    <article class="card edition-card edition-row">${ph(`Visual: ${e.name} box`, "ph--square")}
+      <div style="display:flex;flex-direction:column;gap:var(--space-3)">${editionBody(e)}<ul class="small muted" style="margin:0">${e.contents.map(x => `<li>${x}</li>`).join("")}</ul></div></article>`).join("")}</div>
+    <p class="hint" style="margin-top:var(--space-5)">New editions can be added to the EDITIONS data list without changing page code.</p>
+  </div></section>`;
+}
+
+function pageGift(){
+  return `
+  <section class="page-head"><div class="container"><span class="eyebrow">Gift cards</span><h1>Offer a journey through France</h1>
+    <p class="lead">A gift card lets them choose their box, their size and their plan.</p>
+    <p class="notice">Proposed feature. Gift cards in this prototype are simulated and have no value.</p></div></section>
+  <section class="container cart-layout">
+    <form class="card" id="gift-form" novalidate>
+      <div class="form-error-summary" aria-live="assertive"></div>
+      <fieldset class="field"><legend>Amount</legend>
+        <div class="seg" role="radiogroup" style="margin-top:var(--space-2)">${GIFT_AMOUNTS.map((a, i) => `<label style="position:relative"><input type="radio" name="gc-amount" value="${a}" ${i === 1 ? "checked" : ""} class="sr-only" data-gift-amount><span class="btn btn--sm ${i === 1 ? "btn--primary" : "btn--secondary"}" style="border:0">${money(a)}</span></label>`).join("")}
+          <label style="position:relative"><input type="radio" name="gc-amount" value="custom" class="sr-only" data-gift-amount><span class="btn btn--sm btn--secondary" style="border:0">Other</span></label></div>
+      </fieldset>
+      <div id="gc-custom-wrap" hidden>${field({ id:"gc-custom", label:"Custom amount (€)", type:"number", validate:"required range:20-300", attrs:'min="20" max="300" inputmode="numeric"' })}</div>
+      <div class="form-grid">
+        ${field({ id:"gc-to", label:"Recipient's name", validate:"required" })}
+        ${field({ id:"gc-email", label:"Recipient's email", type:"email", validate:"required email" })}
+        ${field({ id:"gc-from", label:"Your name", validate:"required", value:S.profile.first })}
+        ${field({ id:"gc-date", label:"Send on (optional)", type:"date", attrs:`min="${isoDate(new Date())}"`, hint:"Leave empty to send immediately." })}
+        ${field({ id:"gc-msg", label:"Personal message (optional)", rows:3, cls:"full", attrs:'maxlength="300"' })}
+      </div>
+      <button class="btn btn--primary" type="submit">Add gift card to cart</button>
+    </form>
+    <aside class="card"><h2 style="font-size:var(--fs-xl)">How it works</h2><ul class="benefits">
+      <li>${icon("gift")}<span>The recipient receives the card by email on the chosen date.</span></li>
+      <li>${icon("box")}<span>They use it to choose any box, plan or special edition.</span></li>
+      <li>${icon("calendar")}<span>Validity period: ${tag("tbd", "to be defined")}</span></li></ul></aside>
+  </section>`;
+}
+
+function pageHow(){
+  const sections = [
+    ["The concept", "map", "Every month, a different French region arrives in a box of authentic products, chosen for their story, their taste and the people who make them."],
+    ["Choose your budget", "box", "Pick a suggested size (Small: 3 products, Medium: 5, Large: more than 5) or enter your own amount. Each amount corresponds to an estimated number of products."],
+    ["Dietary preferences", "heart", "Tell us what to favour or avoid: vegetarian, vegan, no alcohol, allergies. How preferences are applied is still being defined."],
+    ["Subscription plans", "tag", "Order a single box or subscribe for 3, 6 or 12 months, with one box per month. The longer the plan, the lower the price per box."],
+    ["Payment", "shield", `${CONFIG.rules.payment.text} One-time boxes are paid once, with no direct debit. Subscriptions are proposed to end automatically after the last delivery. ${ruleTag(CONFIG.rules.payment)}`],
+    ["Delivery", "truck", `Choose your delivery date, or receive your box as soon as possible after ordering. Delivery is included on subscriptions; one-time orders cost ${money(CONFIG.shipping.standard)} ${PROV}.`],
+    ["In every box", "recipe", "A flyer presents the region, describes each product and its know-how, and suggests a recipe, with cultural tips and places to visit."],
+    ["Producers & short supply chains", "farmer", "We work directly with regional producers (artisans, farmers and cooperatives), with no unnecessary intermediaries between them and you."],
+    ["Gifts", "gift", "Any box or special edition can be sent as a gift with a personal message, and gift cards let the recipient choose."]
+  ];
+  return `
+  <section class="page-head"><div class="container"><span class="eyebrow">How it works</span><h1>Your monthly journey through French flavours</h1>
+    <p class="lead">Everything you need to know about the boxes, the plans and the deliveries.</p></div></section>
+  <section class="section" style="padding-top:0"><div class="container"><div class="grid grid-3">${sections.map(([t, i, p]) => `
+    <article class="card"><div class="icon-wrap" style="margin:0 0 var(--space-3)">${icon(i)}</div><h2 style="font-size:var(--fs-lg)">${t}</h2><p class="muted small" style="margin:0">${p}</p></article>`).join("")}</div>
+    <div class="row row--center" style="margin-top:var(--space-7)"><a class="btn btn--accent" href="#build">Build my box</a><a class="btn btn--secondary" href="#faq">Read the FAQ</a></div>
+  </div></section>`;
+}
+
+function pageStory(){
+  const values = [
+    ["Authenticity", "Products that genuinely belong to their region: recipes, ingredients and techniques rooted in local tradition."],
+    ["Regional diversity", "Every region has its own food culture. We celebrate the well-known and the lesser-known alike."],
+    ["Culinary discovery", "Each box is an invitation to taste something new and to understand where it comes from."],
+    ["Local craftsmanship", "Behind every product there is know-how. We put the makers and their methods at the centre of every box."],
+    ["Short supply chains", "We work with regional producers so that products travel from producer to Escale to you, without unnecessary intermediaries."],
+    ["Responsible selection", "We aim to select products thoughtfully, with attention to origin and quality. Specific commitments will be published once defined."]
+  ];
+  return `
+  <section class="page-head"><div class="container split">
+    <div><span class="eyebrow">Our story</span><h1>From French regions to your table</h1>
+      <p class="lead">Our mission: to connect people with French regional culture through food.</p>
+      <p>France is a mosaic of regions, each with its own landscapes, traditions and flavours. Many of its finest specialties never travel far from where they are made. Escale Régions Box brings them to your door, one region at a time, with the stories of the people who make them and a recipe to bring the region to life in your kitchen.</p></div>
+    ${photo(IMG.hero, "Escale Régions Box with regional products, flyer and recipe card", "photo--43", "Provisional brand visual")}
+  </div></section>
+  <section class="section section--alt"><div class="container">
+    <div class="section-head"><h2>What we stand for</h2></div>
+    <div class="grid grid-3">${values.map(([t, p]) => `<article class="card"><h3>${t}</h3><p class="muted small" style="margin:0">${p}</p></article>`).join("")}</div>
+    <div style="margin-top:var(--space-6)">${circuitDiagram()}</div>
+    <p class="hint" style="margin-top:var(--space-5)">No company history, certification or environmental claim is stated on this page.</p>
+  </div></section>
+  <section class="section"><div class="container center"><h2>Authentic products. Local stories. Unforgettable discoveries.</h2><a class="btn btn--accent" href="#boxes">Discover our boxes</a></div></section>`;
+}
+
+function pageDelivery(){
+  const items = [
+    ["truck","Delivery", `Choose your delivery date at checkout, or we ship as soon as possible after your order. Subscriptions then deliver one box per month. ${PROV}`],
+    ["tag","Delivery costs", `Included on subscriptions; ${money(CONFIG.shipping.standard)} for one-time orders and special editions. ${PROV}`],
+    ["map","Delivery areas", tag("tbd", "To be confirmed")],
+    ["shield","Damaged or missing parcel", tag("tbd", "Guarantee to be defined")],
+    ["leaf","Allergens & composition", `Published with each selection and printed on the regional flyer. ${tag("tbd", "To be confirmed")}`],
+    ["calendar","Subscription conditions", `Payment: ${CONFIG.rules.payment.text} ${ruleTag(CONFIG.rules.payment)}<br>Renewal: ${CONFIG.rules.renewal.text} ${ruleTag(CONFIG.rules.renewal)}<br>Cancellation: ${ruleTag(CONFIG.rules.cancellation)}`]
+  ];
+  return `<section class="page-head"><div class="container"><span class="eyebrow">Delivery &amp; guarantees</span><h1>Delivery, conditions &amp; guarantees</h1>
+    <p class="notice">Placeholders. Every item below must be confirmed before commercial launch.</p></div></section>
+    <section class="container"><div class="grid grid-2">${items.map(([i, t, p]) => `<article class="card row" style="flex-wrap:nowrap;align-items:flex-start"><div class="icon-wrap" style="margin:0;flex:none">${icon(i)}</div><div><h2 style="font-size:var(--fs-lg)">${t}</h2><p class="small muted" style="margin:0">${p}</p></div></article>`).join("")}</div></section>`;
+}
+
+function pageCart(){
+  const t = cartTotals();
+  if (!t.lines.length) return `<section class="page-head"><div class="container"><h1>Your cart</h1></div></section>
+    <section class="container"><div class="card empty"><h2>Your cart is empty</h2><p class="muted">Start your journey with a box, a special edition or a gift card.</p><div class="row row--center"><a class="btn btn--primary" href="#build">Build my box</a><a class="btn btn--secondary" href="#editions">Special editions</a></div></div></section>`;
+  const hasEdition = S.cart.some(i => i.kind === "edition");
+  return `
+  <section class="page-head"><div class="container"><h1>Your cart</h1><p class="muted">${t.count} item${t.count === 1 ? "" : "s"}</p></div></section>
+  <section class="container cart-layout">
+    <div>
+      <div class="card"><h2 class="sr-only">Items</h2>
+        ${t.lines.map(l => `<div class="cart-line">
+          ${l.kind === "box" ? photo(IMG.box, "") : ph(l.kind === "gift" ? "Gift card" : "Edition visual")}
+          <div><h3 style="margin:0 0 var(--space-1);font-size:var(--fs-base)">${esc(l.title)}</h3><p class="small muted" style="margin:0 0 var(--space-1)">${esc(l.sub)}</p>
+            ${l.diet ? `<p class="small" style="margin:0 0 var(--space-2)">Preferences: ${esc(l.diet)}</p>` : ""}
+            <div class="row">
+              ${l.qtyEditable ? `<div class="qty" role="group" aria-label="Quantity for ${esc(l.title)}"><button type="button" data-action="cart-dec" data-key="${esc(l.key)}" aria-label="Decrease quantity of ${esc(l.title)}">−</button><output aria-live="polite">${l.qty}</output><button type="button" data-action="cart-inc" data-key="${esc(l.key)}" aria-label="Increase quantity of ${esc(l.title)}">+</button></div>` : `<span class="badge">${l.subscription ? "Subscription" : "Qty 1"}</span>`}
+              <button class="btn btn--ghost btn--sm" type="button" data-action="cart-remove" data-key="${esc(l.key)}">Remove<span class="sr-only"> ${esc(l.title)}</span></button>
+            </div></div>
+          <div class="cart-line__price">${money(l.total)}${l.savings ? `<br><span class="small savings">You save ${money(l.savings)}</span>` : ""}</div>
+        </div>`).join("")}
+        <p style="margin-top:var(--space-4)"><a href="#build" class="btn btn--ghost btn--sm">+ Add another box</a></p>
+      </div>
+      <section style="margin-top:var(--space-6)" aria-labelledby="reco-title"><h2 id="reco-title" style="font-size:var(--fs-xl)">Complete your order</h2>
+        <div class="grid grid-2">${hasEdition ? "" : `<div class="card row" style="flex-wrap:nowrap;align-items:flex-start">${icon("gift")}<div><h3>${EDITIONS[0].name}</h3><p class="small muted">${EDITIONS[0].availability} · ${money(EDITIONS[0].price)}</p><button class="btn btn--secondary btn--sm" type="button" data-action="add-edition" data-edition="${EDITIONS[0].id}">Add to cart</button></div></div>`}
+          <div class="card row" style="flex-wrap:nowrap;align-items:flex-start">${icon("heart")}<div><h3>Gift card</h3><p class="small muted">Let someone choose their own journey.</p><a class="btn btn--secondary btn--sm" href="#gift-cards">Offer a gift card</a></div></div></div>
+        <p class="hint" style="margin-top:var(--space-2)">Recommendations area: a recommendation engine would personalise these suggestions in production.</p>
+      </section>
+    </div>
+    ${orderSummary(t, `<a class="btn btn--accent btn--block" href="#checkout">Proceed to checkout</a>`)}
+  </section>`;
+}
+function orderSummary(t, action, detailed = false){
+  return `<aside class="card summary" aria-labelledby="os-title"><h2 id="os-title" style="font-size:var(--fs-xl)">Order summary</h2>
+    ${detailed ? `<ul class="list-plain small">${t.lines.map(l => `<li class="row row--between" style="flex-wrap:nowrap;align-items:flex-start"><span>${l.qty} × ${esc(l.title)}<br><span class="muted">${esc(l.sub)}</span></span><strong>${money(l.total)}</strong></li>`).join("")}</ul>` : ""}
+    <dl class="dl" style="margin-top:var(--space-3)">
+      <dt>Subtotal</dt><dd>${money(t.subtotal)}</dd>
+      <dt>Delivery ${PROV}</dt><dd>${t.shipping ? money(t.shipping) : "Included"}</dd>
+      ${t.savings ? `<dt>Subscription savings</dt><dd class="savings">${money(t.savings)} (already deducted)</dd>` : ""}
+    </dl>
+    <div class="big-total"><span>Total</span><strong>${money(t.total)}</strong></div>
+    ${t.hasMonthly ? `<p class="small" style="text-align:right;margin:var(--space-1) 0 0">Due today: <strong>${money(t.dueToday)}</strong>, then monthly payments</p>` : ""}
+    <div style="margin-top:var(--space-4)">${action}</div>
+    <ul class="facts" style="margin-top:var(--space-4)"><li>${icon("shield")}<span class="small">Prototype: no payment is taken ${SIM}</span></li><li>${icon("truck")}<span class="small">Choose your delivery date at checkout</span></li></ul></aside>`;
+}
+
+function pageCheckout(){
+  const t = cartTotals();
+  if (!t.lines.length) return pageCart();
+  const p = S.profile, a = S.addresses.find(x => x.isDefault) || S.addresses[0] || {};
+  const hasSub = S.cart.some(isSubItem), physical = S.cart.some(i => i.kind !== "gift");
+  return `
+  <section class="page-head"><div class="container"><h1>Checkout</h1>
+    <ol class="checkout-steps" aria-label="Checkout progress"><li>1. Cart ✓</li><li aria-current="step">2. Details &amp; payment</li><li>3. Confirmation</li></ol>
+    <p class="notice">Simulated checkout: no payment is processed and no card or bank details are collected.</p></div></section>
+  <section class="container cart-layout">
+    <form class="card" id="checkout-form" novalidate>
+      <div class="form-error-summary" aria-live="assertive"></div>
+      <div class="row row--between"><h2 style="font-size:var(--fs-xl);margin:0">Your details</h2><span class="small muted">Pre-filled from your demo account</span></div>
+      <div class="form-grid" style="margin-top:var(--space-4)">
+        ${field({ id:"co-first", label:"First name", validate:"required name", autocomplete:"given-name", value:p.first })}
+        ${field({ id:"co-last", label:"Last name", validate:"required name", autocomplete:"family-name", value:p.last })}
+        ${field({ id:"co-email", label:"Email", type:"email", validate:"required email", autocomplete:"email", value:p.email })}
+        ${field({ id:"co-phone", label:"Phone (optional)", type:"tel", validate:"phone", autocomplete:"tel", value:p.phone })}
+      </div>
+      ${physical ? `<div class="form-section"><h2>Delivery address</h2>
+        ${S.addresses.length > 1 ? field({ id:"co-saved", label:"Use a saved address", options:[...S.addresses.map(x => ({ value:x.id, label:`${x.label}: ${x.line}, ${x.city}` })), { value:"new", label:"New address" }], value:a.id }) : ""}
+        <div class="form-grid">
+          ${field({ id:"co-line", label:"Address", validate:"required", autocomplete:"street-address", value:a.line || "", cls:"full" })}
+          ${field({ id:"co-city", label:"City", validate:"required", autocomplete:"address-level2", value:a.city || "" })}
+          ${field({ id:"co-postcode", label:"Postcode", validate:"required postcode", autocomplete:"postal-code", value:a.postcode || "" })}
+          ${field({ id:"co-country", label:"Country", validate:"required", autocomplete:"country-name", options:["France","Belgium","Luxembourg","Switzerland","Germany","United Kingdom"], value:a.country || "France", cls:"full" })}
+        </div>
+        <label class="check"><input type="checkbox" id="co-gift" name="co-gift"> This order is a gift</label>
+        <div id="gift-box" hidden style="margin-top:var(--space-3)">${field({ id:"co-giftmsg", label:"Gift message", rows:3, hint:"Printed on a card inside the box.", attrs:'maxlength="300"' })}</div></div>
+
+      <fieldset class="form-section"><legend class="label" style="font-family:var(--font-heading);font-size:var(--fs-xl);color:var(--color-primary)">Delivery date</legend>
+        <div class="option-grid option-grid--2" style="margin-top:var(--space-3)">
+          <label class="option"><input type="radio" name="co-when" value="asap" checked><span class="option__body"><span class="option__check">${icon("check")}</span><strong>As soon as possible</strong><br><span class="small muted">Shipped quickly after your order</span></span></label>
+          <label class="option"><input type="radio" name="co-when" value="date"><span class="option__body"><span class="option__check">${icon("check")}</span><strong>Choose a date</strong><br><span class="small muted">From ${new Date(minDeliveryDate()).toLocaleDateString("en-GB", { day:"numeric", month:"long" })}</span></span></label>
+        </div>
+        <div id="date-wrap" hidden style="margin-top:var(--space-3);max-width:280px">${field({ id:"co-date", label:"Delivery date", type:"date", validate:"required date", attrs:`min="${minDeliveryDate()}"` })}</div>
+        ${hasSub ? `<p class="hint">Following boxes are delivered monthly from this date ${PROV}</p>` : ""}
+      </fieldset>` : ""}
+
+      <fieldset class="form-section"><legend class="label" style="font-family:var(--font-heading);font-size:var(--fs-xl);color:var(--color-primary)">Payment method</legend>
+        ${hasSub ? `<p class="small" style="margin-top:var(--space-2)">Subscription payment schedule: ${S.cart.filter(isSubItem).map(i => `<strong>${paymentLabel(i.payment)}</strong>`).join(", ")} ${ruleTag(CONFIG.rules.payment)}</p>` : ""}
+        <div class="option-grid" style="margin-top:var(--space-3)">
+        ${[["card","Credit or debit card"],["paypal","PayPal"],["sepa","SEPA direct debit"]].map(([v, l], i) => `<label class="option"><input type="radio" name="co-pay" value="${v}" ${i === 0 ? "checked" : ""}><span class="option__body"><span class="option__check">${icon("check")}</span><strong>${l}</strong> ${SIM}<br><span class="small muted">No details are collected in this prototype</span></span></label>`).join("")}
+        </div></fieldset>
+
+      <div class="form-section">
+        <label class="check"><input type="checkbox" id="co-save" name="co-save" checked> Save these details to my (demo) account</label>
+        <div class="field" style="margin-top:var(--space-3)"><label class="check"><input type="checkbox" id="co-terms" name="co-terms" data-validate="required" aria-describedby="co-terms-err"> I understand this is a demonstration: no real order, payment or delivery takes place. <span class="req" aria-hidden="true">*</span></label>
+        <span class="field-error" id="co-terms-err"></span></div>
+      </div>
+      <button class="btn btn--accent btn--block" type="submit" id="co-submit">Place order (simulation) · ${money(t.hasMonthly ? t.dueToday : t.total)}${t.hasMonthly ? " today" : ""}</button>
+    </form>
+    ${orderSummary(t, `<a class="btn btn--ghost btn--block" href="#cart">Edit cart</a>`, true)}
+  </section>`;
+}
+
+function pageConfirmation(){
+  const o = S.orders.find(x => x.id === S.lastOrderId);
+  if (!o) return pageNotFound();
+  return `<section class="section"><div class="container" style="max-width:760px">
+    <div class="card center" style="padding:var(--space-7) var(--space-5)">
+      <div class="icon-wrap" style="background:var(--color-success-bg);color:var(--color-success)">${icon("check")}</div>
+      <h1 style="font-size:var(--fs-2xl)">Thank you, ${esc(o.customer.first)}!</h1>
+      <p class="lead">Simulated order <strong>${o.id}</strong> recorded in this browser.</p>
+      <p class="notice">This is a demonstration: nothing was charged, no box will be shipped and no email was sent to ${esc(o.customer.email)}.</p>
+      <ul class="list-plain" style="text-align:left;margin:var(--space-5) 0">${o.lines.map(l => `<li class="row row--between" style="flex-wrap:nowrap;align-items:flex-start"><span>${l.qty} × ${esc(l.title)}<br><span class="small muted">${esc(l.sub)}</span></span><strong>${money(l.total)}</strong></li>`).join("")}
+        <li class="row row--between"><span>Delivery</span><span>${o.shipping ? money(o.shipping) : "Included"}</span></li>
+        <li class="row row--between"><strong>Total</strong><strong>${money(o.total)}</strong></li></ul>
+      ${o.address ? `<dl class="kv" style="text-align:left;margin-bottom:var(--space-5)"><dt>Delivery to</dt><dd>${esc(o.customer.first)} ${esc(o.customer.last)}, ${esc(o.address)}</dd><dt>Delivery date</dt><dd>${esc(o.delivery)}</dd><dt>Payment</dt><dd>${esc(o.payment)} (simulated)</dd></dl>` : ""}
+      <div class="row row--center"><a class="btn btn--primary" href="#account">View my account</a><a class="btn btn--secondary" href="#regions">Explore upcoming regions</a></div>
+    </div></div></section>`;
+}
+
+function pageAccount(){
+  const p = S.profile, subs = activeSubscriptions(), up = upcomingDeliveries();
+  return `
+  <section class="page-head"><div class="container"><span class="eyebrow">My account</span><h1>Welcome back, ${esc(p.first)}</h1>
+    <p class="notice">Demonstration account (no login). Items marked “Demo” are sample data; your changes and simulated orders are stored only in this browser.</p></div></section>
+  <section class="container account-grid">
+    <article class="card" aria-labelledby="acc-pi"><h2 id="acc-pi" style="font-size:var(--fs-lg)">Personal information</h2>
+      <form id="profile-form" novalidate>
+        <div class="form-grid">
+          ${field({ id:"pf-first", label:"First name", validate:"required name", value:p.first, autocomplete:"given-name" })}
+          ${field({ id:"pf-last", label:"Last name", validate:"required name", value:p.last, autocomplete:"family-name" })}
+          ${field({ id:"pf-email", label:"Email", type:"email", validate:"required email", value:p.email, autocomplete:"email", cls:"full" })}
+          ${field({ id:"pf-phone", label:"Phone", type:"tel", validate:"phone", value:p.phone, autocomplete:"tel", cls:"full" })}
+        </div><button class="btn btn--secondary btn--sm" type="submit">Save changes</button></form></article>
+
+    <article class="card" aria-labelledby="acc-subs"><h2 id="acc-subs" style="font-size:var(--fs-lg)">Active subscriptions</h2>
+      ${subs.length ? `<ul class="list-plain">${subs.map(s => { const q = quote(s.sizeId, s.planId, s.budget), end = addMonths(s.start, q.plan.months - 1);
+        return `<li><div class="row row--between"><strong>${q.box.size} — ${q.box.name}</strong>${s.demo ? '<span class="badge">Demo</span>' : '<span class="badge badge--success">Simulated</span>'}</div>
+          <p class="small muted" style="margin:var(--space-1) 0 0">${q.plan.label} · ${monthLabel(s.start, true)} to ${monthLabel(end, true)}</p>
+          <details class="small" style="margin-top:var(--space-2)"><summary>Subscription details</summary>
+          <dl class="kv" style="margin-top:var(--space-2)"><dt>Price per box</dt><dd>${money(q.perBox)}</dd><dt>Total</dt><dd>${money(q.total)}</dd><dt>Payment</dt><dd>${paymentLabel(s.payment)}</dd><dt>Renewal</dt><dd>Ends after the last box (proposed)</dd><dt>Cancellation</dt><dd>To be defined</dd><dt>Order</dt><dd>${s.orderId}</dd></dl></details></li>`; }).join("")}</ul>`
+        : `<p class="muted">No active subscription.</p><a class="btn btn--primary btn--sm" href="#build">Start a subscription</a>`}
+    </article>
+
+    <article class="card" aria-labelledby="acc-up"><h2 id="acc-up" style="font-size:var(--fs-lg)">Upcoming deliveries</h2>
+      ${up.length ? `<ul class="list-plain">${up.map(d => `<li class="row row--between"><span><strong>${monthLabel(d.month)}</strong>: ${d.region ? d.region.destination : "Region to be announced"}<br><span class="small muted">${getBox(d.sub.sizeId, d.sub.budget).name} · box ${d.index} of ${d.of}</span></span>${d.month === CONFIG.demoMonth ? '<span class="badge badge--terracotta">This month</span>' : ""}</li>`).join("")}</ul>` : `<p class="muted">No upcoming deliveries.</p>`}
+    </article>
+
+    <article class="card" aria-labelledby="acc-addr"><h2 id="acc-addr" style="font-size:var(--fs-lg)">Saved delivery addresses</h2>
+      <ul class="list-plain">${S.addresses.map(a => `<li class="row row--between" style="align-items:flex-start"><span style="min-width:0"><strong>${esc(a.label)}</strong> ${a.isDefault ? '<span class="badge">Default</span>' : ""}<br><span class="small muted">${esc(a.line)}, ${esc(a.postcode)} ${esc(a.city)}, ${esc(a.country)}</span></span>
+        <span class="row" style="gap:0">${a.isDefault ? "" : `<button class="btn btn--ghost btn--sm" type="button" data-action="default-address" data-id="${a.id}">Set as default</button>`}${S.addresses.length > 1 ? `<button class="btn btn--ghost btn--sm" type="button" data-action="remove-address" data-id="${a.id}">Remove<span class="sr-only"> ${esc(a.label)}</span></button>` : ""}</span></li>`).join("")}</ul></article>
+
+    <article class="card span-2" aria-labelledby="acc-orders"><h2 id="acc-orders" style="font-size:var(--fs-lg)">Order history</h2>
+      <div class="table-wrap"><table class="table-stack"><thead><tr><th scope="col">Order</th><th scope="col">Date</th><th scope="col">Items</th><th scope="col">Delivery</th><th scope="col" class="num">Total</th></tr></thead>
+        <tbody>${[...S.orders].sort((x, y) => y.date.localeCompare(x.date)).map(o => `<tr><th scope="row">${o.id} ${o.demo ? '<span class="badge">Demo</span>' : '<span class="badge badge--success">Simulated</span>'}</th><td data-label="Date">${new Date(o.date).toLocaleDateString("en-GB", { day:"numeric", month:"short", year:"numeric" })}</td><td data-label="Items">${o.lines.map(l => `${l.qty} × ${esc(l.title)}`).join("<br>")}</td><td data-label="Delivery">${esc(o.address || "Email (gift card)")}<br><span class="muted">${esc(o.delivery || "")}</span></td><td class="num" data-label="Total">${money(o.total)}</td></tr>`).join("")}</tbody></table></div></article>
+
+    <article class="card span-2 row row--between"><div><h2 style="font-size:var(--fs-lg);margin:0">Need help?</h2><p class="muted small" style="margin:0">Our team is here for any question about your boxes.</p></div>
+      <div class="row"><a class="btn btn--secondary" href="#faq">Read the FAQ</a><a class="btn btn--primary" href="#contact">Contact support</a></div></article>
+  </section>`;
+}
+
+function pageFaq(){
+  return `
+  <section class="page-head"><div class="container"><span class="eyebrow">Help centre</span><h1>FAQ &amp; Contact</h1><p class="lead">Answers to common questions, and a direct line to our team.</p></div></section>
+  <section class="section" style="padding-top:0"><div class="container" style="max-width:860px">
+    ${FAQ.map((g, gi) => `<h2 style="font-size:var(--fs-xl);margin-top:var(--space-6)">${g.cat}</h2>${accordion(g.items, "faq" + gi)}`).join("")}
+  </div></section>
+  <section class="section section--alt" id="contact-section" aria-labelledby="contact-title"><div class="container" style="max-width:860px">
+    <h2 id="contact-title">Contact us</h2><p class="muted">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
+    <form class="card" id="contact-form" novalidate>
+      <div class="form-error-summary" aria-live="assertive"></div>
+      <div class="form-grid">
+        ${field({ id:"ct-name", label:"Full name", validate:"required", autocomplete:"name", value:`${S.profile.first} ${S.profile.last}` })}
+        ${field({ id:"ct-email", label:"Email", type:"email", validate:"required email", autocomplete:"email", value:S.profile.email })}
+        ${field({ id:"ct-subject", label:"Subject", validate:"required", options:[{ value:"", label:"Select a subject" }, "My subscription", "An order or delivery", "Box contents & allergens", "Special editions", "Gifts & gift cards", "Partnership / producers", "Other"] })}
+        ${field({ id:"ct-order", label:"Order number (optional)", hint:"e.g. ORD-123456" })}
+        ${field({ id:"ct-msg", label:"Message", validate:"required min:20", rows:5, cls:"full", hint:"At least 20 characters.", attrs:'maxlength="2000"' })}
+      </div>
+      <div class="field"><label class="check"><input type="checkbox" id="ct-consent" name="ct-consent" data-validate="required" aria-describedby="ct-consent-err"> I agree that my details are used to answer my request. <span class="req" aria-hidden="true">*</span></label><span class="field-error" id="ct-consent-err"></span></div>
+      <button class="btn btn--primary" type="submit">Send message</button>
+      <div id="contact-result" aria-live="polite" style="margin-top:var(--space-4)"></div>
+    </form>
+    <p class="small muted" style="margin-top:var(--space-4)">Email: contact@escale-regions.example · Phone and opening hours ${tag("tbd", "to be confirmed")}</p>
+  </div></section>`;
+}
+
+function pageLegal(){
+  return `<section class="page-head"><div class="container" style="max-width:860px"><h1>Legal information</h1>
+    <p class="notice">Placeholder page. The final legal documents will be written and validated before any commercial launch.</p></div></section>
+    <section class="container" style="max-width:860px">${["Terms of sale","Privacy policy (GDPR)","Legal notice","Cookie policy","Food information (ingredients & allergens)"].map(t => `<article class="card" style="margin-bottom:var(--space-4)"><h2 style="font-size:var(--fs-lg)">${t}</h2><p class="muted" style="margin:0">To be provided.</p></article>`).join("")}</section>`;
+}
+
+function pagePrototype(){
+  const rows = [
+    ["Navigation, routing & shareable page links", "Functional", ""],
+    ["Box configurator (S/M/L, custom budget, plans, payment mode, diet)", "Functional", "Prices computed from editable configuration."],
+    ["Box comparison & plan comparison", "Functional", ""],
+    ["Cart (add, remove, quantities, totals, due today)", "Functional", "Stored in this browser only."],
+    ["Interactive map, region sheets & box calendar", "Functional", "Real region outlines; calendar provisional."],
+    ["Form validation (checkout, contact, newsletter, gift card, profile)", "Functional", ""],
+    ["Checkout, payment & order confirmation", "Simulated", "No payment, no order, no email."],
+    ["Subscriptions & direct debit", "Simulated", "No billing takes place."],
+    ["Customer account", "Simulated", "No login. Demo data labelled “Demo”."],
+    ["Notifications (notify me, newsletter, contact)", "Simulated", "Saved locally or not at all; nothing is sent."],
+    ["Gift cards", "Simulated", "Proposed feature; cards have no value."],
+    ["Prices, quantities, delivery fees, calendar", "Provisional", "To be confirmed."],
+    ["Product examples, producers, recipes", "Illustrative", "No real selection or producer is claimed."],
+    ["Reviews & seasonal offers", "Placeholder", "Empty slots; no fake reviews or popularity figures."]
+  ];
+  const backend = [
+    ["Back-end & database", "Products, regions, stock, customers, orders and subscriptions stored server-side."],
+    ["Authentication", "Secure customer accounts (sign-up, login, password reset), GDPR-compliant data handling."],
+    ["Payment provider", "PCI-compliant card payments and SEPA direct debit mandates for monthly subscriptions (e.g. a provider such as Stripe or Mollie)."],
+    ["Subscription billing engine", "Schedules, end of plan after the last box, failed payments, cancellation rules."],
+    ["Order processing & logistics", "Order preparation, carrier integration, delivery date management, tracking."],
+    ["Transactional emails", "Order confirmation, shipping, gift card delivery, newsletter (with consent)."],
+    ["Content management", "Monthly regions, producers, recipes, allergen information, editions."],
+    ["Reviews platform", "Collection and display of verified reviews."],
+    ["Legal & compliance", "Terms of sale, privacy policy, cookie consent, food labelling (ingredients & allergens)."]
+  ];
+  const validate = ["Online shop only, or also a mobile app?","Storage and shipping of fresh products","Final prices and budget-to-products rule","Payment terms (upfront / monthly direct debit)","End of subscription after last delivery, cancellation and pause rules","Whether to offer the 9-month plan (kept in the code, currently hidden)","Delivery fees, areas and lead times","Gift card validity and rules"];
+  return `<section class="page-head"><div class="container" style="max-width:980px"><span class="eyebrow">Prototype notes</span><h1>About this prototype</h1>
+    <p class="lead">V2 adds the provisional Escale Régions Box identity and conversion improvements. The official art direction PDF will remain the reference for the final design.</p></div></section>
+    <section class="container" style="max-width:980px">
+    <h2 style="font-size:var(--fs-xl)">Feature status</h2>
+    <div class="table-wrap"><table class="table-stack"><thead><tr><th scope="col">Feature</th><th scope="col">Status</th><th scope="col">Notes</th></tr></thead>
+    <tbody>${rows.map(r => `<tr><th scope="row">${r[0]}</th><td data-label="Status"><span class="badge ${r[1] === "Functional" ? "badge--success" : r[1] === "Simulated" ? "badge--warning" : ""}">${r[1]}</span></td><td data-label="Notes" class="muted">${r[2] || "—"}</td></tr>`).join("")}</tbody></table></div>
+    <h2 style="font-size:var(--fs-xl);margin-top:var(--space-7)">Needed before commercial launch</h2>
+    <div class="grid grid-3">${backend.map(([t, d]) => `<article class="card"><h3>${t}</h3><p class="small muted" style="margin:0">${d}</p></article>`).join("")}</div>
+    <h2 style="font-size:var(--fs-xl);margin-top:var(--space-7)">Business rules to validate</h2>
+    <ul class="card" style="padding-left:2.5rem">${validate.map(v => `<li>${v}</li>`).join("")}</ul>
+    <div class="card" style="margin-top:var(--space-5)"><h2 style="font-size:var(--fs-lg)">Presenter mode</h2><p class="muted small">A guided 7-step tour for live demos (about 2 minutes): promise, boxes, product page, configurator, map, checkout, account. The cart and checkout are pre-filled. Keys: ← → or a presentation clicker (PageUp / PageDown), 1–7 to jump, Esc to exit, D to start from anywhere.</p>
+    <button class="btn btn--primary" type="button" data-action="demo-start">Start presenter mode</button></div>
+    <div class="card" style="margin-top:var(--space-5)"><h2 style="font-size:var(--fs-lg)">Reset demo data</h2><p class="muted small">Clears the cart, simulated orders and reminders, and restores the sample account. Useful before a presentation.</p>
+    <button class="btn btn--secondary" type="button" data-action="reset">Reset prototype data</button></div></section>`;
+}
+
+function pageNotFound(){ return `<section class="section"><div class="container empty"><h1>Page not found</h1><p class="muted">This page doesn't exist or is no longer available.</p><a class="btn btn--primary" href="#home">Back to home</a></div></section>`; }
+
+/* =====================================================================
+   E2. PRESENTER MODE — a guided 7-step tour for live demos
+   Open with #demo, the footer link or the "D" key. ← → / PageUp PageDown / 1–7 to move, Esc to exit.
+   ===================================================================== */
+const DEMO_STEPS = [
+  { route:"home", target:".hero", caption:"The promise: one region a month, a clear price" },
+  { route:"home", target:"#find-title", block:"start", caption:"Three sizes, or your own budget" },
+  { route:"box-m", target:".page-head .card", caption:"Product page: contents, prices, clear choices" },
+  { route:"build", target:"fieldset.builder-step:nth-of-type(2)", block:"start", spot:".summary", caption:"Configurator: price per box, savings, total",
+    before(){ Object.assign(S.config, { size:"m", plan:"6m", payment:"upfront" }); } },
+  { route:"regions", target:".map-layout", block:"start", caption:"Map & calendar: one region per month" },
+  { route:"checkout", target:"#co-submit", block:"center", caption:"Checkout: details, delivery date, payment (simulated)",
+    before(){ if (!S.cart.length){ Object.assign(S.config, { size:"m", plan:"6m", payment:"upfront" }); addToCart(configItem()); } },
+    after(){ const t = $("#co-terms"); if (t){ t.checked = true; setFieldState(t, ""); } } },
+  { route:"account", target:"#acc-subs", block:"start", caption:"Account: subscriptions & upcoming deliveries" }
+];
+let pendingStep = null;
+function demoStart(){ S.demo = true; S.banner = S.banner; persist(); document.body.classList.add("demo-on"); renderBanner(); demoGo(0); }
+function demoExit(){ S.demo = false; persist(); document.body.classList.remove("demo-on"); $("#demo-root").innerHTML = ""; renderBanner(); toast("Presenter mode closed."); }
+function demoGo(i){
+  i = Math.max(0, Math.min(DEMO_STEPS.length - 1, i));
+  S.demoStep = i; const st = DEMO_STEPS[i];
+  try { st.before?.(); } catch(e){ console.error(e); }
+  persist(); pendingStep = st; go(st.route);
+}
+function demoAfterRender(hash){
+  if (!S.demo){ $("#demo-root").innerHTML = ""; return; }
+  document.body.classList.add("demo-on");
+  const st = pendingStep; pendingStep = null;
+  renderDemoBar();
+  if (st && st.route === hash) setTimeout(() => {
+    try { st.after?.(); } catch(e){ console.error(e); }
+    const el = $(st.target); if (!el) return;
+    const r = el.getBoundingClientRect(), headerH = $(".site-header").offsetHeight;
+    let top = 0;
+    if (st.block === "start") top = r.top + window.scrollY - headerH - 16;
+    else if (st.block === "center") top = r.top + window.scrollY - (window.innerHeight - r.height) / 2;
+    window.scrollTo({ top:Math.max(0, top), behavior:"instant" });
+    const spot = st.spot ? $(st.spot) : el;
+    if (spot){ spot.classList.remove("demo-spot"); void spot.offsetWidth; spot.classList.add("demo-spot"); }
+  }, 80);
+}
+function renderDemoBar(){
+  const i = S.demoStep, n = DEMO_STEPS.length;
+  $("#demo-root").innerHTML = `<nav class="demo-bar" aria-label="Presenter mode">
+    <button type="button" data-action="demo-prev" aria-label="Previous step" ${i === 0 ? "disabled" : ""}>${icon("arrowL")}</button>
+    <div class="demo-steps">${DEMO_STEPS.map((s, k) => `<button type="button" class="demo-step" data-action="demo-go" data-step="${k}" aria-label="Step ${k + 1}: ${esc(s.caption)}" ${k === i ? 'aria-current="step"' : ""}>${k + 1}</button>`).join("")}</div>
+    <span class="demo-caption" aria-live="polite">${esc(DEMO_STEPS[i].caption)}</span>
+    <button type="button" data-action="demo-next" aria-label="Next step" ${i === n - 1 ? "disabled" : ""}>${icon("arrowR")}</button>
+    <span class="demo-sep" aria-hidden="true"></span>
+    <button type="button" data-action="demo-reset" title="Reset demo data">Reset</button>
+    <button type="button" data-action="demo-exit" aria-label="Exit presenter mode">✕</button></nav>`;
+}
+
+/* =====================================================================
+   F. ROUTER
+   ===================================================================== */
+const ROUTES = {
+  home:["Every month, a region on your table", pageHome, "Authentic French regional food, a new region every month. Boxes from 3 products, one-time or by subscription."],
+  boxes:["Our Boxes", pageBoxes, "Compare the Small, Medium and Large boxes, or set your own budget."],
+  "box-s":["Small — Discovery Box", () => pageBox("s"), "3 regional products, a flyer and a recipe every month."],
+  "box-m":["Medium — Explorer Box", () => pageBox("m"), "5 regional products, a flyer and a recipe every month."],
+  "box-l":["Large — Experience Box", () => pageBox("l"), "More than 5 regional products to share, with a flyer and a recipe."],
+  build:["Build Your Box", pageBuild, "Choose your size or budget, your plan, your payment and your dietary preferences."],
+  regions:["Explore Regions", () => pageRegions(null), "An interactive map and calendar of our regional boxes."],
+  editions:["Special Editions", pageEditions, "Limited-edition boxes for Christmas, Valentine's Day, Easter and summer."],
+  "gift-cards":["Gift Cards", pageGift, "Offer a journey through French regional food."],
+  "how-it-works":["How It Works", pageHow, "Sizes, budgets, plans, payment and delivery explained."],
+  story:["Our Story", pageStory, "Connecting people with French regional culture through food."],
+  delivery:["Delivery & Guarantees", pageDelivery, "Delivery, conditions and guarantees."],
+  cart:["Cart", pageCart, ""], checkout:["Checkout", pageCheckout, ""], confirmation:["Order confirmed", pageConfirmation, ""],
+  account:["My Account", pageAccount, ""], faq:["FAQ & Contact", pageFaq, "Answers to common questions and contact form."],
+  contact:["Contact", pageFaq, "Contact the Escale Régions Box team."], producers:["Local Producers", pageHome, ""],
+  legal:["Legal", pageLegal, ""], prototype:["About this prototype", pagePrototype, ""]
+};
+const NAV_PARENT = { "box-s":"boxes", "box-m":"boxes", "box-l":"boxes", contact:"faq" };
+const SCROLL_TO = { contact:"#contact-section", producers:"#producers-section" };
+let firstRender = true;
+
+function render(){
+  const hash = decodeURIComponent(location.hash.slice(1)) || "home";
+  if (hash === "demo"){ demoStart(); return; }
+  let route, navKey = NAV_PARENT[hash] || hash;
+  if (hash.startsWith("region-")){ route = ["Explore Regions", () => pageRegions(hash.slice(7)), ""]; navKey = "regions"; }
+  else route = ROUTES[hash] || ["Page not found", pageNotFound, ""];
+  const [title, view, desc] = route, app = $("#app");
+  try { app.innerHTML = view(); }
+  catch (err){ console.error(err); app.innerHTML = `<section class="section"><div class="container empty"><h1>Something went wrong</h1><p class="muted">This page could not be displayed. You can reset the prototype data and try again.</p><div class="row row--center"><a class="btn btn--primary" href="#home">Back to home</a><button class="btn btn--secondary" type="button" data-action="reset">Reset data</button></div></div></section>`; }
+  app.style.animation = "none"; void app.offsetWidth; app.style.animation = "";
+  document.title = `${title} | ${CONFIG.brandName}`;
+  const md = $('meta[name="description"]'); if (desc && md) md.setAttribute("content", desc);
+  $$(".main-nav a").forEach(a => a.getAttribute("href") === "#" + navKey ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
+  document.body.classList.toggle("has-mobile-bar", hash === "build");
+  closeMenu();
+  if (hash === "build") updateBuilder();
+  if (SCROLL_TO[hash]) setTimeout(() => $(SCROLL_TO[hash])?.scrollIntoView(), 40);
+  else { window.scrollTo(0, 0); if (!firstRender){ const h1 = $("h1", app); if (h1){ h1.setAttribute("tabindex", "-1"); h1.focus({ preventScroll:true }); } } }
+  firstRender = false;
+  demoAfterRender(hash);
+}
+function closeMenu(){ $("#main-nav").classList.remove("is-open"); const b = $(".menu-toggle"); b.setAttribute("aria-expanded", "false"); b.setAttribute("aria-label", "Open menu"); }
+function go(hash){ if (location.hash === "#" + hash) render(); else location.hash = hash; }
+
+/* =====================================================================
+   G. EVENTS (delegated)
+   ===================================================================== */
+function selectRegion(id, fromEl){
+  const r = getRegion(id); if (!r) return;
+  const map = fromEl?.closest(".fr-map");
+  const panel = $("#region-panel");
+  if ((map && map.dataset.mode === "preview") || !panel){ go("region-" + id); return; }
+  panel.innerHTML = regionPanel(r);
+  $$("[data-action='select-region'][data-region]").forEach(el => { if (el.closest("#region-panel")) return; const on = el.dataset.region === id; el.setAttribute("aria-pressed", on); el.classList.toggle("is-selected", on); });
+  const chip = $(`.region-chips [data-region="${id}"]`); if (chip) chip.scrollIntoView({ block:"nearest", inline:"center" });
+  if (window.innerWidth < 980 && !fromEl?.closest("#region-panel")) panel.scrollIntoView({ behavior:"smooth", block:"start" });
+  if (fromEl?.closest("#region-panel")) $(`#region-panel [data-region]`)?.focus();
+}
+function handleAction(t, e){
+  const a = t.dataset.action;
+  switch (a){
+    case "menu": { const nav = $("#main-nav"), open = !nav.classList.contains("is-open"); nav.classList.toggle("is-open", open); t.setAttribute("aria-expanded", open); t.setAttribute("aria-label", open ? "Close menu" : "Open menu"); if (open) $("a", nav)?.focus(); break; }
+    case "dismiss-banner": S.banner = false; persist(); renderBanner(); break;
+    case "choose-box": S.config.size = t.dataset.size; if (t.dataset.plan && getPlan(t.dataset.plan)) S.config.plan = t.dataset.plan; persist(); go("build"); break;
+    case "goto-build": e.preventDefault(); S.config.size = t.dataset.size; persist(); go("build"); break;
+    case "home-plan-size": $$("[data-action='home-plan-size']").forEach(b => b.setAttribute("aria-pressed", b === t)); $("#home-plans").innerHTML = homePlansTable(t.dataset.size); break;
+    case "add-config": {
+      if (S.config.size === "custom"){ const f = $("#cfg-budget"); if (f){ const m = checkField(f); setFieldState(f, m); if (m){ f.focus(); toast("Please enter a valid budget."); break; } } }
+      if (addToCart(configItem())){ flash(t, `${icon("check")} Added`); toast(`${getBox(S.config.size, S.config.budget).name} (${getPlan(S.config.plan).short}) added to your cart.`, { href:"#cart", label:"View cart" }); }
+      break;
+    }
+    case "checkout-config": { const it = configItem(); if (!S.cart.find(i => i.key === boxKey(it))) addToCart(it); go("checkout"); break; }
+    case "buy-once": addToCart({ kind:"box", sizeId:t.dataset.size, planId:"one-time", diet:[], dietNote:"" }); flash(t, `${icon("check")} Added`); toast(`${getBox(t.dataset.size).name} (one-time) added to your cart.`, { href:"#cart", label:"View cart" }); break;
+    case "add-sub-pdp": { const plan = $("#pdp-plan").value; if (addToCart({ kind:"box", sizeId:t.dataset.size, planId:plan, payment:"upfront", diet:[], dietNote:"" })){ flash(t, `${icon("check")} Added`); toast(`${getBox(t.dataset.size).name}, ${getPlan(plan).short}, added (pay in full; change it in the configurator).`, { href:"#cart", label:"View cart" }); } break; }
+    case "add-edition": addToCart({ kind:"edition", editionId:t.dataset.edition }); flash(t, `${icon("check")} Added`); toast(`${getEdition(t.dataset.edition).name} added to your cart.`, { href:"#cart", label:"View cart" }); if (location.hash === "#cart") render(); break;
+    case "notify": {
+      const id = t.dataset.id, on = !S.notify.includes(id);
+      S.notify = on ? [...S.notify, id] : S.notify.filter(x => x !== id); persist();
+      t.setAttribute("aria-pressed", on);
+      t.textContent = on ? (id.startsWith("rg-") ? "✓ Saved" : "✓ Reminder saved") : (id.startsWith("rg-") ? "Remind me" : "Notify me");
+      toast(on ? `Saved in this browser. In production, you'd be notified about ${t.dataset.name}.` : `Reminder for ${t.dataset.name} removed.`); break;
+    }
+    case "select-region": selectRegion(t.dataset.region, t); break;
+    case "cart-inc": case "cart-dec": case "cart-remove": {
+      const item = S.cart.find(i => i.key === t.dataset.key); if (!item) break;
+      const title = lineInfo(item).title;
+      if (a === "cart-inc") item.qty = Math.min(20, item.qty + 1); else if (a === "cart-dec") item.qty--;
+      if (a === "cart-remove" || item.qty < 1){ S.cart = S.cart.filter(i => i !== item); toast(`${title} removed from your cart.`); }
+      persist(); render(); break;
+    }
+    case "acc": { const open = t.getAttribute("aria-expanded") !== "true"; t.setAttribute("aria-expanded", open); const p = document.getElementById(t.getAttribute("aria-controls")); if (p) p.hidden = !open; break; }
+    case "default-address": S.addresses.forEach(x => x.isDefault = x.id === t.dataset.id); persist(); render(); toast("Default address updated."); break;
+    case "remove-address": { const wasDefault = S.addresses.find(x => x.id === t.dataset.id)?.isDefault; S.addresses = S.addresses.filter(x => x.id !== t.dataset.id); if (wasDefault && S.addresses[0]) S.addresses[0].isDefault = true; persist(); render(); toast("Address removed."); break; }
+    case "demo-prev": demoGo(S.demoStep - 1); break;
+    case "demo-next": demoGo(S.demoStep + 1); break;
+    case "demo-go": demoGo(Number(t.dataset.step)); break;
+    case "demo-exit": demoExit(); break;
+    case "demo-reset": { const step = S.demoStep; S = { ...DEFAULT_STATE(), banner:false, demo:true, demoStep:step }; persist(); toast("Demo data reset."); demoGo(0); break; }
+    case "demo-start": demoStart(); break;
+    case "reset": { const banner = S.banner; S = DEFAULT_STATE(); S.banner = banner; persist(); toast("Prototype data reset."); render(); break; }
+  }
+}
+document.addEventListener("click", e => { const t = e.target.closest("[data-action]"); if (t && !t.disabled) handleAction(t, e); });
+document.addEventListener("keydown", e => {
+  const g = e.target.closest && e.target.closest("g[data-action]");
+  if (g && (e.key === "Enter" || e.key === " ")){ e.preventDefault(); handleAction(g, e); }
+  if (g && ["ArrowRight","ArrowDown","ArrowLeft","ArrowUp"].includes(e.key)){
+    e.preventDefault(); const all = $$("g[data-action]", g.ownerSVGElement), i = all.indexOf(g);
+    all[(i + (["ArrowRight","ArrowDown"].includes(e.key) ? 1 : -1) + all.length) % all.length].focus();
+  }
+  if (e.key === "Escape" && $("#main-nav").classList.contains("is-open")){ closeMenu(); $(".menu-toggle").focus(); return; }
+  const typing = e.target.closest && e.target.closest("input, textarea, select, [contenteditable], g[data-action]");
+  if (typing || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (!S.demo && (e.key === "d" || e.key === "D")){ demoStart(); return; }
+  if (!S.demo) return;
+  if (["ArrowRight","PageDown"].includes(e.key)){ e.preventDefault(); demoGo(S.demoStep + 1); }
+  else if (["ArrowLeft","PageUp"].includes(e.key)){ e.preventDefault(); demoGo(S.demoStep - 1); }
+  else if (/^[1-9]$/.test(e.key) && Number(e.key) <= DEMO_STEPS.length){ demoGo(Number(e.key) - 1); }
+  else if (e.key === "Escape") demoExit();
+});
+/* Map tooltip */
+document.addEventListener("pointermove", e => {
+  const g = e.target.closest && e.target.closest(".fr-map g[data-tip]"), wrap = e.target.closest && e.target.closest(".map-wrap");
+  $$(".map-tip").forEach(tip => { if (!g || !wrap || !wrap.contains(tip)) tip.classList.remove("is-on"); });
+  if (g && wrap && e.pointerType === "mouse"){ const tip = $(".map-tip", wrap), r = wrap.getBoundingClientRect(); tip.textContent = g.dataset.tip; tip.style.left = (e.clientX - r.left) + "px"; tip.style.top = (e.clientY - r.top) + "px"; tip.classList.add("is-on"); }
+});
+document.addEventListener("change", e => {
+  const t = e.target, c = S.config;
+  if (t.name === "cfg-size"){ c.size = t.value; persist(); updateBuilder(); if (t.value === "custom") $("#cfg-budget")?.focus(); }
+  if (t.name === "cfg-plan"){ c.plan = t.value; persist(); updateBuilder(); }
+  if (t.name === "cfg-payment"){ c.payment = t.value; persist(); updateBuilder(); }
+  if (t.name === "cfg-diet"){ c.diet = $$("input[name='cfg-diet']:checked").map(x => x.value); persist(); updateBuilder(); }
+  if (t.id === "compare-plan"){ c.plan = t.value; persist(); $("#compare-table").innerHTML = compareTable(t.value, c.size === "custom" ? "m" : c.size); }
+  if (t.id === "pdp-plan") $("#pdp-quote").innerHTML = pdpQuote(t.dataset.size, t.value);
+  if (t.id === "co-gift") $("#gift-box").hidden = !t.checked;
+  if (t.name === "co-when"){ const w = $("#date-wrap"); w.hidden = t.value !== "date"; if (!w.hidden) $("#co-date").focus(); }
+  if (t.id === "co-saved"){ const a = S.addresses.find(x => x.id === t.value); ["line","city","postcode"].forEach(k => { const f = $("#co-" + k); f.value = a ? a[k] : ""; setFieldState(f, ""); }); $("#co-country").value = a ? a.country : "France"; if (!a) $("#co-line").focus(); }
+  if (t.dataset?.giftAmount !== undefined){ $("#gc-custom-wrap").hidden = t.value !== "custom"; $$("[data-gift-amount]").forEach(r => r.nextElementSibling.classList.toggle("btn--primary", r.checked)); }
+  if (t.dataset?.validate && t.type === "checkbox") setFieldState(t, checkField(t));
+});
+document.addEventListener("input", e => {
+  const f = e.target;
+  if (f.id === "cfg-budget"){ const m = checkField(f); setFieldState(f, m); if (!m){ S.config.budget = clampBudget(f.value); persist(); updateBuilder(); } return; }
+  if (f.id === "cfg-diet-note"){ S.config.dietNote = f.value; persist(); updateBuilder(); return; }
+  if (f.dataset?.validate && f.getAttribute("aria-invalid") === "true") setFieldState(f, checkField(f));
+});
+document.addEventListener("focusout", e => { const f = e.target; if (f.dataset?.validate && f.type !== "checkbox" && f.value.trim()) setFieldState(f, checkField(f)); });
+document.addEventListener("submit", e => {
+  const form = e.target; e.preventDefault();
+  if (!validateForm(form)){ toast("Please check the highlighted fields."); return; }
+  const d = formData(form);
+  if (form.id === "newsletter-form"){ form.reset(); $$(".is-valid", form).forEach(x => x.classList.remove("is-valid")); toast("Thank you! (Simulated: nothing was sent or stored.)"); }
+  if (form.id === "contact-form"){ const btn = $("button[type=submit]", form); btn.classList.add("is-loading"); btn.disabled = true;
+    setTimeout(() => { btn.classList.remove("is-loading"); btn.disabled = false; form.reset(); $$(".is-valid", form).forEach(x => x.classList.remove("is-valid")); $("#contact-result").innerHTML = `<p class="notice notice--success" role="status">Your message passed validation. In this prototype it is not sent to anyone.</p>`; }, 700); }
+  if (form.id === "profile-form"){ S.profile = { first:d["pf-first"].trim(), last:d["pf-last"].trim(), email:d["pf-email"].trim(), phone:d["pf-phone"].trim() }; persist(); render(); toast("Personal information saved (in this browser)."); }
+  if (form.id === "gift-form"){
+    const amt = d["gc-amount"] === "custom" ? Math.round(Number(d["gc-custom"])) : Number(d["gc-amount"]);
+    addToCart({ kind:"gift", amount:amt, recipient:d["gc-to"].trim(), email:d["gc-email"].trim(), from:d["gc-from"].trim(), sendDate:d["gc-date"] || "", message:d["gc-msg"] || "" });
+    toast(`Gift card of ${money(amt)} added to your cart.`, { href:"#cart", label:"View cart" }); form.reset(); $$(".is-valid", form).forEach(x => x.classList.remove("is-valid"));
+  }
+  if (form.id === "checkout-form"){ const btn = $("#co-submit"); btn.classList.add("is-loading"); btn.disabled = true; btn.textContent = "Processing simulation…"; setTimeout(() => placeOrder(d), S.demo ? 250 : 900); }
+});
+function placeOrder(d){
+  const t = cartTotals(), id = "ORD-" + String(Date.now()).slice(-6), physical = S.cart.some(i => i.kind !== "gift");
+  const customer = { first:d["co-first"].trim(), last:d["co-last"].trim(), email:d["co-email"].trim(), phone:(d["co-phone"] || "").trim() };
+  const addr = physical ? { line:d["co-line"].trim(), city:d["co-city"].trim(), postcode:d["co-postcode"].trim(), country:d["co-country"] } : null;
+  const payLabels = { card:"Card", paypal:"PayPal", sepa:"SEPA direct debit" };
+  const order = { id, date:isoDate(new Date()), demo:false, customer,
+    address: addr ? `${addr.line}, ${addr.postcode} ${addr.city}, ${addr.country}` : "",
+    delivery: !physical ? "" : d["co-when"] === "date" ? new Date(d["co-date"]).toLocaleDateString("en-GB", { day:"numeric", month:"long", year:"numeric" }) : "As soon as possible",
+    payment: payLabels[d["co-pay"]] || "Card", gift:!!d["co-gift"], giftMessage:d["co-giftmsg"] || "",
+    lines:t.lines.map(l => ({ title:l.title, sub:l.sub, qty:l.qty, total:l.total })), subtotal:t.subtotal, shipping:t.shipping, total:t.total };
+  S.cart.filter(isSubItem).forEach((i, n) => S.subscriptions.push({ id:`SUB-${id}-${n + 1}`, orderId:id, sizeId:i.sizeId, planId:i.planId, budget:i.budget, payment:i.payment, start:CONFIG.demoMonth }));
+  if (d["co-save"]){ // keep checkout and demo profile consistent
+    S.profile = { first:customer.first, last:customer.last, email:customer.email, phone:customer.phone };
+    if (addr){
+      const same = S.addresses.find(x => x.line.toLowerCase() === addr.line.toLowerCase() && x.postcode === addr.postcode);
+      S.addresses.forEach(x => x.isDefault = false);
+      if (same){ Object.assign(same, addr); same.isDefault = true; }
+      else S.addresses.push({ id:"a" + Date.now(), label:"Address " + (S.addresses.length + 1), ...addr, isDefault:true });
+    }
+  }
+  S.orders.push(order); S.cart = []; S.lastOrderId = id; persist(); go("confirmation");
+}
+
+/* =====================================================================
+   H. INIT
+   ===================================================================== */
+load();
+$("#year").textContent = new Date().getFullYear();
+renderBanner(); updateCartBadge();
+window.addEventListener("hashchange", render);
+render();
+</script>
+</body>
+</html>
