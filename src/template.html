@@ -3,55 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Escale Régions Box — Every month, a region on your table</title>
-<meta name="description" content="Escale Régions Box delivers a curated box of authentic French regional food every month: short-supply-chain products, a regional flyer and a recipe. Choose your size, your budget and your plan.">
-<meta name="theme-color" content="#1E4A2D">
+<title>Escale Regions Box — Every month, a region on your table</title>
+<meta name="description" content="Escale Regions Box delivers a curated box of authentic French regional food every month: short-supply-chain products, a regional flyer and a recipe. Choose your size, your budget and your plan.">
+<meta name="theme-color" content="#1F3D36">
 <meta name="robots" content="noindex">
 <!-- Production: set the canonical URL and an absolute 1200×630 share image -->
 <link rel="canonical" href="https://www.example.com/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Escale Régions Box">
-<meta property="og:title" content="Escale Régions Box — Every month, a region on your table">
+<meta property="og:site_name" content="Escale Regions Box">
+<meta property="og:title" content="Escale Regions Box — Every month, a region on your table">
 <meta property="og:description" content="A monthly journey through French regional food: authentic products from short supply chains, a regional flyer and a recipe in every box.">
 <meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://www.example.com/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Escale Régions Box — Every month, a region on your table">
+<meta name="twitter:title" content="Escale Regions Box — Every month, a region on your table">
 <meta name="twitter:description" content="Authentic French regional food, a new region every month.">
 <link rel="icon" href="__LOGO__">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Escale Régions Box","slogan":"Every month, a region on your table."}</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Escale Regions Box","slogan":"Every month, a region on your table."}</script>
 <style>
+/* Brand fonts embedded so the site also works offline (Poppins, Playfair Display, Caveat — SIL Open Font License) */
+__FONTFACES__
 /* =====================================================================
    1. DESIGN TOKENS
-   Provisional brand values taken from the "Escale Régions Box" sheet
+   Official art direction (Escale Regions Box template, Nov 2026)
    (palette: deep green, cream, ochre, terracotta, sand · Playfair Display + Lato).
    The upcoming art direction PDF remains the authoritative reference:
    update the values below, not the components.
    ===================================================================== */
 :root{
   /* Brand palette */
-  --brand-green:#1E4A2D;
-  --brand-green-dark:#143521;
-  --brand-cream:#FBF6EA;
-  --brand-ochre:#D4972B;
-  --brand-terracotta:#B9542A;
-  --brand-sand:#EAD8B5;
+  --brand-green:#1F3D36;
+  --brand-green-dark:#0C3925;
+  --brand-cream:#F6EFE3;
+  --brand-ochre:#E2A93B;
+  --brand-terracotta:#C8643B;
+  --brand-sand:#EADBC4;
+  --brand-navy:#1E4E6B;
+  --brand-salmon:#D98C7A;
+  --brand-terracotta-text:#A9502C;
+  --line-strong:#1F3D36;
   /* Semantic colours */
   --color-bg:var(--brand-cream);
-  --color-surface:#FFFDF8;
-  --color-surface-alt:#F4EBD8;
-  --color-text:#26261F;
-  --color-text-muted:#5D584A;
-  --color-border:#E2D5BB;
+  --color-surface:#FFFFFF;
+  --color-surface-alt:#EFE4D0;
+  --color-text:#1F3D36;
+  --color-text-muted:#4D5C55;
+  --color-border:#D8CBB4;
   --color-primary:var(--brand-green);
   --color-primary-hover:var(--brand-green-dark);
   --color-on-primary:#FFFFFF;
   --color-accent:var(--brand-ochre);
   --color-accent-strong:var(--brand-terracotta);
-  --color-highlight:#F1E6CC;
+  --color-highlight:#F3E3BF;
   --color-success:#25643A;
   --color-success-bg:#E5F1E7;
   --color-danger:#A1251B;
@@ -62,8 +66,9 @@
   /* Map */
   --map-current:var(--brand-terracotta);
   --map-upcoming:var(--brand-ochre);
-  --map-past:#C9B78F;
-  --map-future:#EDE3CC;
+  --map-edition:var(--brand-navy);
+  --map-past:#D98C7A;
+  --map-future:#E6DCC8;
   --map-stroke:#FFFDF8;
   --map-selected:var(--brand-green);
   /* Image placeholders */
@@ -72,7 +77,8 @@
   --placeholder-text:#6A6250;
   /* Typography */
   --font-heading:"Playfair Display",Georgia,"Times New Roman",serif;
-  --font-body:"Lato",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --font-hand:"Caveat","Segoe Print","Comic Sans MS",cursive;
+  --font-body:"Poppins",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   --fs-xs:.78rem; --fs-sm:.9rem; --fs-base:1rem; --fs-lg:1.15rem; --fs-xl:1.45rem;
   --fs-2xl:clamp(1.6rem,3.2vw,2.3rem); --fs-3xl:clamp(2.1rem,5vw,3.6rem);
   --fw-regular:400; --fw-medium:700; --fw-bold:700; --fw-black:900;
@@ -81,7 +87,7 @@
   --space-1:.25rem; --space-2:.5rem; --space-3:.75rem; --space-4:1rem; --space-5:1.5rem;
   --space-6:2rem; --space-7:3rem; --space-8:4.5rem;
   /* Shape & depth */
-  --radius-sm:4px; --radius:10px; --radius-lg:16px; --radius-pill:999px;
+  --radius-sm:4px; --radius:12px; --radius-lg:16px; --radius-pill:999px;
   --shadow-sm:0 1px 2px rgba(38,38,31,.06);
   --shadow:0 8px 24px rgba(38,38,31,.10);
   /* Layout & motion */
@@ -93,6 +99,7 @@
    2. BASE
    ===================================================================== */
 *,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;font-family:var(--font-body);font-size:var(--fs-base);line-height:var(--lh-base);color:var(--color-text);background:var(--color-bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 h1,h2,h3,h4{font-family:var(--font-heading);line-height:var(--lh-tight);margin:0 0 var(--space-3);font-weight:var(--fw-bold);color:var(--color-primary)}
@@ -218,7 +225,7 @@ h1[tabindex="-1"]:focus,#app:focus{outline:none}
 .cart-count{position:absolute;top:3px;right:1px;min-width:19px;height:19px;padding:0 4px;border-radius:var(--radius-pill);background:var(--color-accent-strong);color:#fff;font-size:.68rem;font-weight:var(--fw-black);display:grid;place-items:center}
 .cart-count[data-count="0"]{display:none}
 .menu-toggle{display:none}
-@media (max-width:1180px){
+@media (max-width:1320px){
   .menu-toggle{display:inline-flex}
   .main-nav{position:fixed;inset:var(--header-h) 0 auto 0;background:var(--color-surface);border-bottom:1px solid var(--color-border);box-shadow:var(--shadow);display:none;max-height:calc(100vh - var(--header-h));overflow:auto}
   .main-nav.is-open{display:block}
@@ -485,6 +492,161 @@ body.demo-on.has-mobile-bar .demo-bar{bottom:96px}
 .demo-spot{animation:spot 1.4s ease-out 2;border-radius:var(--radius-lg)}
 @keyframes spot{0%{box-shadow:0 0 0 0 rgba(212,151,43,.75)}100%{box-shadow:0 0 0 22px rgba(212,151,43,0)}}
 @keyframes fade{from{opacity:.4}to{opacity:1}}
+
+/* =====================================================================
+   4. ART DIRECTION LAYER — Escale Regions Box (official template)
+   Thick green outlines, offset colour shadows, hand-written stickers,
+   postal waves, boarding pass. Edit tokens above, not these rules.
+   ===================================================================== */
+body{font-weight:400}
+h1,h2,h3{font-weight:700;letter-spacing:-.005em}
+.eyebrow{font-family:var(--font-body);font-style:italic;font-weight:500;letter-spacing:.03em;text-transform:uppercase;color:var(--brand-terracotta-text);font-size:var(--fs-sm)}
+.eyebrow--spaced{font-style:normal;font-weight:700;letter-spacing:.32em;font-size:var(--fs-xs)}
+.section--green .eyebrow,.section--navy .eyebrow,.hero .eyebrow{color:var(--brand-ochre)}
+.lead{color:var(--color-text-muted)}
+.script{font-family:var(--font-hand);font-weight:700}
+.serif-i{font-family:var(--font-heading);font-style:italic;font-weight:400}
+/* cards: outline + offset shadow, alternating mustard / navy */
+.card{border:3px solid var(--line-strong);border-radius:var(--radius-lg);box-shadow:8px 8px 0 var(--brand-ochre);background:var(--color-surface)}
+.grid>.card:nth-child(even),.grid>article:nth-child(even).card{box-shadow:8px 8px 0 var(--brand-navy)}
+.card--hover:hover{transform:translate(-2px,-2px);box-shadow:11px 11px 0 var(--brand-ochre)}
+.grid>.card--hover:nth-child(even):hover{box-shadow:11px 11px 0 var(--brand-navy)}
+.slot{border-color:var(--line-strong)}
+/* buttons */
+.btn{border-radius:var(--radius);border:3px solid var(--line-strong);font-weight:600;box-shadow:4px 4px 0 var(--line-strong);transition:transform var(--transition),box-shadow var(--transition),background var(--transition)}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--line-strong)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--line-strong)}
+.btn--primary{background:var(--brand-green);color:var(--brand-cream);box-shadow:4px 4px 0 var(--brand-ochre)}
+.btn--primary:hover{background:var(--brand-green-dark);border-color:var(--line-strong);box-shadow:5px 5px 0 var(--brand-ochre)}
+.btn--accent{background:var(--brand-terracotta);border-color:var(--line-strong);color:#fff}
+.btn--accent:hover{background:#B4552F;border-color:var(--line-strong)}
+.btn--secondary{background:var(--color-surface);color:var(--line-strong)}
+.btn--secondary:hover{background:var(--color-highlight)}
+.btn--ghost{border-color:transparent;box-shadow:none;color:var(--line-strong)}
+.btn--ghost:hover{box-shadow:none;transform:none}
+.section--green .btn--secondary,.section--navy .btn--secondary,.hero .btn--secondary{background:transparent;color:var(--brand-cream);border-color:var(--brand-cream);box-shadow:4px 4px 0 var(--brand-ochre)}
+.icon-btn{color:var(--line-strong)}
+/* badges & stickers */
+.badge{font-family:var(--font-body);font-weight:600;letter-spacing:.04em;border-radius:var(--radius-pill)}
+.badge--green{background:var(--brand-green)} .badge--terracotta{background:var(--brand-terracotta)} .badge--ochre{background:var(--brand-ochre);color:var(--line-strong)}
+.badge--navy{background:var(--brand-navy);color:#fff}
+.sticker{display:inline-block;font-family:var(--font-hand);font-weight:700;font-size:1.45rem;line-height:1.1;color:var(--line-strong);background:var(--brand-ochre);border:3px solid var(--line-strong);border-radius:var(--radius-pill);padding:.25rem 1.1rem .3rem;transform:rotate(-5deg);box-shadow:3px 3px 0 var(--line-strong);white-space:nowrap}
+.sticker--cream{background:var(--brand-cream)} .sticker--salmon{background:var(--brand-salmon)} .sticker--right{transform:rotate(5deg)}
+.hand-note{font-family:var(--font-hand);font-weight:500;font-size:1.35rem;color:var(--brand-navy)}
+/* postal waves */
+.has-waves{position:relative}
+.waves{position:absolute!important;top:-6px;right:0;width:190px;height:auto;pointer-events:none;opacity:.95}
+@media (max-width:760px){.waves{width:120px;opacity:.6}}
+/* header & footer */
+.site-header{background:rgba(246,239,227,.97);border-bottom:3px solid var(--line-strong)}
+.brand img{width:54px;height:54px}
+.brand__name{font-size:1.25rem;letter-spacing:.02em;color:var(--line-strong)}
+.brand__name small{font-style:italic;font-weight:400;font-size:.95rem;color:var(--brand-terracotta-text);letter-spacing:0}
+.main-nav a{color:var(--color-text-muted);font-weight:500;font-size:.86rem;padding:.45rem .55rem}
+.site-header .container{gap:var(--space-5)}
+.main-nav a[aria-current="page"],.main-nav a:hover{color:var(--line-strong);background:var(--color-highlight)}
+.cart-count{background:var(--brand-terracotta);border:2px solid var(--brand-cream)}
+.site-footer{background:var(--brand-green)}
+.site-footer .brand__name{color:var(--brand-cream)} .site-footer .brand__name small{color:var(--brand-ochre)}
+.footer-grid h2{color:var(--brand-ochre);letter-spacing:.28em}
+.demo-banner{background:var(--brand-green-dark)}
+/* hero (cover) */
+.hero{background:var(--brand-green);color:var(--brand-cream);padding-block:var(--space-8);position:relative;overflow:hidden}
+.hero h1{color:var(--brand-cream);font-size:clamp(3.2rem,9vw,6.4rem);letter-spacing:.02em;line-height:.95;margin:0}
+.hero .hero__sub{font-family:var(--font-heading);font-style:italic;color:var(--brand-ochre);font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.05;margin:.2rem 0 var(--space-4)}
+.hero .lead{color:#D8E2DC}
+.hero__price{color:var(--brand-cream)} .hero__price strong{color:var(--brand-ochre)} .hero .muted{color:#BFCFC7}
+.hero .container{grid-template-columns:1.1fr .9fr}
+.hero__art{position:relative;aspect-ratio:1/1;max-width:520px;width:100%;justify-self:center}
+.hero__art .disc{position:absolute;inset:4%;border-radius:50%;background:var(--brand-terracotta)}
+.hero__art .disc2{position:absolute;right:-18%;top:-22%;width:52%;aspect-ratio:1;border-radius:50%;background:var(--brand-ochre)}
+.hero__art img.logo{position:absolute;inset:12%;width:76%;height:76%;filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}
+.hero__art .waves{top:auto;bottom:-6%;right:-4%;width:46%}
+.hero .sticker{position:absolute;top:-28px;left:34%;z-index:3}
+.boarding{position:relative;background:var(--brand-cream);color:var(--line-strong);border:3px solid var(--line-strong);border-radius:var(--radius-lg);box-shadow:8px 8px 0 var(--brand-ochre);padding:var(--space-4) var(--space-5);margin:var(--space-5) 0;transform:rotate(-1.2deg);max-width:600px}
+.boarding__k{font-weight:700;letter-spacing:.3em;font-size:var(--fs-xs);color:var(--brand-terracotta-text)}
+.boarding__route{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1rem;font-family:var(--font-heading);font-weight:700;font-size:1.35rem;margin:.35rem 0}
+.boarding__route b{color:var(--brand-navy)}
+.boarding .script{color:var(--brand-terracotta-text);font-size:1.4rem;font-weight:500}
+@media (max-width:980px){.hero .container{grid-template-columns:minmax(0,1fr)}.hero__art{max-width:250px;order:-1}.hero .sticker{left:auto;right:0;top:-18px}}
+/* trust strip */
+.trust{background:var(--brand-cream);border-block:3px solid var(--line-strong)}
+.trust li{color:var(--line-strong);font-weight:600}
+/* coloured sections */
+.section--alt{background:var(--color-surface-alt)}
+.section--green{background:var(--brand-green)}
+.section--navy{background:var(--brand-navy);color:var(--brand-cream)}
+.section--navy h2,.section--navy h3{color:var(--brand-cream)}
+.section--navy .lead{color:#D5E1EA}
+.section--mustard{background:var(--brand-ochre)}
+/* size cards — dark / white / terracotta / mustard */
+.box-card .box-card__size{background:var(--brand-terracotta);border:3px solid var(--line-strong);width:46px;height:46px}
+.box-card__price{font-size:2.2rem;color:var(--brand-terracotta)}
+.box-card--s{background:var(--brand-green);color:var(--brand-cream)}
+.box-card--s h3,.box-card--s h3 a,.box-card--s .muted,.box-card--s .small{color:var(--brand-cream)}
+.box-card--s .box-card__price{color:var(--brand-ochre)}
+.box-card--s .btn--ghost,.box-card--l .btn--ghost{color:var(--brand-cream)}
+.box-card--s .badge--outline{border-color:var(--brand-cream);color:var(--brand-cream)}
+.box-card--m .box-card__size{background:var(--brand-navy)}
+.box-card--l{background:var(--brand-terracotta);color:#fff}
+.box-card--l h3,.box-card--l h3 a,.box-card--l .muted,.box-card--l .small{color:#fff}
+.box-card--l .box-card__price{color:var(--line-strong)}
+.box-card--l .box-card__size{background:var(--brand-ochre);color:var(--line-strong)}
+.box-card--l .badge--outline{border-color:#fff;color:#fff}
+.box-card--custom{background:var(--brand-ochre);border-style:solid!important}
+.box-card--custom .muted{color:var(--line-strong)}
+.box-card--custom .box-card__size{background:var(--brand-terracotta)}
+.box-card .status{background:rgba(255,255,255,.85);color:var(--brand-terracotta-text)}
+/* journey */
+.journey{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-5);position:relative;text-align:center}
+.journey::before{content:"";position:absolute;left:12%;right:12%;top:32px;border-top:3px dotted var(--line-strong)}
+.journey .num{position:relative;margin:0 auto var(--space-3);width:64px;height:64px;border-radius:50%;display:grid;place-items:center;border:3px solid var(--line-strong);font-weight:700;font-size:1.4rem;color:#fff}
+.journey h3{font-size:var(--fs-xl);margin-bottom:var(--space-2)}
+.journey p{color:var(--color-text-muted);font-size:var(--fs-sm);margin:0}
+@media (max-width:760px){.journey{grid-template-columns:repeat(2,minmax(0,1fr))}.journey::before{display:none}}
+/* edition (Brittany) */
+.edition-name{display:inline-block;background:var(--brand-cream);color:var(--brand-navy);font-weight:700;letter-spacing:.32em;padding:.45rem 1.2rem;border:3px solid var(--line-strong);border-radius:8px;box-shadow:5px 5px 0 var(--brand-ochre);transform:rotate(-2deg);margin:.2rem 0 var(--space-4)}
+.edition-title{font-family:var(--font-heading);font-style:italic;font-weight:700;font-size:clamp(3rem,7vw,5.2rem);line-height:1;color:var(--brand-cream);margin:0 0 var(--space-3)}
+.section--navy .chips li{background:transparent;color:var(--brand-cream);border-color:rgba(255,255,255,.5)}
+.duo{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--space-4);align-items:end}
+.boxill{background:radial-gradient(circle at 50% 60%,#FFF8EC 0,#F3E6CF 70%);border:3px solid var(--line-strong)}
+.boxill img{object-fit:contain!important;padding:8%}
+.option .boxill figcaption{display:none}
+.box-card--s .boxill{background:radial-gradient(circle at 50% 60%,#2C5248 0,#183129 75%)}
+.box-card--l .boxill{background:radial-gradient(circle at 50% 60%,#E08A62 0,#B4552F 75%)}
+.duo .photo{border:3px solid var(--line-strong);box-shadow:8px 8px 0 var(--brand-ochre)}
+.duo .photo+.photo{transform:rotate(3deg);box-shadow:8px 8px 0 var(--brand-salmon)}
+/* stamp collection */
+.stamps{display:flex;flex-wrap:wrap;gap:var(--space-3);list-style:none;padding:0;margin:0}
+.stamp-chip{width:104px;padding:8px 8px 6px;background:#fff;border:3px solid var(--line-strong);border-radius:6px;text-align:center;transform:rotate(var(--r,0deg))}
+.stamp-chip img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;display:block}
+.stamp-chip span{display:block;font-size:.72rem;font-weight:600;margin-top:4px;line-height:1.2}
+.stamp-chip.is-locked img{filter:grayscale(1) opacity(.35)}
+.stamp-chip.is-locked{border-style:dashed}
+/* partnership & social */
+.dot{width:46px;height:46px;border-radius:50%;border:3px solid var(--line-strong);flex:none}
+.hashtags{background:var(--brand-salmon);border:3px solid var(--line-strong);border-radius:var(--radius-pill);padding:.6rem 1.4rem;text-align:center;font-family:var(--font-hand);font-weight:700;font-size:1.6rem;color:var(--line-strong);box-shadow:5px 5px 0 var(--line-strong);transform:rotate(-1deg)}
+.social-card{text-align:center;padding-top:var(--space-6)}
+.social-card .ic{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin:-62px auto var(--space-3);border:3px solid var(--line-strong);color:#fff}
+.social-card .sub{color:var(--brand-terracotta-text);font-weight:600;font-size:var(--fs-sm)}
+/* tables */
+thead th,.compare thead th{background:var(--brand-green);color:var(--brand-cream)}
+.table-wrap{border:3px solid var(--line-strong)}
+tr.is-current{background:#FBEFD3}
+/* options & inputs */
+.option__body{border:2.5px solid var(--color-border)}
+.option>input:checked+.option__body{border-color:var(--line-strong);box-shadow:5px 5px 0 var(--brand-ochre)}
+.option--suggested .option__body{border-color:var(--brand-ochre);background:#FDF5E2}
+.input{border:2px solid var(--color-border)}
+.seg{border:3px solid var(--line-strong)}
+.seg button[aria-pressed="true"]{background:var(--brand-green);color:var(--brand-cream)}
+.timeline button{border:2.5px solid var(--color-border)}
+.timeline .is-current{border-color:var(--line-strong);background:#E4EDF3;box-shadow:4px 4px 0 var(--brand-navy)}
+.region-chips button[aria-pressed="true"]{border-color:var(--line-strong);background:var(--brand-ochre);color:var(--line-strong)}
+.fr-map .status-current path{fill:var(--brand-navy)}
+.toast{background:var(--brand-green);border:2px solid var(--brand-ochre)}
+.toast a{color:var(--brand-ochre)}
+.demo-bar{background:var(--brand-green);border:2px solid var(--brand-ochre)}
 </style>
 </head>
 <body>
@@ -493,7 +655,7 @@ body.demo-on.has-mobile-bar .demo-bar{bottom:96px}
 <div id="demo-banner"></div>
 <header class="site-header">
   <div class="container">
-    <a href="#home" class="brand" aria-label="Escale Régions Box, home"><img src="__LOGO__" alt="" width="52" height="52"><span class="brand__name">ESCALE<small>Régions Box</small></span></a>
+    <a href="#home" class="brand" aria-label="Escale Regions Box, home"><img src="__LOGO__" alt="" width="52" height="52"><span class="brand__name">ESCALE<small>Regions Box</small></span></a>
     <nav class="main-nav" id="main-nav" aria-label="Main">
       <ul>
         <li><a href="#boxes">Our Boxes</a></li>
@@ -521,7 +683,7 @@ body.demo-on.has-mobile-bar .demo-bar{bottom:96px}
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a href="#home" class="brand"><img src="__LOGO__" alt="" width="52" height="52"><span class="brand__name">ESCALE<small>Régions Box</small></span></a>
+        <a href="#home" class="brand"><img src="__LOGO__" alt="" width="52" height="52"><span class="brand__name">ESCALE<small>Regions Box</small></span></a>
         <p class="small" style="opacity:.85;margin-top:var(--space-3)">Every month, a region on your table. Authentic French regional products from short supply chains, delivered to your door.</p>
         <p class="small" style="opacity:.85">Follow us: Instagram · TikTok · Facebook · Pinterest — @escale.regionsbox</p>
       </div>
@@ -535,7 +697,7 @@ body.demo-on.has-mobile-bar .demo-bar{bottom:96px}
       <div><h2>Legal</h2><ul>
         <li><a href="#legal">Terms of sale</a></li><li><a href="#legal">Privacy policy</a></li><li><a href="#legal">Legal notice</a></li><li><a href="#legal">Cookies</a></li><li><a href="#prototype">About this prototype</a></li><li><a href="#demo">Presenter mode</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© <span id="year"></span> Escale Régions Box. Academic business project prototype.</span><span>Prices, product selections and conditions shown are provisional.</span></div>
+    <div class="footer-bottom"><span>© <span id="year"></span> Escale Regions Box. Academic business project prototype.</span><span>Prices, product selections and conditions shown are provisional.</span></div>
   </div>
 </footer>
 
@@ -548,7 +710,7 @@ body.demo-on.has-mobile-bar .demo-bar{bottom:96px}
    A. CONFIGURATION — provisional business settings (edit freely)
    ===================================================================== */
 const CONFIG = {
-  brandName: "Escale Régions Box",
+  brandName: "Escale Regions Box",
   tagline: "Every month, a region on your table.",
   locale: "en-GB",
   currency: "EUR",
@@ -565,7 +727,7 @@ const CONFIG = {
   storageKey: "escale-prototype-v2",
   /* HYPOTHETICAL business data for the academic prototype — replace with real terms before launch */
   business: {
-    company: "Escale Régions Box SAS (fictional company, academic project)",
+    company: "Escale Regions Box SAS (fictional company, academic project)",
     email: "hello@escale-regions.example", phone: "+33 1 99 00 12 34", hours: "Monday to Friday, 9 am – 6 pm",
     social: "@escale.regionsbox", responseTime: "within 24 working hours",
     dispatch: "Prepared and shipped within 2 working days of your order, or on the date you choose.",
@@ -585,6 +747,7 @@ const CONFIG = {
 const IMG = { logo: "__LOGO__", hero: "__HERO__", box: "__BOX__" };
 const PIC = __PICS__; // site illustrations (provisional visuals generated for the project)
 const regionImg = r => PIC["r-" + r.id] || PIC.generic;
+const waves = (kind = "terra") => `<img class="waves" src="${PIC["waves-" + kind]}" alt="">`;
 
 const BOXES = [
   { id:"s", code:"S", size:"Small", name:"Discovery Box", price:25, count:3, products:"3 products",
@@ -619,11 +782,11 @@ const DIETS = ["Vegetarian","Vegan","No alcohol","No pork","Gluten-free","Lactos
 
 const IN_EVERY_BOX = [
   ["box","A selection of regional products from short supply chains"],
-  ["book","A flyer introducing the region and describing every product"],
+  ["book","A flyer that presents each ingredient and tells you who made it"],
   ["recipe","A recipe from the region to cook with your box"],
   ["users","Stories about the local producers"],
   ["qr","A QR code leading to extra digital content"],
-  ["leaf","Tips to enjoy and store each product"]
+  ["star","A collectable stamp of the region you’ve just “visited”"]
 ];
 
 const EDITIONS = [
@@ -647,22 +810,22 @@ const GIFT_AMOUNTS = [25, 39, 55, 100];
    `products` are illustrative examples, not confirmed selections. */
 const MAP = __MAPDATA__;
 const REGIONS = [
-  { id:"ges", producers:[["Maison Hertz","Bredele biscuits","Obernai","A family bakery making a dozen kinds of Christmas bredele each winter."],["Le Fournil d’Odile","Honey gingerbread","Gertwiller","Gingerbread baked to a family recipe with local honey."],["Vergers Kieffer","Fruit preserves","Bas-Rhin","Mirabelle plums picked in late summer and cooked into preserves."]], name:"Grand Est", destination:"Alsace", month:"2026-11", short:"Grand Est",
+  { id:"ges", producers:[["Maison Hertz","Bredele biscuits","Obernai","A family bakery making a dozen kinds of Christmas bredele each winter."],["Le Fournil d’Odile","Honey gingerbread","Gertwiller","Gingerbread baked to a family recipe with local honey."],["Vergers Kieffer","Fruit preserves","Bas-Rhin","Mirabelle plums picked in late summer and cooked into preserves."]], name:"Grand Est", destination:"Alsace", month:"2026-12", short:"Grand Est",
     intro:"Between the Vosges mountains and the Rhine, Alsace is famous for its Christmas markets, half-timbered villages and a festive baking culture shaped by French and Germanic traditions.",
     specialties:["Bredele Christmas biscuits","Gingerbread","Mirabelle plums","Kougelhopf","Pretzels"],
     products:["Bredele Christmas biscuits","Honey gingerbread","Mirabelle plum preserve","Pretzel crackers","Alsace mustard","Gingerbread spice blend","Vosges herbal tea"],
     recipe:"Kougelhopf-style breakfast brioche" },
-  { id:"ara", producers:[["Miellerie du Col","Mountain honey","Maurienne","Beekeepers who move their hives up to Alpine pastures every summer."],["Noyeraie Blanc","Walnuts","Isère","Walnut groves harvested, cracked and sorted by hand each autumn."]], name:"Auvergne-Rhône-Alpes", destination:"Savoy", month:"2026-12", short:"Auvergne-Rhône-Alpes",
+  { id:"ara", producers:[["Miellerie du Col","Mountain honey","Maurienne","Beekeepers who move their hives up to Alpine pastures every summer."],["Noyeraie Blanc","Walnuts","Isère","Walnut groves harvested, cracked and sorted by hand each autumn."]], name:"Auvergne-Rhône-Alpes", destination:"Savoy", month:"2027-01", short:"Auvergne-Rhône-Alpes",
     intro:"Savoy's Alpine valleys bring mountain honey, light sponge biscuits and warming specialties made for winter evenings.",
     specialties:["Mountain honey","Savoy sponge biscuit","Walnuts","Alpine herbs"],
     products:["Mountain honey","Savoy sponge biscuits","Walnut spread","Alpine herbal tea","Bilberry jam","Walnut biscuits","Mountain herb salt"],
     recipe:"Alpine potato gratin" },
-  { id:"naq", producers:[["Ferme Etxeberria","Espelette pepper","Espelette","Peppers grown, threaded and dried on the farmhouse façade."],["Confitures d’Itsasu","Black cherry jam","Itxassou","Black cherries from the valley, cooked the traditional way."]], name:"Nouvelle-Aquitaine", destination:"Basque Country", month:"2027-01", short:"Nouvelle-Aquitaine",
+  { id:"naq", producers:[["Ferme Etxeberria","Espelette pepper","Espelette","Peppers grown, threaded and dried on the farmhouse façade."],["Confitures d’Itsasu","Black cherry jam","Itxassou","Black cherries from the valley, cooked the traditional way."]], name:"Nouvelle-Aquitaine", destination:"Basque Country", month:"2027-02", short:"Nouvelle-Aquitaine",
     intro:"In the south-west corner of France, the Basque Country combines mountain and ocean, with a bold, colourful cuisine and its own language and traditions.",
     specialties:["Espelette pepper","Gâteau basque","Black cherry jam","Sheep's cheese"],
     products:["Espelette pepper","Black cherry jam","Pepper-infused spread","Basque biscuits","Piperade sauce","Chocolate from Bayonne","Espelette salt"],
     recipe:"Basque piperade" },
-  { id:"pac", producers:[["Moulin des Alpilles","Olive oil","Alpilles","A cooperative mill pressing olives from neighbouring groves."],["Calissons du Cours","Confectionery","Aix-en-Provence","Calissons shaped by hand from almonds and candied melon."]], name:"Provence-Alpes-Côte d'Azur", destination:"Provence", month:"2027-02", short:"Provence",
+  { id:"pac", producers:[["Moulin des Alpilles","Olive oil","Alpilles","A cooperative mill pressing olives from neighbouring groves."],["Calissons du Cours","Confectionery","Aix-en-Provence","Calissons shaped by hand from almonds and candied melon."]], name:"Provence-Alpes-Côte d'Azur", destination:"Provence", month:"2027-05", short:"Provence",
     intro:"Provence brings the sun into the kitchen: olive groves, aromatic herbs and Mediterranean flavours.",
     specialties:["Olive oil","Tapenade","Herbes de Provence","Calissons"],
     products:["Extra virgin olive oil","Black olive tapenade","Herbes de Provence","Calissons","Lavender honey","Navette biscuits","Sun-dried tomato spread"],
@@ -672,17 +835,17 @@ const REGIONS = [
     specialties:["Mustards","Gingerbread","Blackcurrant","Aniseed sweets"],
     products:["Traditional mustard","Blackcurrant preserve","Spiced gingerbread","Aniseed sweets","Mustard with herbs","Blackcurrant syrup","Gougère mix"],
     recipe:"Mustard chicken, Burgundy style" },
-  { id:"bre", producers:[["Biscuiterie de l’Aber","Pure-butter biscuits","Finistère","A family bakery shaping butter biscuits by hand, in small batches."],["Caramels de la Pointe","Salted butter caramel","Côtes-d’Armor","Caramel slow-cooked in copper pans with Guérande sea salt."]], name:"Brittany", destination:"Brittany", month:"2026-09", short:"Brittany",
-    intro:"Brittany is a land of rugged coastline, Celtic heritage and a deep love of butter. Its food culture is built on the sea, buckwheat and generous baking.",
+  { id:"bre", edition:"Mor & Douar", editionTagline:"From the sea to your table.", producers:[["Cidrerie de Ker Avel","Farm cider & apple juice","Fouesnant","A cider maker pressing apples from his own orchards, as shown on this month’s flyer."],["Biscuiterie de l’Aber","Pure-butter biscuits","Finistère","A family bakery shaping butter biscuits by hand, in small batches."],["Caramels de la Pointe","Salted butter caramel","Côtes-d’Armor","Caramel slow-cooked in copper pans with Guérande sea salt."]], name:"Brittany", destination:"Brittany", month:"2026-11", short:"Brittany",
+    intro:"Mor & Douar means “sea and land” in Breton. Our launch edition brings together Brittany’s coast and its countryside: fleur de sel and sardines from the sea, cider, butter and buckwheat from the land.",
     specialties:["Butter biscuits","Salted butter caramel","Buckwheat crêpes","Sea salt"],
-    products:["Pure butter biscuits","Salted butter caramel spread","Buckwheat crackers","Sardines","Sea salt","Kouign-amann biscuits","Seaweed tartare"],
+    products:["Farm cider (or apple juice)","Salted butter caramel","Pure butter biscuits","Sardines in olive oil","Guérande fleur de sel","Seaweed tartare","Buckwheat crackers"],
     recipe:"Buckwheat galette complète" },
-  { id:"nor", producers:[["Verger des Hauts Prés","Apple products","Pays d’Auge","Old apple varieties turned into jellies, juices and caramels."],["Sablés du Bocage","Shortbread","Calvados","Shortbread made with local cream butter and farm eggs."]], name:"Normandy", destination:"Normandy", month:"2026-10", short:"Normandy",
+  { id:"nor", producers:[["Verger des Hauts Prés","Apple products","Pays d’Auge","Old apple varieties turned into jellies, juices and caramels."],["Sablés du Bocage","Shortbread","Calvados","Shortbread made with local cream butter and farm eggs."]], name:"Normandy", destination:"Normandy", month:"2027-04", short:"Normandy",
     intro:"Normandy's orchards and pastures shape a cuisine of apples, cream and artisanal baking, rooted in farmhouse traditions.",
     specialties:["Apple products","Artisanal biscuits","Dairy specialties","Apple jelly"],
     products:["Artisanal sablés","Apple jelly","Apple caramel","Cider vinegar","Apple juice","Shortbread","Salted caramel"],
     recipe:"Normandy apple tart" },
-  { id:"hdf", name:"Hauts-de-France", destination:"Hauts-de-France", short:"Hauts-de-France", month:"2027-06", recipe:"Flemish sugar tart",
+  { id:"hdf", name:"Hauts-de-France", destination:"Hauts-de-France", short:"Hauts-de-France", month:"2027-08", recipe:"Flemish sugar tart",
     producers:[["Biscuiterie du Beffroi","Spiced biscuits","Lille","Caramelised spiced biscuits baked in a brick oven."],["Douceurs de Cambrai","Traditional sweets","Cambrai","Mint-striped boiled sweets made the old-fashioned way."]],
     intro:"In the north, Flemish influences meet French traditions: spiced biscuits, sweets and hearty regional fare.",
     specialties:["Spiced biscuits","Traditional sweets","Chicory"], products:["Spiced caramel biscuits","Mint boiled sweets","Chicory drink","Filled waffles","Brown sugar spread","Maroilles crackers","Flemish sugar tart mix"] },
@@ -695,11 +858,11 @@ const REGIONS = [
   { id:"cvl", name:"Centre-Val de Loire", destination:"Centre-Val de Loire", short:"Centre-VdL",
     intro:"The land of the Loire châteaux also offers honey, goat's cheese and classic French desserts.",
     specialties:["Honey","Goat's cheese","Classic desserts"], products:["Sologne honey","Tarte Tatin biscuits","Goat’s cheese crackers","Pear preserve"] },
-  { id:"occ", name:"Occitanie", destination:"Occitanie", short:"Occitanie", month:"2027-04", recipe:"Toulouse-style cassoulet",
+  { id:"occ", name:"Occitanie", destination:"Occitanie", short:"Occitanie", month:"2027-07", recipe:"Toulouse-style cassoulet",
     producers:[["Confiserie de la Violette","Violet sweets","Toulouse","Candied violets and violet sweets, a Toulouse speciality."],["Bergerie du Causse","Sheep’s milk biscuits","Aveyron","Shortbread made with milk from the farm’s own flock."]],
     intro:"From the Pyrenees to the Mediterranean: hearty dishes, sheep's cheeses and violet sweets.",
     specialties:["Hearty dishes","Sheep's cheeses","Violet sweets"], products:["Violet sweets","Cassoulet beans","Sheep’s milk shortbread","Roquefort crackers","Camargue fleur de sel","Garrigue honey","Navette biscuits"] },
-  { id:"cor", name:"Corsica", destination:"Corsica", short:"Corsica", labelAt:[566,598], month:"2027-05", recipe:"Chestnut flour pancakes",
+  { id:"cor", name:"Corsica", destination:"Corsica", short:"Corsica", labelAt:[566,598], month:"2027-06", recipe:"Chestnut flour pancakes",
     producers:[["Castagnu d’Oru","Chestnut products","Castagniccia","Chestnut flour and spreads from centuries-old chestnut groves."],["Agrumi di a Piana","Citrus fruit","Eastern plain","Clementines and citrus preserves from family orchards."]],
     intro:"The 'island of beauty' is known for chestnuts, citrus fruit and traditional biscuits.",
     specialties:["Chestnut specialties","Citrus fruit","Traditional biscuits"], products:["Chestnut flour biscuits","Clementine jam","Canistrelli biscuits","Maquis honey","Myrtle syrup","Chestnut spread","Fig jam"] }
@@ -761,7 +924,7 @@ const regionForMonth = key => REGIONS.find(r => r.month === key) || null;
 const currentRegion = () => regionForMonth(CONFIG.demoMonth) || REGIONS[0];
 function calendar(){ // from the first scheduled month to 7 months ahead; empty months are "to be announced"
   const months = REGIONS.filter(r => r.month).map(r => r.month).sort();
-  const start = months[0] || CONFIG.demoMonth, end = addMonths(CONFIG.demoMonth, 9), out = [];
+  const start = months[0] || CONFIG.demoMonth, end = addMonths(CONFIG.demoMonth, 10), out = [];
   for (let m = start; m <= end; m = addMonths(m, 1)) out.push({ month:m, region:regionForMonth(m) });
   return out;
 }
@@ -781,12 +944,10 @@ const DEFAULT_STATE = () => ({
     { id:"a2", label:"Office", line:"5 Sample Avenue", city:"Lyon", postcode:"69002", country:"France", isDefault:false }
   ],
   orders:[
-    { id:"DEMO-1001", date:"2026-08-28", demo:true, total:210.60, shipping:0, address:"12 Example Street, 75001 Paris, France", delivery:"As soon as possible", payment:"Pay in full",
+    { id:"DEMO-1001", date:"2026-11-02", demo:true, total:210.60, shipping:0, address:"12 Example Street, 75001 Paris, France", delivery:"As soon as possible", payment:"Pay in full",
       lines:[{ title:"Medium — Explorer Box", sub:"6-month subscription · Pay in full", qty:1, total:210.60 }] },
-    { id:"DEMO-0987", date:"2025-12-02", demo:true, total:63.90, shipping:4.90, address:"12 Example Street, 75001 Paris, France", delivery:"As soon as possible", payment:"Card",
-      lines:[{ title:"Christmas Edition", sub:"Limited edition", qty:1, total:59.00 }] }
   ],
-  subscriptions:[ { id:"SUB-DEMO-1", orderId:"DEMO-1001", sizeId:"m", planId:"6m", payment:"upfront", start:"2026-09", demo:true } ],
+  subscriptions:[ { id:"SUB-DEMO-1", orderId:"DEMO-1001", sizeId:"m", planId:"6m", payment:"upfront", start:"2026-11", demo:true } ],
   lastOrderId:null
 });
 let S = DEFAULT_STATE();
@@ -853,6 +1014,8 @@ function cartTotals(){
     count:S.cart.reduce((a, i) => a + i.qty, 0), savings:round2(lines.reduce((a, l) => a + l.savings, 0)), hasMonthly:S.cart.some(i => isSubItem(i) && i.payment === "monthly") };
 }
 function activeSubscriptions(){ return S.subscriptions.filter(s => addMonths(s.start, getPlan(s.planId).months) > CONFIG.demoMonth); }
+function hasStamp(month){ return month <= CONFIG.demoMonth && S.subscriptions.some(s => month >= s.start && month < addMonths(s.start, getPlan(s.planId).months)); }
+function stampCount(){ return calendar().filter(c => c.region && hasStamp(c.month)).length; }
 function upcomingDeliveries(limit = 6){
   const list = [];
   activeSubscriptions().forEach(s => { const p = getPlan(s.planId); for (let k = 0; k < p.months; k++){ const m = addMonths(s.start, k); if (m >= CONFIG.demoMonth) list.push({ month:m, sub:s, region:regionForMonth(m), index:k + 1, of:p.months }); } });
@@ -891,11 +1054,11 @@ const ICONS = {
 };
 const icon = (name, cls = "icon") => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ""}</svg>`;
 const ph = (label, cls = "") => `<div class="ph ${cls}" role="img" aria-label="${esc(label)}"><span>${esc(label)}</span></div>`;
-const photo = (src, alt, cls = "", caption = "") => `<figure class="photo ${cls}" style="margin:0"><img src="${src}" alt="${esc(alt)}" decoding="async">${caption ? `<figcaption>${esc(caption)}</figcaption>` : ""}</figure>`;
-const boxPhoto = (b, cls = "") => photo(IMG.box, `${CONFIG.brandName} box opened with regional products and the regional recipe card`, cls, `Provisional visual · ${b.size}`);
+const photo = (src, alt, cls = "", caption = "") => `<figure class="photo ${cls}" style="margin:0"><img src="${src}" alt="${esc(alt)}">${caption ? `<figcaption>${esc(caption)}</figcaption>` : ""}</figure>`;
+const boxPhoto = (b, cls = "") => `<figure class="photo boxill ${cls}" style="margin:0"><img src="${PIC.box}" alt="Open kraft box with natural paper filling, painted illustration"><figcaption>${b.size || "Box"} · ${b.products || ""}</figcaption></figure>`;
 
 function boxCard(b){
-  return `<article class="card card--hover box-card">
+  return `<article class="card card--hover box-card box-card--${b.id}">
     ${boxPhoto(b)}
     <div class="row row--between"><span class="box-card__size" aria-hidden="true">${b.code}</span><span class="badge badge--outline">${b.products}</span></div>
     <h3 style="margin:0"><a href="#box-${b.id}" style="text-decoration:none">${b.size} — ${b.name}</a></h3>
@@ -910,7 +1073,7 @@ function boxCard(b){
   </article>`;
 }
 function budgetCard(){
-  return `<article class="card box-card" style="border-style:dashed">
+  return `<article class="card box-card box-card--custom">
     <div class="row row--between"><span class="box-card__size" aria-hidden="true">€</span><span class="badge badge--outline">You choose</span></div>
     <h3 style="margin:0">Your own budget</h3>
     <p class="muted small" style="margin:0">Prefer to set a precise amount? Enter your budget (${money(CONFIG.budget.min)}–${money(CONFIG.budget.max)}) and we compose a box to match.</p>
@@ -998,7 +1161,7 @@ function updateCartBadge(){
 }
 function renderBanner(){
   $("#demo-banner").innerHTML = S.banner && !S.demo ? `<div class="demo-banner" role="note"><div class="container">
-    <span><strong>Academic prototype (V2).</strong> Producers, prices and terms are hypothetical. No real order, payment or notification takes place. <a href="#prototype">What's simulated?</a></span>
+    <span><strong>Academic prototype (V3).</strong> Producers, prices and terms are hypothetical. No real order, payment or notification takes place. <a href="#prototype">What's simulated?</a></span>
     <button type="button" data-action="dismiss-banner">Hide</button></div></div>` : "";
 }
 
@@ -1040,101 +1203,132 @@ const formData = form => Object.fromEntries(new FormData(form).entries());
    ===================================================================== */
 function pageHome(){
   const r = currentRegion();
+  const cal = calendar().filter(c => c.region).slice(0, 7);
   return `
   <section class="hero" aria-labelledby="hero-title"><div class="container">
     <div>
-      <span class="eyebrow">Monthly regional food box</span>
-      <h1 id="hero-title">Every month, a region on your table.</h1>
-      <p class="lead">Authentic products from a different French region, sourced through short supply chains and delivered to your door with a regional flyer and a recipe.</p>
-      <p class="hero__price">Boxes from <strong>${money(Math.min(...BOXES.map(b => fromPrice(b.id))))}</strong> per box ${PROV}<br><span class="small muted">3 sizes, or your own budget · one-time or 3, 6 and 12-month subscriptions</span></p>
+      <span class="eyebrow eyebrow--spaced">Monthly regional food box</span>
+      <h1 id="hero-title">ESCALE</h1>
+      <p class="hero__sub">Regions Box</p>
+      <p class="lead">Every month, a box full of specialties from a different French region, sourced directly from local producers, with a flyer and a recipe.</p>
+      <div class="boarding" aria-label="Boarding pass">
+        <span class="boarding__k">BOARDING PASS</span>
+        <div class="boarding__route"><b>FROM</b> Local producers <span aria-hidden="true">⟶</span> <b>TO</b> Your table</div>
+        <span class="script">Every month, a region on your table.</span>
+      </div>
+      <p class="hero__price">Boxes from <strong>${money(Math.min(...BOXES.map(b => fromPrice(b.id))))}</strong> per box ${PROV}<br><span class="small muted">3 sizes or your own budget · one-off or 3, 6 and 12-month plans</span></p>
       <div class="row"><a class="btn btn--accent" href="#build">Build my box</a><a class="btn btn--secondary" href="#boxes">Compare the boxes</a></div>
-      <div class="pillars" aria-label="Our promise"><span>DISCOVER</span><span aria-hidden="true">·</span><span>TASTE</span><span aria-hidden="true">·</span><span>TRAVEL</span></div>
     </div>
-    ${photo(IMG.hero, "An Escale Régions Box opened on a wooden table with regional products, the 'Region of the month' flyer and a regional recipe card, in front of vineyards", "", "Provisional brand visual")}
+    <div class="hero__art"><span class="sticker">Hello, traveller!</span><span class="disc2" aria-hidden="true"></span><span class="disc" aria-hidden="true"></span>
+      <img class="logo" src="${PIC["logo-big"]}" alt="Escale Regions Box logo: a stamp with a road winding through the letter E to a map pin">${waves()}</div>
   </div></section>
   <section class="trust" aria-label="What makes our boxes different"><div class="container"><ul>
-    <li>${icon("farmer")}<span>Products from short supply chains</span></li>
-    <li>${icon("recipe")}<span>Regional flyer and recipe in every box</span></li>
-    <li>${icon("calendar")}<span>Choose your delivery date</span></li>
-    <li>${icon("heart")}<span>Dietary preferences taken into account</span></li>
+    <li>${icon("farmer")}<span>Direct from local producers</span></li>
+    <li>${icon("recipe")}<span>A flyer and a recipe in every box</span></li>
+    <li>${icon("star")}<span>Collect a stamp every month</span></li>
+    <li>${icon("calendar")}<span>Delivered on the date you choose</span></li>
   </ul></div></section>
 
-  <section class="section" aria-labelledby="dest-title"><div class="container split">
-    <div>
-      <span class="eyebrow">This month's destination · ${monthLabel(r.month)}</span>
-      <h2 id="dest-title">${r.destination}</h2>
+  <section class="section section--navy" aria-labelledby="dest-title"><div class="container split">
+    <div class="has-waves">
+      <span class="eyebrow eyebrow--spaced">${monthLabel(r.month).toUpperCase()} EDITION</span>
+      <h2 id="dest-title" class="edition-title">${r.destination}</h2>
+      ${r.edition ? `<div class="edition-name">${r.edition.toUpperCase()}</div><p class="serif-i" style="font-size:1.6rem;margin:0 0 var(--space-4)">${r.editionTagline}</p>` : ""}
       <p class="lead">${r.intro}</p>
-      <h3 style="font-family:var(--font-body);font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted)">Specialties to discover</h3>
-      <ul class="chips">${r.specialties.map(s => `<li>${s}</li>`).join("")}</ul>
-      ${r.recipe ? `<p class="small">${icon("recipe")} <span style="vertical-align:middle">This month's recipe: <strong>${r.recipe}</strong></span> ${EXAMPLE}</p>` : ""}
-      <div class="row"><button class="btn btn--primary" type="button" data-action="choose-box" data-size="${S.config.size}">Get the ${r.destination} box</button><a class="btn btn--ghost" href="#region-${r.id}">Explore this region</a></div>
+      <ul class="chips">${r.specialties.map(x => `<li>${x}</li>`).join("")}</ul>
+      <div class="row"><button class="btn btn--primary" type="button" data-action="choose-box" data-size="${S.config.size}">Get the ${r.destination} box</button><a class="btn btn--secondary" href="#region-${r.id}">Explore this region</a></div>
     </div>
-    ${photo(regionImg(r), `Painted illustration of ${r.destination}: ${r.specialties.slice(0, 2).join(", ").toLowerCase()} and regional scenery`, "photo--43", "Illustration · " + r.destination)}
+    <div class="duo">${photo(regionImg(r), `Painted illustration of ${r.destination}: a lighthouse on the coast and salted butter caramel`, "photo--square", "Illustration · " + r.destination)}${PIC["flyer-bzh"] && r.id === "bre" ? photo(PIC["flyer-bzh"], "This month’s flyer: a Breton cider maker with his box of farm cider and regional products", "photo--tall", "This month’s flyer") : ""}</div>
   </div></section>
 
-  <section class="section section--alt" aria-labelledby="find-title"><div class="container">
-    <div class="section-head section-head--center"><span class="eyebrow">Our boxes</span><h2 id="find-title">Find your perfect box</h2><p class="lead">Three sizes, the same regional journey. Every box includes the regional flyer and recipe.</p></div>
-    <div class="grid grid-3">${BOXES.map(boxCard).join("")}</div>
-    <div style="max-width:560px;margin:var(--space-5) auto 0">${budgetCard()}</div>
+  <section class="section" aria-labelledby="find-title"><div class="container has-waves">${waves()}
+    <div class="section-head"><span class="eyebrow">The offer</span><h2 id="find-title">Three sizes, or your own budget</h2><p class="lead">Choose your budget: the number of products you want. Every box includes the flyer, the recipe and the month’s stamp.</p></div>
+    <div class="grid grid-4">${BOXES.map(boxCard).join("")}${budgetCard()}</div>
+    <p style="margin-top:var(--space-5)"><span class="sticker sticker--right">Pick your size!</span></p>
   </div></section>
 
-  <section class="section" aria-labelledby="hiw-title"><div class="container">
-    <div class="section-head section-head--center"><span class="eyebrow">How it works</span><h2 id="hiw-title">Three steps to your monthly journey</h2></div>
-    <div class="grid grid-3">
-      ${[["box","Choose your box","Small, Medium, Large, or set your own budget. Add any dietary preferences."],["calendar","Pick your plan","Order a single box or subscribe for 3, 6 or 12 months, then choose your delivery date."],["map","Discover a new region","Each month, a new region arrives with its products, its producers and a recipe."]]
-        .map((s, i) => `<div class="card step-card"><div class="icon-wrap">${icon(s[0])}</div><h3><span class="step-num">${i + 1}</span>${s[1]}</h3><p class="muted" style="margin:0">${s[2]}</p></div>`).join("")}
-    </div>
+  <section class="section section--alt" aria-labelledby="hiw-title"><div class="container has-waves">${waves()}
+    <div class="section-head"><span class="eyebrow">How it works</span><h2 id="hiw-title">The customer journey in 4 steps</h2></div>
+    ${journey()}
+    <p style="margin-top:var(--space-6);text-align:right"><span class="sticker sticker--salmon">Easy peasy!</span></p>
   </div></section>
 
-  <section class="section section--alt" aria-labelledby="plans-title"><div class="container">
-    <div class="section-head"><span class="eyebrow">Subscriptions</span><h2 id="plans-title">Compare the plans</h2><p class="lead">The longer the journey, the lower the price per box.</p></div>
+  <section class="section" aria-labelledby="stamp-title"><div class="container split">
+    <div><span class="eyebrow">Your travel passport</span><h2 id="stamp-title">Each month, you collect a stamp</h2>
+      <p class="lead">Every box comes with the stamp of the region you’ve just “visited”. Collect them all and keep track of your journey in your account.</p>
+      <a class="btn btn--secondary" href="#account">See my stamps</a></div>
+    <ul class="stamps" aria-label="Stamps of the coming regions">${cal.map((c, i) => `<li class="stamp-chip" style="--r:${[-4,3,-2,5,-3,2,-5][i % 7]}deg"><img src="${regionImg(c.region)}" alt=""><span>${c.region.destination}<br>${monthLabel(c.month, true)}</span></li>`).join("")}</ul>
+  </div></section>
+
+  <section class="section section--alt" aria-labelledby="plans-title"><div class="container has-waves">${waves()}
+    <div class="section-head"><span class="eyebrow">Plans and delivery</span><h2 id="plans-title">Compare the plans</h2><p class="lead">One box per month. The longer the journey, the lower the price per box.</p></div>
     <div class="row" style="margin-bottom:var(--space-4)"><span class="label" id="hp-size-label">Prices shown for:</span>
       <div class="seg" role="group" aria-labelledby="hp-size-label">${BOXES.map(b => `<button type="button" data-action="home-plan-size" data-size="${b.id}" aria-pressed="${b.id === (S.config.size === "custom" ? "m" : S.config.size)}">${b.size}</button>`).join("")}</div></div>
     <div id="home-plans">${homePlansTable(S.config.size === "custom" ? "m" : S.config.size)}</div>
-    <div class="grid grid-3" style="margin-top:var(--space-5)">
-      <div class="card"><h3>${icon("tag")} Save up to ${Math.round(Math.max(...ACTIVE_PLANS.map(p => p.discount)) * 100)}%</h3><p class="muted small" style="margin:0">Discounts grow with the length of your plan ${PROV}.</p></div>
-      <div class="card"><h3>${icon("calendar")} Flexible payment</h3><p class="muted small" style="margin:0">${CONFIG.rules.payment.text} ${ruleTag(CONFIG.rules.payment)}</p></div>
+    <div class="grid grid-3" style="margin-top:var(--space-6)">
+      <div class="card"><h3>${icon("tag")} Save up to ${Math.round(Math.max(...ACTIVE_PLANS.map(p => p.discount)) * 100)}%</h3><p class="muted small" style="margin:0">Discounts grow with the length of your plan ${PROV}</p></div>
+      <div class="card"><h3>${icon("calendar")} Pay upfront or monthly</h3><p class="muted small" style="margin:0">${CONFIG.rules.payment.text} ${ruleTag(CONFIG.rules.payment)}</p></div>
       <div class="card"><h3>${icon("shield")} No surprise renewal</h3><p class="muted small" style="margin:0">${CONFIG.rules.renewal.text} ${ruleTag(CONFIG.rules.renewal)}</p></div>
     </div>
+    <p style="margin-top:var(--space-5)"><span class="sticker">Plans after plans!</span></p>
   </div></section>
 
   <section class="section" aria-labelledby="explore-title"><div class="container map-layout">
     <div>
       <span class="eyebrow">Explore France through food</span>
       <h2 id="explore-title">One box. One region. Endless discoveries.</h2>
-      <p class="lead">Follow our journey across France month by month. Select a region to discover its specialties and its place in the calendar.</p>
+      <p class="lead">Follow our journey month by month. Select a region to discover its specialties, producers and box.</p>
       ${timeline(r.id)}
       <p style="margin-top:var(--space-4)"><a class="btn btn--primary" href="#regions">Open the interactive map</a></p>
     </div>
     <div class="card">${mapSvg({ selected:r.id, mode:"preview" })}</div>
   </div></section>
 
-  <section class="section section--alt" id="producers-section" aria-labelledby="prod-title"><div class="container">
-    <div class="section-head"><span class="eyebrow">Local producers</span><h2 id="prod-title">From the producer to your table</h2>
-      <p class="lead">We work with regional producers (artisans, farmers and cooperatives) to compose authentic boxes through short supply chains.</p></div>
-    ${circuitDiagram()}
-    <div class="grid grid-3" style="margin-top:var(--space-6)">${[["ges",0],["ara",0],["pac",0]].map(([id, k]) => producerCard(getRegion(id), k)).join("")}</div>
-    <p class="hint" style="margin-top:var(--space-3)">Producers shown are fictional examples created for this academic prototype.</p>
+  <section class="section section--alt" id="producers-section" aria-labelledby="prod-title"><div class="container has-waves">${waves()}
+    <div class="section-head"><span class="eyebrow">Partnership</span><h2 id="prod-title">Short supply chains</h2>
+      <p class="lead">We work with farms, artisans and regional businesses: from the producer to Escale to you.</p></div>
+    ${partnership()}
+    <h3 style="margin-top:var(--space-7)">Meet some of our producers ${FICT}</h3>
+    <div class="grid grid-3" style="margin-top:var(--space-4)">${[["bre",0],["ges",0],["ara",0]].map(([id, k]) => producerCard(getRegion(id), k)).join("")}</div>
+    <p style="margin-top:var(--space-5)"><span class="sticker">Bon appétit!</span></p>
   </div></section>
 
-  <section class="section" aria-labelledby="ed-title"><div class="container">
+  <section class="section" aria-labelledby="ed-title"><div class="container has-waves">${waves()}
     <div class="section-head"><span class="eyebrow">Limited editions</span><h2 id="ed-title">Special editions &amp; gifts</h2><p class="lead">Seasonal boxes for celebrations, available without a subscription.</p></div>
     <div class="grid grid-4">${EDITIONS.map(editionCard).join("")}</div>
-    <div class="grid grid-2" style="margin-top:var(--space-5)">
-      <div class="card row" style="flex-wrap:nowrap;align-items:flex-start">${icon("gift")}<div><h3>Gift cards</h3><p class="small muted">Let them choose their region and their box. ${tag("prov", "Proposed feature")}</p><a class="btn btn--secondary btn--sm" href="#gift-cards">Offer a gift card</a></div></div>
-      <div class="card row" style="flex-wrap:nowrap;align-items:flex-start;border-color:var(--brand-ochre);background:#FDF5E3">${icon("tag")}<div><h3>Seasonal offer</h3><p class="small muted">Free delivery on the Christmas Edition, ordered before 15 December. ${HYP}</p><button class="btn btn--primary btn--sm" type="button" data-action="add-edition" data-edition="christmas">Add the Christmas Edition</button></div></div>
+    <div class="grid grid-2" style="margin-top:var(--space-6)">
+      <div class="card row" style="flex-wrap:nowrap;align-items:flex-start">${icon("gift")}<div><h3>Gift cards</h3><p class="small muted">Let them choose their region and their box. Valid ${CONFIG.business.giftValidity}. ${HYP}</p><a class="btn btn--secondary btn--sm" href="#gift-cards">Offer a gift card</a></div></div>
+      <div class="card row" style="flex-wrap:nowrap;align-items:flex-start;background:#FDF5E2">${icon("tag")}<div><h3>Seasonal offer</h3><p class="small muted">Free delivery on the Christmas Edition, ordered before 15 December. ${HYP}</p><button class="btn btn--primary btn--sm" type="button" data-action="add-edition" data-edition="christmas">Add the Christmas Edition</button></div></div>
     </div>
   </div></section>
 
+  ${socialBlock()}
   ${reviewsSlot()}
 
   <section class="section section--alt" aria-labelledby="hfaq-title"><div class="container" style="max-width:860px">
     <div class="section-head"><span class="eyebrow">Questions</span><h2 id="hfaq-title">Frequently asked questions</h2></div>
     ${accordion([FAQ[0].items[0], FAQ[0].items[1], FAQ[1].items[0], FAQ[2].items[0]], "hfaq")}
-    <p style="margin-top:var(--space-4)"><a class="btn btn--secondary" href="#faq">See all questions</a></p>
+    <p style="margin-top:var(--space-5)"><a class="btn btn--secondary" href="#faq">See all questions</a></p>
   </div></section>
 
   ${newsletterBlock()}`;
+}
+function journey(){
+  const steps = [["Choose","Pick your budget, box size and plan.","var(--brand-terracotta)"],["Personalise","Add your dietary preferences and delivery date.","var(--brand-navy)"],["Receive","Delivered on the date you want.","var(--brand-green)"],["Enjoy","Products, flyer, stamp and the month’s recipe.","var(--brand-ochre)"]];
+  return `<ol class="journey" style="list-style:none;padding:0;margin:0">${steps.map(([t, d, c], i) => `<li><span class="num" style="background:${c}${i === 3 ? ";color:var(--line-strong)" : ""}" aria-hidden="true">${i + 1}</span><h3>${t}</h3><p>${d}</p></li>`).join("")}</ol>`;
+}
+function partnership(){
+  const items = [["Local producers","Farms, artisans and regional businesses.","var(--brand-terracotta)"],["Direct supply chain","Producer to Escale to customer.","var(--brand-green)"],["Shared benefits","Visibility, traceability and monthly boxes.","var(--brand-salmon)"]];
+  return `<div class="split" style="align-items:center"><div class="stack">${items.map(([t, d, c]) => `<div class="card row" style="flex-wrap:nowrap"><span class="dot" style="background:${c}" aria-hidden="true"></span><div><h3 style="margin:0">${t}</h3><p class="small muted" style="margin:0">${d}</p></div></div>`).join("")}</div>
+    ${photo(PIC.partners, "Two producers serving a customer at the counter of a local shop", "photo--43", "Local partners")}</div>`;
+}
+function socialBlock(){
+  const nets = [["Instagram","Photos, Reels, stories","Unboxings, flyer recipes, producer portraits.","var(--brand-terracotta)","heart"],["TikTok","Short, fun videos","20-second unboxings, behind the scenes, quick recipes.","var(--brand-green)","star"],["Facebook","Community and families","Announcements, launch events, customer reviews.","var(--brand-navy)","users"]];
+  return `<section class="section section--alt" aria-labelledby="soc-title"><div class="container has-waves">${waves()}
+    <div class="section-head"><span class="eyebrow">Communication</span><h2 id="soc-title">Follow the journey</h2><p class="lead">${CONFIG.business.social} on Instagram, TikTok and Facebook. ${HYP}</p></div>
+    <div class="grid grid-3" style="margin-top:var(--space-7)">${nets.map(([n, sub, d, c, ic]) => `<article class="card social-card"><span class="ic" style="background:${c}" aria-hidden="true">${icon(ic)}</span><h3 style="margin:0">${n}</h3><p class="sub">${sub}</p><p class="small muted" style="margin:0">${d}</p></article>`).join("")}</div>
+    <p class="hashtags" style="margin-top:var(--space-6)">#EscaleBox &nbsp; #MorEtDouar &nbsp; #EscaleBretagne</p>
+  </div></section>`;
 }
 function homePlansTable(sizeId){
   const b = getBox(sizeId);
@@ -1155,9 +1349,9 @@ function producerCard(r, k = 0){
     <p class="small" style="margin:0"><strong>${craft}</strong> · ${place}, ${r.destination}</p><p class="small muted" style="margin:0">${story}</p></article>`;
 }
 function circuitDiagram(){
-  return `<div class="card"><div class="circuit" role="img" aria-label="Short supply chain: regional producer, then Escale Régions Box for composition and logistics, then you">
+  return `<div class="card"><div class="circuit" role="img" aria-label="Short supply chain: regional producer, then Escale Regions Box for composition and logistics, then you">
     <div class="node">${icon("farmer")}<span>Regional producer</span><span class="small muted">artisans, farmers, cooperatives</span></div><span class="arrow" aria-hidden="true">→</span>
-    <div class="node">${icon("box")}<span>Escale Régions Box</span><span class="small muted">composition &amp; logistics</span></div><span class="arrow" aria-hidden="true">→</span>
+    <div class="node">${icon("box")}<span>Escale Regions Box</span><span class="small muted">composition &amp; logistics</span></div><span class="arrow" aria-hidden="true">→</span>
     <div class="node">${icon("users")}<span>You</span><span class="small muted">the consumer</span></div></div></div>`;
 }
 function accordion(items, prefix){
@@ -1218,7 +1412,7 @@ function pageBox(id){
     <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="#home">Home</a></li><li><a href="#boxes">Our Boxes</a></li><li aria-current="page">${b.name}</li></ol></nav>
     <div class="split" style="align-items:start">
       <div class="stack">${boxPhoto(b, "photo--43")}
-        <div class="grid grid-3">${photo(PIC["p-" + currentRegion().id], "Specialties of the month, painted illustration", "photo--square", "Products")}${photo(PIC.flyer, "The ‘Region of the month’ flyer for Alsace, with a QR code card", "photo--square", "Flyer")}${photo(PIC.recipe, "Regional recipe card: Kougelhopf-style breakfast brioche", "photo--square", "Recipe")}</div>
+        <div class="grid grid-3">${photo(PIC["p-" + currentRegion().id], "Specialties of the month, painted illustration", "photo--square", "Products")}${photo(PIC["flyer-bzh"], "Brittany flyer: ‘La box du cidrier breton’, a cider maker with his box of farm cider and regional products, and a QR code", "photo--square", "Flyer")}${photo(PIC.recipe, "Regional recipe card: buckwheat galette complète", "photo--square", "Recipe")}</div>
         <p class="hint">Provisional visuals (illustrations and mockups). Final product photography to come.</p></div>
       <div>
         <span class="eyebrow">Size ${b.code} · ${b.size}</span>
@@ -1455,13 +1649,14 @@ function pageHow(){
     ["Subscription plans", "tag", "Order a single box or subscribe for 3, 6 or 12 months, with one box per month. The longer the plan, the lower the price per box."],
     ["Payment", "shield", `${CONFIG.rules.payment.text} One-time boxes are paid once, with no direct debit. Subscriptions are proposed to end automatically after the last delivery. ${ruleTag(CONFIG.rules.payment)}`],
     ["Delivery", "truck", `Choose your delivery date, or receive your box as soon as possible after ordering. Delivery is included on subscriptions; one-time orders cost ${money(CONFIG.shipping.standard)} ${PROV}.`],
-    ["In every box", "recipe", "A flyer presents the region, describes each product and its know-how, and suggests a recipe, with cultural tips and places to visit."],
+    ["In every box", "recipe", "A flyer presents each ingredient, tells you who made it and gives you a recipe to cook it. Each month, you also collect a stamp from the region you’ve just “visited”."],
     ["Producers & short supply chains", "farmer", "We work directly with regional producers (artisans, farmers and cooperatives), with no unnecessary intermediaries between them and you."],
     ["Gifts", "gift", "Any box or special edition can be sent as a gift with a personal message, and gift cards let the recipient choose."]
   ];
   return `
   <section class="page-head"><div class="container"><span class="eyebrow">How it works</span><h1>Your monthly journey through French flavours</h1>
     <p class="lead">Everything you need to know about the boxes, the plans and the deliveries.</p></div></section>
+  <section class="section" style="padding-top:0"><div class="container">${journey()}</div></section>
   <section class="section" style="padding-top:0"><div class="container"><div class="grid grid-3">${sections.map(([t, i, p]) => `
     <article class="card"><div class="icon-wrap" style="margin:0 0 var(--space-3)">${icon(i)}</div><h2 style="font-size:var(--fs-lg)">${t}</h2><p class="muted small" style="margin:0">${p}</p></article>`).join("")}</div>
     <div class="row row--center" style="margin-top:var(--space-7)"><a class="btn btn--accent" href="#build">Build my box</a><a class="btn btn--secondary" href="#faq">Read the FAQ</a></div>
@@ -1481,8 +1676,8 @@ function pageStory(){
   <section class="page-head"><div class="container split">
     <div><span class="eyebrow">Our story</span><h1>From French regions to your table</h1>
       <p class="lead">Our mission: to connect people with French regional culture through food.</p>
-      <p>France is a mosaic of regions, each with its own landscapes, traditions and flavours. Many of its finest specialties never travel far from where they are made. Escale Régions Box brings them to your door, one region at a time, with the stories of the people who make them and a recipe to bring the region to life in your kitchen.</p></div>
-    ${photo(IMG.hero, "Escale Régions Box with regional products, flyer and recipe card", "photo--43", "Provisional brand visual")}
+      <p>France is a mosaic of regions, each with its own landscapes, traditions and flavours. Many of its finest specialties never travel far from where they are made. Escale Regions Box brings them to your door, one region at a time, with the stories of the people who make them and a recipe to bring the region to life in your kitchen.</p></div>
+    ${photo(PIC.partners, "Two producers serving a customer at the counter of a local shop", "photo--43", "Local partners")}
   </div></section>
   <section class="section section--alt"><div class="container">
     <div class="section-head"><h2>What we stand for</h2></div>
@@ -1518,7 +1713,7 @@ function pageCart(){
     <div>
       <div class="card"><h2 class="sr-only">Items</h2>
         ${t.lines.map(l => `<div class="cart-line">
-          ${l.kind === "box" ? photo(IMG.box, "") : l.kind === "edition" ? photo(PIC["ed-" + l.key.split("|")[1]] || PIC.generic, "") : photo(PIC.generic, "")}
+          ${l.kind === "box" ? boxPhoto({}) : l.kind === "edition" ? photo(PIC["ed-" + l.key.split("|")[1]] || PIC.generic, "") : photo(PIC.generic, "")}
           <div><h3 style="margin:0 0 var(--space-1);font-size:var(--fs-base)">${esc(l.title)}</h3><p class="small muted" style="margin:0 0 var(--space-1)">${esc(l.sub)}</p>
             ${l.diet ? `<p class="small" style="margin:0 0 var(--space-2)">Preferences: ${esc(l.diet)}</p>` : ""}
             <div class="row">
@@ -1649,6 +1844,10 @@ function pageAccount(){
         : `<p class="muted">No active subscription.</p><a class="btn btn--primary btn--sm" href="#build">Start a subscription</a>`}
     </article>
 
+    <article class="card span-2" aria-labelledby="acc-stamps"><h2 id="acc-stamps" style="font-size:var(--fs-lg)">My stamp passport</h2>
+      <p class="small muted">A stamp is added for each box you receive. ${stampCount()} collected so far.</p>
+      <ul class="stamps">${calendar().filter(c => c.region).map((c, i) => { const got = hasStamp(c.month); return `<li class="stamp-chip ${got ? "" : "is-locked"}" style="--r:${got ? [-3,2,-2,3][i % 4] : 0}deg"><img src="${regionImg(c.region)}" alt=""><span>${got ? c.region.destination : "?"}<br>${monthLabel(c.month, true)}</span><span class="sr-only">${got ? "collected" : "not collected yet"}</span></li>`; }).join("")}</ul></article>
+
     <article class="card" aria-labelledby="acc-up"><h2 id="acc-up" style="font-size:var(--fs-lg)">Upcoming deliveries</h2>
       ${up.length ? `<ul class="list-plain">${up.map(d => `<li class="row row--between"><span><strong>${monthLabel(d.month)}</strong>: ${d.region ? d.region.destination : "Region to be announced"}<br><span class="small muted">${getBox(d.sub.sizeId, d.sub.budget).name} · box ${d.index} of ${d.of}</span></span>${d.month === CONFIG.demoMonth ? '<span class="badge badge--terracotta">This month</span>' : ""}</li>`).join("")}</ul>` : `<p class="muted">No upcoming deliveries.</p>`}
     </article>
@@ -1735,7 +1934,7 @@ function pagePrototype(){
   ];
   const validate = ["Online shop only, or also a mobile app?","Storage and shipping of fresh products","Final prices and budget-to-products rule","Payment terms (upfront / monthly direct debit)","End of subscription after last delivery, cancellation and pause rules","Whether to offer the 9-month plan (kept in the code, currently hidden)","Delivery fees, areas and lead times","Gift card validity and rules"];
   return `<section class="page-head"><div class="container" style="max-width:980px"><span class="eyebrow">Prototype notes</span><h1>About this prototype</h1>
-    <p class="lead">V2 adds the provisional Escale Régions Box identity and conversion improvements. The official art direction PDF will remain the reference for the final design.</p></div></section>
+    <p class="lead">V3 applies the official Escale Regions Box art direction (colours, Playfair Display / Poppins / Caveat, stamp logo, postal waves, boarding pass, offset-shadow cards) and the launch content: the Brittany “Mor & Douar” edition, the stamp collection and the 4-step journey.</p></div></section>
     <section class="container" style="max-width:980px">
     <h2 style="font-size:var(--fs-xl)">Feature status</h2>
     <div class="table-wrap"><table class="table-stack"><thead><tr><th scope="col">Feature</th><th scope="col">Status</th><th scope="col">Notes</th></tr></thead>
@@ -1824,7 +2023,7 @@ const ROUTES = {
   delivery:["Delivery & Guarantees", pageDelivery, "Delivery, conditions and guarantees."],
   cart:["Cart", pageCart, ""], checkout:["Checkout", pageCheckout, ""], confirmation:["Order confirmed", pageConfirmation, ""],
   account:["My Account", pageAccount, ""], faq:["FAQ & Contact", pageFaq, "Answers to common questions and contact form."],
-  contact:["Contact", pageFaq, "Contact the Escale Régions Box team."], producers:["Local Producers", pageHome, ""],
+  contact:["Contact", pageFaq, "Contact the Escale Regions Box team."], producers:["Local Producers", pageHome, ""],
   legal:["Legal", pageLegal, ""], prototype:["About this prototype", pagePrototype, ""]
 };
 const NAV_PARENT = { "box-s":"boxes", "box-m":"boxes", "box-l":"boxes", contact:"faq" };
@@ -1847,6 +2046,7 @@ function render(){
   document.body.classList.toggle("has-mobile-bar", hash === "build");
   closeMenu();
   if (hash === "build") updateBuilder();
+  $$(".page-head > .container", app).forEach(c => { c.classList.add("has-waves"); if (!c.querySelector(".waves")) c.insertAdjacentHTML("afterbegin", waves()); });
   if (SCROLL_TO[hash]) setTimeout(() => $(SCROLL_TO[hash])?.scrollIntoView(), 40);
   else { window.scrollTo(0, 0); if (!firstRender){ const h1 = $("h1", app); if (h1){ h1.setAttribute("tabindex", "-1"); h1.focus({ preventScroll:true }); } } }
   firstRender = false;
