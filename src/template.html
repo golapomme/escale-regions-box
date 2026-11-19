@@ -174,6 +174,14 @@ h1[tabindex="-1"]:focus,#app:focus{outline:none}
 .status--tbd{color:var(--color-text-muted);background:var(--color-highlight)}
 .status--example{color:#5a3d8a;background:#efe8f8}
 .status--sim{color:var(--color-danger);background:var(--color-danger-bg)}
+.status--hyp{color:#1D4F7A;background:#E4EEF7}
+.persona{display:flex;flex-direction:column;gap:var(--space-3)}
+.persona .who{display:flex;gap:var(--space-3);align-items:center}
+.persona .av{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--color-primary);color:#fff;font-family:var(--font-heading);font-weight:700;font-size:1.3rem;flex:none}
+.producer{display:flex;flex-direction:column;gap:var(--space-2)}
+.producer .photo{aspect-ratio:16/9}
+.mini-producers{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--space-3);margin-top:var(--space-2)}
+.mini-producers .card{padding:var(--space-3)}
 .notice{padding:var(--space-3) var(--space-4);border-radius:var(--radius);background:var(--color-warning-bg);color:var(--color-warning);font-size:var(--fs-sm)}
 .notice--info{background:var(--color-highlight);color:var(--color-text)}
 .notice--success{background:var(--color-success-bg);color:var(--color-success)}
@@ -515,7 +523,7 @@ body.demo-on.has-mobile-bar .demo-bar{bottom:96px}
       <div>
         <a href="#home" class="brand"><img src="__LOGO__" alt="" width="52" height="52"><span class="brand__name">ESCALE<small>Régions Box</small></span></a>
         <p class="small" style="opacity:.85;margin-top:var(--space-3)">Every month, a region on your table. Authentic French regional products from short supply chains, delivered to your door.</p>
-        <p class="small" style="opacity:.85">Social media: Instagram · Facebook · TikTok · Pinterest <span class="status status--tbd">Handles to be confirmed</span></p>
+        <p class="small" style="opacity:.85">Follow us: Instagram · TikTok · Facebook · Pinterest — @escale.regionsbox</p>
       </div>
       <div><h2>Shop</h2><ul>
         <li><a href="#boxes">Our Boxes</a></li><li><a href="#build">Build Your Box</a></li><li><a href="#editions">Special Editions</a></li><li><a href="#gift-cards">Gift Cards</a></li></ul></div>
@@ -523,7 +531,7 @@ body.demo-on.has-mobile-bar .demo-bar{bottom:96px}
         <li><a href="#regions">Explore Regions</a></li><li><a href="#how-it-works">How It Works</a></li><li><a href="#story">Our Story</a></li><li><a href="#producers">Local Producers</a></li></ul></div>
       <div><h2>Help</h2><ul>
         <li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact us</a></li><li><a href="#delivery">Delivery &amp; guarantees</a></li><li><a href="#account">My Account</a></li></ul>
-        <p class="small" style="opacity:.85;margin-top:var(--space-3)">contact@escale-regions.example<br><span class="status status--tbd">Placeholder address</span></p></div>
+        <p class="small" style="opacity:.85;margin-top:var(--space-3)">hello@escale-regions.example<br>+33 1 99 00 12 34<br>Mon–Fri, 9 am – 6 pm</p></div>
       <div><h2>Legal</h2><ul>
         <li><a href="#legal">Terms of sale</a></li><li><a href="#legal">Privacy policy</a></li><li><a href="#legal">Legal notice</a></li><li><a href="#legal">Cookies</a></li><li><a href="#prototype">About this prototype</a></li><li><a href="#demo">Presenter mode</a></li></ul></div>
     </div>
@@ -551,16 +559,32 @@ const CONFIG = {
   rules: {                                    // commercial rules: status is "proposed" or "tbd" until confirmed
     payment:      { text: "Pay in full today, or by monthly direct debit.", status: "proposed" },
     renewal:      { text: "Ends automatically after the last delivery. No automatic renewal.", status: "proposed" },
-    cancellation: { text: "To be defined.", status: "tbd" },
+    cancellation: { text: "Pause or cancel online up to 5 days before the next shipment. Boxes already shipped are not refunded.", status: "hyp" },
     oneTime:      { text: "No commitment and no direct debit.", status: "proposed" }
   },
-  storageKey: "escale-prototype-v2"
+  storageKey: "escale-prototype-v2",
+  /* HYPOTHETICAL business data for the academic prototype — replace with real terms before launch */
+  business: {
+    company: "Escale Régions Box SAS (fictional company, academic project)",
+    email: "hello@escale-regions.example", phone: "+33 1 99 00 12 34", hours: "Monday to Friday, 9 am – 6 pm",
+    social: "@escale.regionsbox", responseTime: "within 24 working hours",
+    dispatch: "Prepared and shipped within 2 working days of your order, or on the date you choose.",
+    transit: "Delivered in 2 to 4 working days by tracked parcel, to your home or to a pickup point.",
+    areas: "Metropolitan France, Belgium and Luxembourg (Corsica: +2 days).",
+    freeFrom: 60,
+    guarantee: "Damaged or missing item? Send us a photo within 7 days: we replace or refund it.",
+    storage: "Ambient-temperature products only, with a best-before date of at least 3 months on delivery. No fresh products in the standard offer.",
+    giftValidity: "12 months from purchase",
+    packaging: "Recyclable kraft box and paper filling."
+  }
 };
 
 /* =====================================================================
    B. DATA — boxes, plans, editions, regions (provisional)
    ===================================================================== */
 const IMG = { logo: "__LOGO__", hero: "__HERO__", box: "__BOX__" };
+const PIC = __PICS__; // site illustrations (provisional visuals generated for the project)
+const regionImg = r => PIC["r-" + r.id] || PIC.generic;
 
 const BOXES = [
   { id:"s", code:"S", size:"Small", name:"Discovery Box", price:25, count:3, products:"3 products",
@@ -623,80 +647,83 @@ const GIFT_AMOUNTS = [25, 39, 55, 100];
    `products` are illustrative examples, not confirmed selections. */
 const MAP = __MAPDATA__;
 const REGIONS = [
-  { id:"ges", name:"Grand Est", destination:"Alsace", month:"2026-11", short:"Grand Est",
+  { id:"ges", producers:[["Maison Hertz","Bredele biscuits","Obernai","A family bakery making a dozen kinds of Christmas bredele each winter."],["Le Fournil d’Odile","Honey gingerbread","Gertwiller","Gingerbread baked to a family recipe with local honey."],["Vergers Kieffer","Fruit preserves","Bas-Rhin","Mirabelle plums picked in late summer and cooked into preserves."]], name:"Grand Est", destination:"Alsace", month:"2026-11", short:"Grand Est",
     intro:"Between the Vosges mountains and the Rhine, Alsace is famous for its Christmas markets, half-timbered villages and a festive baking culture shaped by French and Germanic traditions.",
     specialties:["Bredele Christmas biscuits","Gingerbread","Mirabelle plums","Kougelhopf","Pretzels"],
     products:["Bredele Christmas biscuits","Honey gingerbread","Mirabelle plum preserve","Pretzel crackers","Alsace mustard","Gingerbread spice blend","Vosges herbal tea"],
     recipe:"Kougelhopf-style breakfast brioche" },
-  { id:"ara", name:"Auvergne-Rhône-Alpes", destination:"Savoy", month:"2026-12", short:"Auvergne-Rhône-Alpes",
+  { id:"ara", producers:[["Miellerie du Col","Mountain honey","Maurienne","Beekeepers who move their hives up to Alpine pastures every summer."],["Noyeraie Blanc","Walnuts","Isère","Walnut groves harvested, cracked and sorted by hand each autumn."]], name:"Auvergne-Rhône-Alpes", destination:"Savoy", month:"2026-12", short:"Auvergne-Rhône-Alpes",
     intro:"Savoy's Alpine valleys bring mountain honey, light sponge biscuits and warming specialties made for winter evenings.",
     specialties:["Mountain honey","Savoy sponge biscuit","Walnuts","Alpine herbs"],
     products:["Mountain honey","Savoy sponge biscuits","Walnut spread","Alpine herbal tea","Bilberry jam","Walnut biscuits","Mountain herb salt"],
     recipe:"Alpine potato gratin" },
-  { id:"naq", name:"Nouvelle-Aquitaine", destination:"Basque Country", month:"2027-01", short:"Nouvelle-Aquitaine",
+  { id:"naq", producers:[["Ferme Etxeberria","Espelette pepper","Espelette","Peppers grown, threaded and dried on the farmhouse façade."],["Confitures d’Itsasu","Black cherry jam","Itxassou","Black cherries from the valley, cooked the traditional way."]], name:"Nouvelle-Aquitaine", destination:"Basque Country", month:"2027-01", short:"Nouvelle-Aquitaine",
     intro:"In the south-west corner of France, the Basque Country combines mountain and ocean, with a bold, colourful cuisine and its own language and traditions.",
     specialties:["Espelette pepper","Gâteau basque","Black cherry jam","Sheep's cheese"],
     products:["Espelette pepper","Black cherry jam","Pepper-infused spread","Basque biscuits","Piperade sauce","Chocolate from Bayonne","Espelette salt"],
     recipe:"Basque piperade" },
-  { id:"pac", name:"Provence-Alpes-Côte d'Azur", destination:"Provence", month:"2027-02", short:"Provence",
+  { id:"pac", producers:[["Moulin des Alpilles","Olive oil","Alpilles","A cooperative mill pressing olives from neighbouring groves."],["Calissons du Cours","Confectionery","Aix-en-Provence","Calissons shaped by hand from almonds and candied melon."]], name:"Provence-Alpes-Côte d'Azur", destination:"Provence", month:"2027-02", short:"Provence",
     intro:"Provence brings the sun into the kitchen: olive groves, aromatic herbs and Mediterranean flavours.",
     specialties:["Olive oil","Tapenade","Herbes de Provence","Calissons"],
     products:["Extra virgin olive oil","Black olive tapenade","Herbes de Provence","Calissons","Lavender honey","Navette biscuits","Sun-dried tomato spread"],
     recipe:"Provençal vegetable tian" },
-  { id:"bfc", name:"Bourgogne-Franche-Comté", destination:"Burgundy", month:"2027-03", short:"Burgundy",
+  { id:"bfc", producers:[["Moutarderie Lambert","Mustard","Côte-d’Or","Stone-ground mustard made with Burgundy-grown seeds."],["Cassis de la Combe","Blackcurrant","Hautes-Côtes","Blackcurrant preserves and syrups from family plots."]], name:"Bourgogne-Franche-Comté", destination:"Burgundy", month:"2027-03", short:"Burgundy",
     intro:"Burgundy is a region of gastronomy, where mustard-making and gingerbread are centuries-old crafts.",
     specialties:["Mustards","Gingerbread","Blackcurrant","Aniseed sweets"],
     products:["Traditional mustard","Blackcurrant preserve","Spiced gingerbread","Aniseed sweets","Mustard with herbs","Blackcurrant syrup","Gougère mix"],
     recipe:"Mustard chicken, Burgundy style" },
-  { id:"bre", name:"Brittany", destination:"Brittany", month:"2026-09", short:"Brittany",
+  { id:"bre", producers:[["Biscuiterie de l’Aber","Pure-butter biscuits","Finistère","A family bakery shaping butter biscuits by hand, in small batches."],["Caramels de la Pointe","Salted butter caramel","Côtes-d’Armor","Caramel slow-cooked in copper pans with Guérande sea salt."]], name:"Brittany", destination:"Brittany", month:"2026-09", short:"Brittany",
     intro:"Brittany is a land of rugged coastline, Celtic heritage and a deep love of butter. Its food culture is built on the sea, buckwheat and generous baking.",
     specialties:["Butter biscuits","Salted butter caramel","Buckwheat crêpes","Sea salt"],
     products:["Pure butter biscuits","Salted butter caramel spread","Buckwheat crackers","Sardines","Sea salt","Kouign-amann biscuits","Seaweed tartare"],
     recipe:"Buckwheat galette complète" },
-  { id:"nor", name:"Normandy", destination:"Normandy", month:"2026-10", short:"Normandy",
+  { id:"nor", producers:[["Verger des Hauts Prés","Apple products","Pays d’Auge","Old apple varieties turned into jellies, juices and caramels."],["Sablés du Bocage","Shortbread","Calvados","Shortbread made with local cream butter and farm eggs."]], name:"Normandy", destination:"Normandy", month:"2026-10", short:"Normandy",
     intro:"Normandy's orchards and pastures shape a cuisine of apples, cream and artisanal baking, rooted in farmhouse traditions.",
     specialties:["Apple products","Artisanal biscuits","Dairy specialties","Apple jelly"],
     products:["Artisanal sablés","Apple jelly","Apple caramel","Cider vinegar","Apple juice","Shortbread","Salted caramel"],
     recipe:"Normandy apple tart" },
-  { id:"hdf", name:"Hauts-de-France", destination:"Hauts-de-France", short:"Hauts-de-France",
+  { id:"hdf", name:"Hauts-de-France", destination:"Hauts-de-France", short:"Hauts-de-France", month:"2027-06", recipe:"Flemish sugar tart",
+    producers:[["Biscuiterie du Beffroi","Spiced biscuits","Lille","Caramelised spiced biscuits baked in a brick oven."],["Douceurs de Cambrai","Traditional sweets","Cambrai","Mint-striped boiled sweets made the old-fashioned way."]],
     intro:"In the north, Flemish influences meet French traditions: spiced biscuits, sweets and hearty regional fare.",
-    specialties:["Spiced biscuits","Traditional sweets","Chicory"], products:[] },
+    specialties:["Spiced biscuits","Traditional sweets","Chicory"], products:["Spiced caramel biscuits","Mint boiled sweets","Chicory drink","Filled waffles","Brown sugar spread","Maroilles crackers","Flemish sugar tart mix"] },
   { id:"idf", name:"Île-de-France", destination:"Île-de-France", short:"IDF",
     intro:"Around Paris, a surprisingly rural region produces cheeses, honey and pâtisserie traditions known worldwide.",
-    specialties:["Regional cheeses","Local honey","Pâtisserie traditions"], products:[] },
+    specialties:["Regional cheeses","Local honey","Pâtisserie traditions"], products:["Gâtinais honey","Meaux mustard","Brie crackers","Almond biscuits"] },
   { id:"pdl", name:"Pays de la Loire", destination:"Pays de la Loire", short:"Pays de la Loire",
     intro:"Along the Loire and the Atlantic coast: sea salt, butter biscuits and traditional confectionery.",
-    specialties:["Sea salt","Butter biscuits","Traditional sweets"], products:[] },
+    specialties:["Sea salt","Butter biscuits","Traditional sweets"], products:["Guérande fleur de sel","Nantes butter biscuits","Berlingot sweets","Sardines"] },
   { id:"cvl", name:"Centre-Val de Loire", destination:"Centre-Val de Loire", short:"Centre-VdL",
     intro:"The land of the Loire châteaux also offers honey, goat's cheese and classic French desserts.",
-    specialties:["Honey","Goat's cheese","Classic desserts"], products:[] },
-  { id:"occ", name:"Occitanie", destination:"Occitanie", short:"Occitanie",
+    specialties:["Honey","Goat's cheese","Classic desserts"], products:["Sologne honey","Tarte Tatin biscuits","Goat’s cheese crackers","Pear preserve"] },
+  { id:"occ", name:"Occitanie", destination:"Occitanie", short:"Occitanie", month:"2027-04", recipe:"Toulouse-style cassoulet",
+    producers:[["Confiserie de la Violette","Violet sweets","Toulouse","Candied violets and violet sweets, a Toulouse speciality."],["Bergerie du Causse","Sheep’s milk biscuits","Aveyron","Shortbread made with milk from the farm’s own flock."]],
     intro:"From the Pyrenees to the Mediterranean: hearty dishes, sheep's cheeses and violet sweets.",
-    specialties:["Hearty dishes","Sheep's cheeses","Violet sweets"], products:[] },
-  { id:"cor", name:"Corsica", destination:"Corsica", short:"Corsica", labelAt:[566,598],
+    specialties:["Hearty dishes","Sheep's cheeses","Violet sweets"], products:["Violet sweets","Cassoulet beans","Sheep’s milk shortbread","Roquefort crackers","Camargue fleur de sel","Garrigue honey","Navette biscuits"] },
+  { id:"cor", name:"Corsica", destination:"Corsica", short:"Corsica", labelAt:[566,598], month:"2027-05", recipe:"Chestnut flour pancakes",
+    producers:[["Castagnu d’Oru","Chestnut products","Castagniccia","Chestnut flour and spreads from centuries-old chestnut groves."],["Agrumi di a Piana","Citrus fruit","Eastern plain","Clementines and citrus preserves from family orchards."]],
     intro:"The 'island of beauty' is known for chestnuts, citrus fruit and traditional biscuits.",
-    specialties:["Chestnut specialties","Citrus fruit","Traditional biscuits"], products:[] }
+    specialties:["Chestnut specialties","Citrus fruit","Traditional biscuits"], products:["Chestnut flour biscuits","Clementine jam","Canistrelli biscuits","Maquis honey","Myrtle syrup","Chestnut spread","Fig jam"] }
 ];
 
 const FAQ = [
   { cat:"Boxes & contents", items:[
     ["What box sizes are available?","Three sizes: Small (3 products), Medium (5 products) and Large (more than 5 products). You can also set your own budget: each amount corresponds to an estimated number of products."],
     ["What is inside each box?","A selection of regional products from short supply chains, a flyer introducing the region and describing each product, a regional recipe, producer stories and a QR code linking to extra content."],
-    ["Can I tell you about allergies or dietary preferences?","Yes. In the configurator you can indicate preferences and constraints (vegetarian, vegan, no alcohol, allergies…). How they will be applied to each selection is still being defined. Full ingredient and allergen information will accompany every box."],
-    ["Do the boxes contain fresh products?","The storage of fresh products is still being studied. The final product rules will be confirmed before launch."] ]},
+    ["Can I tell you about allergies or dietary preferences?","Yes. In the configurator you can indicate preferences and constraints (vegetarian, vegan, no alcohol, allergies…). Products that don’t match your preferences are replaced by an equivalent from the same region. Full ingredient and allergen information accompanies every box (hypothetical rule)."],
+    ["Do the boxes contain fresh products?","No: the standard boxes contain ambient-temperature products only, with a best-before date of at least 3 months on delivery (hypothetical choice)."] ]},
   { cat:"Subscriptions & payment", items:[
     ["How do subscriptions work?","Choose a size or a budget and a duration of 3, 6 or 12 months. You receive one box per month, each dedicated to a different French region. Longer subscriptions lower the price per box."],
     ["How can I pay?","Our proposed rule: pay for the whole subscription upfront, or pay each month by direct debit. One-time boxes are paid once, with no direct debit. These rules are still to be validated."],
-    ["Does my subscription renew automatically?","Our proposed rule: subscriptions end automatically after the last delivery, with no automatic renewal. This is still to be validated."],
-    ["Can I cancel or pause?","Cancellation and pause conditions have not been defined yet. They will be clearly stated before launch."] ]},
+    ["Does my subscription renew automatically?","Our proposed rule: subscriptions end automatically after the last delivery, with no automatic renewal."],
+    ["Can I cancel or pause?","Yes: you can pause or cancel online up to 5 days before the next shipment. Boxes already shipped are not refunded (hypothetical rule)."] ]},
   { cat:"Delivery & gifts", items:[
-    ["When will my box arrive?","You can choose your delivery date at checkout. By default, we ship as soon as possible after your order. Delivery areas and lead times are to be confirmed."],
+    ["When will my box arrive?","You can choose your delivery date at checkout. By default, we ship as soon as possible after your order. Boxes are delivered in 2 to 4 working days in metropolitan France, Belgium and Luxembourg (hypothetical terms)."],
     ["Can I buy a single box without subscribing?","Yes. Choose 'One-time box' in the configurator, or use 'Buy once' on any box page."],
     ["What are Special Editions?","Limited-edition boxes for celebrations such as Christmas, Valentine's Day, Easter and summer, available without a subscription."],
-    ["Can I offer a box or a gift card?","Yes. Tick 'This order is a gift' at checkout to add a message, or choose a gift card (proposed feature)."] ]},
+    ["Can I offer a box or a gift card?","Yes. Tick 'This order is a gift' at checkout to add a message, or choose a gift card, valid 12 months (hypothetical)."] ]},
   { cat:"Account & support", items:[
     ["How do I manage my account?","Your account shows your details, orders, active subscriptions, upcoming deliveries and saved addresses."],
-    ["How can I contact customer support?","Use the contact form on this page. Our response time will be confirmed before launch."] ]}
+    ["How can I contact customer support?","Use the contact form on this page, email hello@escale-regions.example or call +33 1 99 00 12 34, Monday to Friday, 9 am – 6 pm. We reply within 24 working hours (hypothetical)."] ]}
 ];
 
 /* =====================================================================
@@ -734,7 +761,7 @@ const regionForMonth = key => REGIONS.find(r => r.month === key) || null;
 const currentRegion = () => regionForMonth(CONFIG.demoMonth) || REGIONS[0];
 function calendar(){ // from the first scheduled month to 7 months ahead; empty months are "to be announced"
   const months = REGIONS.filter(r => r.month).map(r => r.month).sort();
-  const start = months[0] || CONFIG.demoMonth, end = addMonths(CONFIG.demoMonth, 7), out = [];
+  const start = months[0] || CONFIG.demoMonth, end = addMonths(CONFIG.demoMonth, 9), out = [];
   for (let m = start; m <= end; m = addMonths(m, 1)) out.push({ month:m, region:regionForMonth(m) });
   return out;
 }
@@ -819,7 +846,8 @@ function cartTotals(){
   const lines = S.cart.map(lineInfo);
   const physical = S.cart.filter(i => i.kind !== "gift");
   const needsShipping = physical.some(i => !isSubItem(i)) || (physical.length && !CONFIG.shipping.subscriptionsIncluded);
-  const shipping = needsShipping ? CONFIG.shipping.standard : 0;
+  const subtotalAll = lines.reduce((a, l) => a + l.total, 0);
+  const shipping = needsShipping && subtotalAll < CONFIG.business.freeFrom ? CONFIG.shipping.standard : 0;
   const subtotal = round2(lines.reduce((a, l) => a + l.total, 0));
   return { lines, subtotal, shipping, total:round2(subtotal + shipping), dueToday:round2(lines.reduce((a, l) => a + l.dueToday, 0) + shipping),
     count:S.cart.reduce((a, i) => a + i.qty, 0), savings:round2(lines.reduce((a, l) => a + l.savings, 0)), hasMonthly:S.cart.some(i => isSubItem(i) && i.payment === "monthly") };
@@ -838,8 +866,8 @@ const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
 const tag = (type, text) => `<span class="status status--${type}">${text}</span>`;
-const PROV = tag("prov", "Provisional"), EXAMPLE = tag("example", "Illustrative example"), SIM = tag("sim", "Simulated");
-const ruleTag = r => r.status === "proposed" ? tag("prov", "Proposed rule, to be validated") : tag("tbd", "To be defined");
+const PROV = tag("prov", "Provisional"), EXAMPLE = tag("example", "Illustrative example"), SIM = tag("sim", "Simulated"), HYP = tag("hyp", "Hypothetical"), FICT = tag("hyp", "Fictional producer");
+const ruleTag = r => r.status === "proposed" ? tag("prov", "Proposed rule") : r.status === "hyp" ? HYP : tag("tbd", "To be defined");
 
 const ICONS = {
   box:'<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/>',
@@ -863,7 +891,7 @@ const ICONS = {
 };
 const icon = (name, cls = "icon") => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ""}</svg>`;
 const ph = (label, cls = "") => `<div class="ph ${cls}" role="img" aria-label="${esc(label)}"><span>${esc(label)}</span></div>`;
-const photo = (src, alt, cls = "", caption = "") => `<figure class="photo ${cls}" style="margin:0"><img src="${src}" alt="${esc(alt)}" loading="lazy" decoding="async">${caption ? `<figcaption>${esc(caption)}</figcaption>` : ""}</figure>`;
+const photo = (src, alt, cls = "", caption = "") => `<figure class="photo ${cls}" style="margin:0"><img src="${src}" alt="${esc(alt)}" decoding="async">${caption ? `<figcaption>${esc(caption)}</figcaption>` : ""}</figure>`;
 const boxPhoto = (b, cls = "") => photo(IMG.box, `${CONFIG.brandName} box opened with regional products and the regional recipe card`, cls, `Provisional visual · ${b.size}`);
 
 function boxCard(b){
@@ -940,10 +968,16 @@ function newsletterBlock(){
   </div></section>`;
 }
 function reviewsSlot(){
+  const personas = [
+    ["C","Camille, 29","Curious food lover, Paris","Wants to discover regional specialties she can’t find in her neighbourhood, without planning trips.","Explorer Box · 6 months"],
+    ["M","Marc & Sophie, 41","Couple with two children, Lyon","Look for a fun monthly ritual to cook and taste together as a family.","Experience Box · 12 months"],
+    ["J","Jeanne, 63","Gift buyer, Nantes","Wants a meaningful gift for her children living abroad, with a personal message.","Gift card / one-time box"]
+  ];
   return `<section class="section" aria-labelledby="rev-title"><div class="container">
-    <div class="slot center"><span class="slot__label">Customer reviews</span>
-      <h2 id="rev-title" style="margin-top:var(--space-2)">Reviews from real customers</h2>
-      <p class="muted" style="max-width:620px;margin-inline:auto">Verified customer reviews will be displayed here after launch. No reviews, ratings or popularity figures are shown in this prototype.</p></div>
+    <div class="section-head"><span class="eyebrow">Who it’s for</span><h2 id="rev-title">Our target customers</h2>
+      <p class="lead">Three personas that guided the offer. ${tag("hyp", "Hypothetical personas")}</p></div>
+    <div class="grid grid-3">${personas.map(([i, n, w, need, pick]) => `<article class="card persona"><div class="who"><span class="av" aria-hidden="true">${i}</span><div><h3 style="margin:0">${n}</h3><p class="small muted" style="margin:0">${w}</p></div></div><p class="small" style="margin:0">${need}</p><p class="small" style="margin:0"><strong>Likely choice:</strong> ${pick}</p></article>`).join("")}</div>
+    <p class="hint" style="margin-top:var(--space-4)">Verified customer reviews will appear here after launch. No reviews or ratings are shown in this prototype.</p>
   </div></section>`;
 }
 function toast(msg, link){
@@ -964,7 +998,7 @@ function updateCartBadge(){
 }
 function renderBanner(){
   $("#demo-banner").innerHTML = S.banner && !S.demo ? `<div class="demo-banner" role="note"><div class="container">
-    <span><strong>Academic prototype (V2).</strong> Prices, selections and rules are provisional. No real order, payment or notification takes place. <a href="#prototype">What's simulated?</a></span>
+    <span><strong>Academic prototype (V2).</strong> Producers, prices and terms are hypothetical. No real order, payment or notification takes place. <a href="#prototype">What's simulated?</a></span>
     <button type="button" data-action="dismiss-banner">Hide</button></div></div>` : "";
 }
 
@@ -1035,7 +1069,7 @@ function pageHome(){
       ${r.recipe ? `<p class="small">${icon("recipe")} <span style="vertical-align:middle">This month's recipe: <strong>${r.recipe}</strong></span> ${EXAMPLE}</p>` : ""}
       <div class="row"><button class="btn btn--primary" type="button" data-action="choose-box" data-size="${S.config.size}">Get the ${r.destination} box</button><a class="btn btn--ghost" href="#region-${r.id}">Explore this region</a></div>
     </div>
-    ${ph(`Regional photography: ${r.destination}, landscape and local market`, "ph--wide")}
+    ${photo(regionImg(r), `Painted illustration of ${r.destination}: ${r.specialties.slice(0, 2).join(", ").toLowerCase()} and regional scenery`, "photo--43", "Illustration · " + r.destination)}
   </div></section>
 
   <section class="section section--alt" aria-labelledby="find-title"><div class="container">
@@ -1079,7 +1113,8 @@ function pageHome(){
     <div class="section-head"><span class="eyebrow">Local producers</span><h2 id="prod-title">From the producer to your table</h2>
       <p class="lead">We work with regional producers (artisans, farmers and cooperatives) to compose authentic boxes through short supply chains.</p></div>
     ${circuitDiagram()}
-    <div class="grid grid-3" style="margin-top:var(--space-6)">${["Artisan biscuit maker","Preserves workshop","Herb & spice grower"].map(n => `<article class="card">${ph(`Portrait: ${n.toLowerCase()} at work`, "ph--wide")}<p style="margin:var(--space-3) 0 var(--space-1)">${tag("example", "Sample profile")}</p><h3>${n}</h3><p class="small muted" style="margin:0">Real producer profiles will be published with each month's selection.</p></article>`).join("")}</div>
+    <div class="grid grid-3" style="margin-top:var(--space-6)">${[["ges",0],["ara",0],["pac",0]].map(([id, k]) => producerCard(getRegion(id), k)).join("")}</div>
+    <p class="hint" style="margin-top:var(--space-3)">Producers shown are fictional examples created for this academic prototype.</p>
   </div></section>
 
   <section class="section" aria-labelledby="ed-title"><div class="container">
@@ -1087,7 +1122,7 @@ function pageHome(){
     <div class="grid grid-4">${EDITIONS.map(editionCard).join("")}</div>
     <div class="grid grid-2" style="margin-top:var(--space-5)">
       <div class="card row" style="flex-wrap:nowrap;align-items:flex-start">${icon("gift")}<div><h3>Gift cards</h3><p class="small muted">Let them choose their region and their box. ${tag("prov", "Proposed feature")}</p><a class="btn btn--secondary btn--sm" href="#gift-cards">Offer a gift card</a></div></div>
-      <div class="slot"><span class="slot__label">Seasonal offer</span><p class="small muted" style="margin:var(--space-2) 0 0">Space reserved for confirmed seasonal promotions. No offer is active in this prototype.</p></div>
+      <div class="card row" style="flex-wrap:nowrap;align-items:flex-start;border-color:var(--brand-ochre);background:#FDF5E3">${icon("tag")}<div><h3>Seasonal offer</h3><p class="small muted">Free delivery on the Christmas Edition, ordered before 15 December. ${HYP}</p><button class="btn btn--primary btn--sm" type="button" data-action="add-edition" data-edition="christmas">Add the Christmas Edition</button></div></div>
     </div>
   </div></section>
 
@@ -1113,6 +1148,12 @@ function homePlansTable(sizeId){
       <td><button class="btn btn--sm ${p.suggested ? "btn--primary" : "btn--secondary"}" type="button" data-action="choose-box" data-size="${sizeId}" data-plan="${p.id}">Choose<span class="sr-only"> ${p.label}</span></button></td></tr>`; }).join("")}</tbody></table></div>
     <p class="hint" style="margin-top:var(--space-2)">Prices ${PROV.replace("Provisional","provisional")}. "Our suggestion": six regions, half a year of discoveries, at 10% off per box.</p>`;
 }
+function producerCard(r, k = 0){
+  const [name, craft, place, story] = r.producers[k];
+  return `<article class="card producer">${photo(PIC["p-" + r.id] || PIC.generic, `${craft} from ${r.destination}, painted illustration`, "", r.destination)}
+    <p style="margin:var(--space-2) 0 0">${FICT}</p><h3 style="margin:0">${name}</h3>
+    <p class="small" style="margin:0"><strong>${craft}</strong> · ${place}, ${r.destination}</p><p class="small muted" style="margin:0">${story}</p></article>`;
+}
 function circuitDiagram(){
   return `<div class="card"><div class="circuit" role="img" aria-label="Short supply chain: regional producer, then Escale Régions Box for composition and logistics, then you">
     <div class="node">${icon("farmer")}<span>Regional producer</span><span class="small muted">artisans, farmers, cooperatives</span></div><span class="arrow" aria-hidden="true">→</span>
@@ -1125,7 +1166,8 @@ function accordion(items, prefix){
     <div class="acc-panel" id="${prefix}-${n}" role="region" aria-labelledby="${prefix}-${n}-btn" hidden><p style="margin:0">${a}</p></div></div>`).join("")}</div>`;
 }
 
-function editionCard(e){ return `<article class="card card--hover edition-card">${ph(`Visual: ${e.name} box`, "ph--square")}${editionBody(e)}</article>`; }
+const editionImg = e => photo(PIC["ed-" + e.id], `${e.name}: kraft box in front of a painted regional scene`, "photo--square", "Provisional visual");
+function editionCard(e){ return `<article class="card card--hover edition-card">${editionImg(e)}${editionBody(e)}</article>`; }
 function editionBody(e){
   const notified = S.notify.includes("ed-" + e.id);
   return `<div class="row"><span class="badge badge--green">Limited edition</span><span class="badge ${e.status === "available" ? "badge--success" : "badge--warning"}">${e.status === "available" ? "Available" : "Coming soon"}</span></div>
@@ -1176,8 +1218,8 @@ function pageBox(id){
     <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="#home">Home</a></li><li><a href="#boxes">Our Boxes</a></li><li aria-current="page">${b.name}</li></ol></nav>
     <div class="split" style="align-items:start">
       <div class="stack">${boxPhoto(b, "photo--43")}
-        <div class="grid grid-3">${ph("Gallery: products of the month", "ph--square")}${ph("Gallery: regional flyer", "ph--square")}${ph("Gallery: recipe card", "ph--square")}</div>
-        <p class="hint">Provisional visuals. Final product photography to come.</p></div>
+        <div class="grid grid-3">${photo(PIC["p-" + currentRegion().id], "Specialties of the month, painted illustration", "photo--square", "Products")}${photo(PIC.flyer, "The ‘Region of the month’ flyer for Alsace, with a QR code card", "photo--square", "Flyer")}${photo(PIC.recipe, "Regional recipe card: Kougelhopf-style breakfast brioche", "photo--square", "Recipe")}</div>
+        <p class="hint">Provisional visuals (illustrations and mockups). Final product photography to come.</p></div>
       <div>
         <span class="eyebrow">Size ${b.code} · ${b.size}</span>
         <h1>${b.size} — ${b.name}</h1>
@@ -1219,10 +1261,10 @@ function pageBox(id){
     <h2 id="every-title">In every box</h2>
     <div class="grid grid-3" style="margin-top:var(--space-5)">${IN_EVERY_BOX.map(([i, t]) => `<div class="card row" style="flex-wrap:nowrap">${icon(i)}<span>${t}</span></div>`).join("")}</div>
     <div style="margin-top:var(--space-6);max-width:860px">${accordion([
-      ["Composition & allergens", `Full ingredient lists and allergen information will be published with each month's selection and printed on the regional flyer. ${tag("tbd", "Not available in the prototype")}`],
-      ["Producers", `Each box presents the producers behind the products. Profiles will be added once selections are confirmed. ${tag("tbd", "To be confirmed")}`],
+      ["Composition & allergens", `Example for the ${currentRegion().destination} box: <strong>contains</strong> wheat (gluten), eggs, milk, nuts (almonds, hazelnuts) and mustard; <strong>may contain</strong> sesame and soy. Full ingredient lists are printed on the regional flyer. ${HYP}`],
+      ["Producers", `This month: ${currentRegion().producers.map(p => `<strong>${p[0]}</strong> (${p[1].toLowerCase()}, ${p[2]})`).join(", ")}. ${FICT}`],
       ["Delivery", `Choose your delivery date at checkout, or receive your box as soon as possible. Delivery is included on subscriptions; one-time orders cost ${money(CONFIG.shipping.standard)} ${PROV}. <a href="#delivery">Delivery &amp; guarantees</a>`],
-      ["Storage & best-before dates", `Storage advice will be given for each product. The inclusion of fresh products is still being studied. ${tag("tbd", "To be confirmed")}`]
+      ["Storage & best-before dates", `${CONFIG.business.storage} ${CONFIG.business.packaging} ${HYP}`]
     ], "pdp")}</div>
   </div></section>
   ${reviewsSlot()}
@@ -1315,8 +1357,8 @@ function updateBuilder(){
     <div class="sum-group"><h3>Payment &amp; conditions</h3><dl class="dl">
       <dt>Payment</dt><dd>${sub ? (c.payment === "monthly" ? `${money(q.perBox)} / month × ${q.deliveries}` : "In full, today") : "Once, today"}</dd>
       <dt>Renewal</dt><dd>${sub ? "Ends after last box" : "—"}</dd>
-      <dt>Cancellation</dt><dd>${sub ? "To be defined" : "—"}</dd></dl>
-      <p class="hint" style="margin:var(--space-2) 0 0">${sub ? `${ruleTag(CONFIG.rules.renewal)} Payment and renewal are proposed rules, not confirmed conditions.` : ruleTag(CONFIG.rules.oneTime)}</p></div>
+      <dt>Cancellation</dt><dd>${sub ? "Up to 5 days before shipment" : "—"}</dd></dl>
+      <p class="hint" style="margin:var(--space-2) 0 0">${sub ? `${ruleTag(CONFIG.rules.renewal)} Payment, renewal and cancellation terms are proposed or hypothetical.` : ruleTag(CONFIG.rules.oneTime)}</p></div>
     <div class="big-total"><span>${sub ? "Total commitment" : "Total"}</span><strong>${money(q.total)}</strong></div>
     ${sub && c.payment === "monthly" ? `<p class="small muted" style="margin:var(--space-1) 0 0;text-align:right">Due today (simulated): ${money(due)}</p>` : ""}
     <p class="small muted" style="margin-top:var(--space-2)">Delivery: ${sub ? "included" : money(CONFIG.shipping.standard)} ${PROV}</p>
@@ -1356,12 +1398,12 @@ function regionPanel(r){
       <div class="row" style="gap:var(--space-1)"><button class="icon-btn" type="button" data-action="select-region" data-region="${prev.id}" aria-label="Previous region: ${esc(prev.destination)}">${icon("arrowL")}</button><button class="icon-btn" type="button" data-action="select-region" data-region="${next.id}" aria-label="Next region: ${esc(next.destination)}">${icon("arrowR")}</button></div></div>
     <h2 style="margin-top:var(--space-3)" id="region-title">${r.destination}</h2>
     ${r.destination !== r.name ? `<p class="muted small">Region: ${r.name}</p>` : ""}
-    ${ph(`Regional photography: ${r.destination}`, "ph--wide")}
+    ${photo(regionImg(r), `Painted illustration of ${r.destination}`, "photo--43", PIC["r-" + r.id] ? "Illustration · " + r.destination : "Illustration to come")}
     <p style="margin-top:var(--space-4)">${r.intro}</p>
     <h3>Iconic specialties</h3><ul class="chips">${r.specialties.map(s => `<li>${s}</li>`).join("")}</ul>
     ${r.products.length ? `<h3>Products that could feature ${EXAMPLE}</h3><ul>${r.products.slice(0, 5).map(p => `<li>${p}</li>`).join("")}</ul>
       ${r.recipe ? `<p class="small">${icon("recipe")} <span style="vertical-align:middle">Recipe idea: ${r.recipe}</span></p>` : ""}
-      <h3>Local producers</h3><p class="small muted">Producer profiles will be published with the box. ${tag("tbd", "To be confirmed")}</p>` : ""}
+      ${r.producers ? `<h3>Local producers ${FICT}</h3><div class="mini-producers">${r.producers.map(p => `<div class="card"><strong>${p[0]}</strong><br><span class="small">${p[1]} · ${p[2]}</span><br><span class="small muted">${p[3]}</span></div>`).join("")}</div>` : ""}` : ""}
     <h3>Box information</h3>${cta}`;
 }
 
@@ -1370,7 +1412,7 @@ function pageEditions(){
   <section class="page-head"><div class="container"><span class="eyebrow">Special editions</span><h1>Limited editions for every celebration</h1>
     <p class="lead">Seasonal boxes for celebrations, available independently of any subscription.</p></div></section>
   <section class="section" style="padding-top:0"><div class="container"><div class="grid grid-2">${EDITIONS.map(e => `
-    <article class="card edition-card edition-row">${ph(`Visual: ${e.name} box`, "ph--square")}
+    <article class="card edition-card edition-row">${editionImg(e)}
       <div style="display:flex;flex-direction:column;gap:var(--space-3)">${editionBody(e)}<ul class="small muted" style="margin:0">${e.contents.map(x => `<li>${x}</li>`).join("")}</ul></div></article>`).join("")}</div>
     <p class="hint" style="margin-top:var(--space-5)">New editions can be added to the EDITIONS data list without changing page code.</p>
   </div></section>`;
@@ -1401,7 +1443,7 @@ function pageGift(){
     <aside class="card"><h2 style="font-size:var(--fs-xl)">How it works</h2><ul class="benefits">
       <li>${icon("gift")}<span>The recipient receives the card by email on the chosen date.</span></li>
       <li>${icon("box")}<span>They use it to choose any box, plan or special edition.</span></li>
-      <li>${icon("calendar")}<span>Validity period: ${tag("tbd", "to be defined")}</span></li></ul></aside>
+      <li>${icon("calendar")}<span>Valid ${CONFIG.business.giftValidity}, usable in several orders. ${HYP}</span></li></ul></aside>
   </section>`;
 }
 
@@ -1453,15 +1495,15 @@ function pageStory(){
 
 function pageDelivery(){
   const items = [
-    ["truck","Delivery", `Choose your delivery date at checkout, or we ship as soon as possible after your order. Subscriptions then deliver one box per month. ${PROV}`],
-    ["tag","Delivery costs", `Included on subscriptions; ${money(CONFIG.shipping.standard)} for one-time orders and special editions. ${PROV}`],
-    ["map","Delivery areas", tag("tbd", "To be confirmed")],
-    ["shield","Damaged or missing parcel", tag("tbd", "Guarantee to be defined")],
-    ["leaf","Allergens & composition", `Published with each selection and printed on the regional flyer. ${tag("tbd", "To be confirmed")}`],
+    ["truck","Delivery times", `${CONFIG.business.dispatch} ${CONFIG.business.transit} Subscriptions then deliver one box per month, around the same date.`],
+    ["tag","Delivery costs", `Included on subscriptions; ${money(CONFIG.shipping.standard)} for one-time orders and special editions, free from ${money(CONFIG.business.freeFrom)}.`],
+    ["map","Delivery areas", CONFIG.business.areas],
+    ["shield","Damaged or missing item", CONFIG.business.guarantee],
+    ["leaf","Allergens, storage & packaging", `Allergens are listed on the regional flyer for every product. ${CONFIG.business.storage} ${CONFIG.business.packaging}`],
     ["calendar","Subscription conditions", `Payment: ${CONFIG.rules.payment.text} ${ruleTag(CONFIG.rules.payment)}<br>Renewal: ${CONFIG.rules.renewal.text} ${ruleTag(CONFIG.rules.renewal)}<br>Cancellation: ${ruleTag(CONFIG.rules.cancellation)}`]
   ];
   return `<section class="page-head"><div class="container"><span class="eyebrow">Delivery &amp; guarantees</span><h1>Delivery, conditions &amp; guarantees</h1>
-    <p class="notice">Placeholders. Every item below must be confirmed before commercial launch.</p></div></section>
+    <p class="notice">Hypothetical terms written for the academic prototype. They must be validated before any commercial launch.</p></div></section>
     <section class="container"><div class="grid grid-2">${items.map(([i, t, p]) => `<article class="card row" style="flex-wrap:nowrap;align-items:flex-start"><div class="icon-wrap" style="margin:0;flex:none">${icon(i)}</div><div><h2 style="font-size:var(--fs-lg)">${t}</h2><p class="small muted" style="margin:0">${p}</p></div></article>`).join("")}</div></section>`;
 }
 
@@ -1476,7 +1518,7 @@ function pageCart(){
     <div>
       <div class="card"><h2 class="sr-only">Items</h2>
         ${t.lines.map(l => `<div class="cart-line">
-          ${l.kind === "box" ? photo(IMG.box, "") : ph(l.kind === "gift" ? "Gift card" : "Edition visual")}
+          ${l.kind === "box" ? photo(IMG.box, "") : l.kind === "edition" ? photo(PIC["ed-" + l.key.split("|")[1]] || PIC.generic, "") : photo(PIC.generic, "")}
           <div><h3 style="margin:0 0 var(--space-1);font-size:var(--fs-base)">${esc(l.title)}</h3><p class="small muted" style="margin:0 0 var(--space-1)">${esc(l.sub)}</p>
             ${l.diet ? `<p class="small" style="margin:0 0 var(--space-2)">Preferences: ${esc(l.diet)}</p>` : ""}
             <div class="row">
@@ -1603,7 +1645,7 @@ function pageAccount(){
         return `<li><div class="row row--between"><strong>${q.box.size} — ${q.box.name}</strong>${s.demo ? '<span class="badge">Demo</span>' : '<span class="badge badge--success">Simulated</span>'}</div>
           <p class="small muted" style="margin:var(--space-1) 0 0">${q.plan.label} · ${monthLabel(s.start, true)} to ${monthLabel(end, true)}</p>
           <details class="small" style="margin-top:var(--space-2)"><summary>Subscription details</summary>
-          <dl class="kv" style="margin-top:var(--space-2)"><dt>Price per box</dt><dd>${money(q.perBox)}</dd><dt>Total</dt><dd>${money(q.total)}</dd><dt>Payment</dt><dd>${paymentLabel(s.payment)}</dd><dt>Renewal</dt><dd>Ends after the last box (proposed)</dd><dt>Cancellation</dt><dd>To be defined</dd><dt>Order</dt><dd>${s.orderId}</dd></dl></details></li>`; }).join("")}</ul>`
+          <dl class="kv" style="margin-top:var(--space-2)"><dt>Price per box</dt><dd>${money(q.perBox)}</dd><dt>Total</dt><dd>${money(q.total)}</dd><dt>Payment</dt><dd>${paymentLabel(s.payment)}</dd><dt>Renewal</dt><dd>Ends after the last box (proposed)</dd><dt>Cancellation</dt><dd>Up to 5 days before each shipment (hypothetical)</dd><dt>Order</dt><dd>${s.orderId}</dd></dl></details></li>`; }).join("")}</ul>`
         : `<p class="muted">No active subscription.</p><a class="btn btn--primary btn--sm" href="#build">Start a subscription</a>`}
     </article>
 
@@ -1645,14 +1687,20 @@ function pageFaq(){
       <button class="btn btn--primary" type="submit">Send message</button>
       <div id="contact-result" aria-live="polite" style="margin-top:var(--space-4)"></div>
     </form>
-    <p class="small muted" style="margin-top:var(--space-4)">Email: contact@escale-regions.example · Phone and opening hours ${tag("tbd", "to be confirmed")}</p>
+    <p class="small muted" style="margin-top:var(--space-4)">Email: ${CONFIG.business.email} · Phone: ${CONFIG.business.phone} · ${CONFIG.business.hours} · We reply ${CONFIG.business.responseTime}. ${HYP}</p>
   </div></section>`;
 }
 
 function pageLegal(){
   return `<section class="page-head"><div class="container" style="max-width:860px"><h1>Legal information</h1>
-    <p class="notice">Placeholder page. The final legal documents will be written and validated before any commercial launch.</p></div></section>
-    <section class="container" style="max-width:860px">${["Terms of sale","Privacy policy (GDPR)","Legal notice","Cookie policy","Food information (ingredients & allergens)"].map(t => `<article class="card" style="margin-bottom:var(--space-4)"><h2 style="font-size:var(--fs-lg)">${t}</h2><p class="muted" style="margin:0">To be provided.</p></article>`).join("")}</section>`;
+    <p class="notice">Hypothetical summaries for a fictional company, written for an academic project. Not legally binding; real documents must be drafted and validated before any launch.</p></div></section>
+    <section class="container" style="max-width:860px">${[
+      ["Legal notice", `${CONFIG.business.company}. Registered office: 10 rue de l’Exemple, 75000 Paris (fictional). Contact: ${CONFIG.business.email}. Hosting: to be defined.`],
+      ["Terms of sale", "Prices include VAT. One-time boxes are paid at order. Subscriptions are paid in full or by monthly direct debit and end after the last delivery. Food products are excluded from the 14-day withdrawal right once delivered, as perishable goods. Damaged items are replaced or refunded."],
+      ["Privacy policy (GDPR)", "We only collect the data needed to process orders and deliveries (name, email, address, order history). Data is never sold. You can access, correct or delete your data at any time by email."],
+      ["Cookie policy", "Essential cookies only to run the cart and your account. Audience measurement cookies are used only with your consent."],
+      ["Food information", "Ingredients, allergens, origin and best-before dates are printed on each product and on the regional flyer, in line with EU food information rules (INCO)."]
+    ].map(([t, p]) => `<article class="card" style="margin-bottom:var(--space-4)"><h2 style="font-size:var(--fs-lg)">${t}</h2><p class="muted" style="margin:0">${p}</p></article>`).join("")}</section>`;
 }
 
 function pagePrototype(){
@@ -1669,8 +1717,10 @@ function pagePrototype(){
     ["Notifications (notify me, newsletter, contact)", "Simulated", "Saved locally or not at all; nothing is sent."],
     ["Gift cards", "Simulated", "Proposed feature; cards have no value."],
     ["Prices, quantities, delivery fees, calendar", "Provisional", "To be confirmed."],
+    ["Producers, delivery terms, guarantees, contact details, legal summaries, personas", "Hypothetical", "Invented for the academic prototype, clearly labelled on the site."],
     ["Product examples, producers, recipes", "Illustrative", "No real selection or producer is claimed."],
-    ["Reviews & seasonal offers", "Placeholder", "Empty slots; no fake reviews or popularity figures."]
+    ["Visuals", "Provisional", "Painted illustrations and mockups made for the project; real photography to come."],
+    ["Reviews", "Placeholder", "No fake reviews or popularity figures."]
   ];
   const backend = [
     ["Back-end & database", "Products, regions, stock, customers, orders and subscriptions stored server-side."],
